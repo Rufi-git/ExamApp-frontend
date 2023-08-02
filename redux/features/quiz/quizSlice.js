@@ -183,6 +183,21 @@ export const getQuestionByExam = createAsyncThunk(
     }
 )
 
+//Add Exam To User
+export const addExamToUser = createAsyncThunk(
+    "quiz/addExamToUser",
+    async (examId, thunkAPI) => {
+        try {
+            return await quizService.addExamToUser(examId)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 const quizSlice = createSlice({
     name: 'quiz',
     initialState,
@@ -399,6 +414,23 @@ const quizSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.queue = []
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            //Add Exam To User
+            .addCase(addExamToUser.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(addExamToUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                toast.success(action.payload)
+            })
+            .addCase(addExamToUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
                 state.message = action.payload;
                 toast.error(action.payload)
             })

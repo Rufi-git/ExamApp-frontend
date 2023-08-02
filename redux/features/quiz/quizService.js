@@ -86,6 +86,12 @@ const getResultsByUserByExam = async (examId) => {
     return response.data
 }
 
+//Add Exam to User
+const addExamToUser = async (examId) => {
+    const response = await axios.post(API_URL + "addExamToUser/" + examId)
+    return response.data.message
+}
+
 
 const quizService = {
     getTags,
@@ -101,7 +107,8 @@ const quizService = {
     getQuestionByExam,
     addResult,
     getResultsByUser,
-    getResultsByUserByExam
+    getResultsByUserByExam,
+    addExamToUser
 }
 
 export default quizService

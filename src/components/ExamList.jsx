@@ -1,12 +1,13 @@
 import { useEffect, useLayoutEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteExam, getExamsByTag } from "../../redux/features/quiz/quizSlice"
+import { addExamToUser, deleteExam, getExamsByTag } from "../../redux/features/quiz/quizSlice"
 import { Link, useParams } from "react-router-dom"
 import PageMenu from "./PageMenu"
 import Loader from "./Loader"
 import { MdOutlineModeEditOutline } from "react-icons/md"
 import { AdminTeacherLink } from "./protect/hiddenLink"
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai"
+import Spinner from "./Spinner"
 
 const ExamList = () => {
     const dispatch = useDispatch()
@@ -19,6 +20,11 @@ const ExamList = () => {
     const handleDelete = async (examId) => {
         await dispatch(deleteExam(examId))
         await dispatch(getExamsByTag(id))
+    }
+
+    const addExam = async (e, examId) => {
+        e.preventDefault()
+        await dispatch(addExamToUser(examId))
     }
 
     if (isLoading) {
@@ -60,6 +66,12 @@ const ExamList = () => {
                             }
                         </ul>
                     </div>
+                    {
+                        isLoading ?
+                            <button className="bg-[#6dabe4] w-full mt-6 flex justify-center text-white py-3 px-9 rounded-md text-sm" disabled><Spinner /></button>
+                            :
+                            <button onClick={(e) => addExam(e, exam._id)} className="flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4">Imtahanı əldə et</button>
+                    }
                     <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>Pulsuz - Bax</Link>
                 </div>
             ))}
