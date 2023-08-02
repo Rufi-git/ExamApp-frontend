@@ -18,6 +18,18 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getLoginStatus, getUser, selectIsLoggedIn, selectUser } from "../redux/features/auth/authSlice"
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Tags from "./pages/Tags"
+import ExamAdd from "./pages/admin/ExamAdd"
+import TagAdd from "./pages/admin/TagAdd"
+import Exams from "./pages/Exams"
+import ExamEdit from "./pages/admin/ExamEdit"
+import QuestionAdd from "./pages/admin/QuestionAdd"
+import TagEdit from "./pages/admin/TagEdit"
+import ExamInstructions from "./pages/exam/ExamInstructions"
+import Questions from "./components/Questions"
+import Quiz from "./pages/exam/Quiz"
+import Result from "./pages/exam/Result"
+import MyResults from "./pages/exam/MyResults"
 axios.defaults.withCredentials = true
 
 
@@ -54,48 +66,135 @@ function App() {
               element={
                 <Login />
               } />
+
             <Route path="/register" exact
               element={
                 <Register />
               } />
+
             <Route path="/forgot" exact
               element={
                 <Forgot />
               } />
+
             <Route path="/resetPassword/:resetToken" exact
               element={
                 <Reset />
               } />
+
             <Route path="/loginWithCode/:email" exact
               element={
                 <LoginWithCode />
               } />
+
             <Route path="/verify/:verificationToken" exact
               element={
                 <Verify />
               } />
+
             <Route path="/profile" exact
               element={
                 <Layout>
                   <Profile />
                 </Layout>
               } />
+
             <Route path="/changePassword" exact
               element={
                 <Layout>
                   <ChangePassword />
                 </Layout>
               } />
+
             <Route path="/users" exact
               element={
                 <Layout>
                   < UserList />
                 </Layout>
               } />
+
+            <Route path="/tags" exact
+              element={
+                <Layout>
+                  < Tags />
+                </Layout>
+              } />
+
+            <Route path="/exams/:id" exact
+              element={
+                <Layout>
+                  <Exams />
+                </Layout>
+              } />
+
+            <Route path="/exam/:id" exact
+              element={
+                <Layout>
+                  <Exams />
+                </Layout>
+              } />
+
+            <Route path="/examAdd/:id" exact
+              element={
+                <Layout>
+                  <ExamAdd />
+                </Layout>
+              } />
+
+            <Route path="/tagAdd" exact
+              element={
+                <Layout>
+                  <TagAdd />
+                </Layout>
+              } />
+
+            <Route path="/exam/edit/:examId" exact
+              element={
+                <Layout>
+                  <ExamEdit />
+                </Layout>
+              } />
+
+            <Route path="/exam/:examId/addQuestion" exact
+              element={
+                <Layout>
+                  <QuestionAdd />
+                </Layout>
+              } />
+
+            <Route path="/exam/details/:examId" exact
+              element={
+                <Layout>
+                  <ExamInstructions />
+                </Layout>
+              } />
+
+            <Route path="/exam/:examId/start" exact
+              element={
+                <Quiz />
+              } />
+            <Route path="/exam/:examId/result" exact
+              element={
+                <Result />
+              } />
+
+            <Route path="/tag/edit/:tagId" exact
+              element={
+                <Layout>
+                  <TagEdit />
+                </Layout>
+              } />
+
+            <Route path="/myResults" exact
+              element={
+                <Layout>
+                  <MyResults />
+                </Layout>
+              } />
           </Routes>
         </GoogleOAuthProvider>
-
       </BrowserRouter>
+
     </>
   )
 }

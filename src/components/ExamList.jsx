@@ -1,0 +1,70 @@
+import { useEffect, useLayoutEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteExam, getExamsByTag } from "../../redux/features/quiz/quizSlice"
+import { Link, useParams } from "react-router-dom"
+import PageMenu from "./PageMenu"
+import Loader from "./Loader"
+import { MdOutlineModeEditOutline } from "react-icons/md"
+import { AdminTeacherLink } from "./protect/hiddenLink"
+import { AiFillDelete, AiOutlinePlus } from "react-icons/ai"
+
+const ExamList = () => {
+    const dispatch = useDispatch()
+    const { exams, isLoading, isSuccess } = useSelector(state => state.quiz)
+    const { id } = useParams()
+    useEffect(() => {
+        dispatch(getExamsByTag(id))
+    }, [dispatch])
+
+    const handleDelete = async (examId) => {
+        await dispatch(deleteExam(examId))
+        await dispatch(getExamsByTag(id))
+    }
+
+    if (isLoading) {
+        return <Loader />
+    }
+    return (
+        <div className="grid grid-cols-4 gap-5">
+            {exams && exams.map((exam) => (
+                <div key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
+                    <div className="flex justify-between">
+                        <h1 className='font-bold'>{exam.name}</h1>
+                        <div className="flex gap-4 items-center">
+                            <AdminTeacherLink>
+                                <Link to={`/exam/${exam._id}/addQuestion`} className="text-[orange] text-[20px]"><AiOutlinePlus /></Link>
+                                <Link to={`/exam/edit/${exam._id}`} className="text-[orange] text-[20px]"><MdOutlineModeEditOutline /></Link>
+                                <button onClick={() => handleDelete(exam._id)} className="text-[red] text-[20px]"><AiFillDelete /></button>
+                            </AdminTeacherLink>
+                        </div>
+                    </div>
+                    <div className='text-sm font-bold text-[#666] mt-2'>
+                        <i className="fa-solid fa-hourglass"></i>
+                        <span className='ml-2'> {`${Math.floor(exam.duration / 60)} minutes ${exam.duration % 60} seconds`}</span>
+                    </div>
+                    <p className='font-bold text-sm mt-3'>Ətraflı</p>
+
+                    <ul className='text-sm list-disc px-6'>
+                        <li>{exam.questions.length} sual - Dünyanı gəzirəm</li>
+                    </ul>
+                    <hr className='mt-3' />
+
+                    <div className='mt-3'>
+                        <ul className='flex gap-2 text-sm flex-wrap text-white'>
+                            {
+                                exam.tags?.map((tag) => {
+                                    return (
+                                        <li key={tag._id} className='bg-[#1084da] rounded-full px-2'>{tag.name}</li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                    <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>Pulsuz - Bax</Link>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+export default ExamList

@@ -29,8 +29,6 @@ const Navbar = () => {
     navigate("/login")
   }
 
-
-
   return (
     <nav className="px-4 max-w-[1440px] mx-auto sticky top-0">
       <div className="flex items-center justify-between">
