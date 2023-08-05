@@ -51,7 +51,7 @@ function App() {
   }, [dispatch, isLoggedIn, user])
 
   return (
-    <HashRouter>
+    <>
       <BrowserRouter>
         <ToastContainer />
         {/* <Loader /> */}
@@ -209,7 +209,7 @@ function App() {
         </GoogleOAuthProvider>
       </BrowserRouter>
 
-    </HashRouter>
+    </>
   )
 }
 
