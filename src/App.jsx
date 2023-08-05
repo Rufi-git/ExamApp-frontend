@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Layout from "./components/Layout"
 import Login from "./pages/auth/Login"
@@ -51,7 +51,7 @@ function App() {
   }, [dispatch, isLoggedIn, user])
 
   return (
-    <>
+    <HashRouter>
       <BrowserRouter>
         <ToastContainer />
         {/* <Loader /> */}
@@ -209,7 +209,7 @@ function App() {
         </GoogleOAuthProvider>
       </BrowserRouter>
 
-    </>
+    </HashRouter>
   )
 }
 
