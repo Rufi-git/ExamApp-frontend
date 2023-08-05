@@ -12,7 +12,7 @@ const Quiz = () => {
     const { queue, trace, singleExam } = useSelector((state) => state.quiz);
     const { result } = useSelector((state) => state.result);
 
-    const [checked, setChecked] = useState();
+    const [checked, setChecked] = useState(-1);
     const { examId } = useParams()
 
     const dispatch = useDispatch();
@@ -23,12 +23,13 @@ const Quiz = () => {
     }, [dispatch])
 
     const movePrev = (e) => {
-        e.preventDefault()
-        if (trace > 0)
-            dispatch(movePrevQuestion())
+        e.preventDefault();
+        if (trace > 0) {
+            dispatch(movePrevQuestion());
+        }
 
-        if (result.length <= trace) {
-            dispatch(pushResultAction(checked))
+        if (checked !== -1 && result.length <= trace) {
+            dispatch(pushResultAction(checked));
         }
     }
 
@@ -41,7 +42,7 @@ const Quiz = () => {
                 dispatch(pushResultAction(checked))
             }
         }
-        setChecked(undefined)
+        setChecked(-1)
     }
 
     const isLastQuestion = queue.length === trace + 1
@@ -56,13 +57,26 @@ const Quiz = () => {
             attempts,
             earnPoints: Math.floor(earnPoints),
             isPassed: flag,
+            userAnswers: newResult.map((checkedAnswer, index) => {
+                if (index < queue.length) {
+                    return {
+                        questionId: queue[index]._id,
+                        selectedOptionIndex: checkedAnswer
+                    };
+                }
+                return null;
+            }).filter(answer => answer !== null)
         };
     };
 
-    const finishExam = async () => {
-        await dispatch(pushResultAction(checked));
 
-        const newResult = [...result, checked];
+    const finishExam = async () => {
+
+        if (checked !== -1) {
+            await dispatch(pushResultAction(checked));
+        }
+
+        const newResult = checked !== -1 ? [...result, checked] : result;
 
         const resultData = calculateResultData(newResult)
 

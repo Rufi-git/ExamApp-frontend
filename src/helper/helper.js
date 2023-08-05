@@ -8,8 +8,6 @@ export function earnPoints_Number(result, point, queue) {
         const selectedVariant = question?.options?.[selectedAnswerIndex]
 
         if (selectedVariant?.isCorrect === true) {
-            console.log(point)
-            console.log(queue)
             return totalPoints + point / queue.length;
         }
 
@@ -20,5 +18,5 @@ export function earnPoints_Number(result, point, queue) {
 }
 
 export function flagResult(totalPoints, earnPoints) {
-    return totalPoints < earnPoints
+    return totalPoints <= earnPoints
 }

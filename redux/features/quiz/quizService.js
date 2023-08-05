@@ -89,6 +89,24 @@ const getResultsByUserByExam = async (examId) => {
 //Add Exam to User
 const addExamToUser = async (examId) => {
     const response = await axios.post(API_URL + "addExamToUser/" + examId)
+    return response.data
+}
+
+//Get Exams By User
+const getExamsByUser = async () => {
+    const response = await axios.get(API_URL + "getExamsByUser")
+    return response.data
+}
+
+//Review Result
+const reviewResult = async (resultId) => {
+    const response = await axios.get(API_URL + "reviewByResult/" + resultId)
+    return response.data
+}
+
+//Delete My Exam
+const deleteMyExam = async (examId) => {
+    const response = await axios.delete(API_URL + "deleteMyExam/" + examId)
     return response.data.message
 }
 
@@ -108,7 +126,10 @@ const quizService = {
     addResult,
     getResultsByUser,
     getResultsByUserByExam,
-    addExamToUser
+    addExamToUser,
+    getExamsByUser,
+    reviewResult,
+    deleteMyExam
 }
 
 export default quizService

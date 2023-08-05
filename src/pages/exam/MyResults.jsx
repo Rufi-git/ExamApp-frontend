@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getResultsByUser } from '../../../redux/features/quiz/resultSlice';
 import Loader from '../../components/Loader';
 import PageMenu from '../../components/PageMenu';
+import { VscPreview } from 'react-icons/vsc';
+import { Link } from 'react-router-dom';
 
 const MyResults = () => {
     useRedirectLoggedOutUser("/login")
@@ -20,7 +22,6 @@ const MyResults = () => {
     if (isLoading) return <Loader />
 
     return (
-
         <div className='max-w-[1640px] px-4 mx-auto py-10'>
             <PageMenu />
             {user && result && (result.length > 0 ? (
@@ -41,7 +42,7 @@ const MyResults = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">{res?.attempts}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{res?.examId?.name}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{res?.earnPoints}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
+                                <td className="px-6 py-4 whitespace-nowrap flex gap-5">
                                     {res?.isPassed ? (
                                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Passed
@@ -51,6 +52,7 @@ const MyResults = () => {
                                             Failed
                                         </span>
                                     )}
+                                    <Link to={`/result/${res._id}/review`} className="text-[#1084da] text-[20px]"><VscPreview /></Link>
                                 </td>
                             </tr>
                         ))}

@@ -8,6 +8,7 @@ const initialState = {
     questions: null,
     tags: [],
     exams: [],
+    myExams: [],
     isLoading: false,
     isSuccess: false,
     isError: false,
@@ -197,6 +198,37 @@ export const addExamToUser = createAsyncThunk(
         }
     }
 )
+
+//Get Exams By User
+export const getExamsByUser = createAsyncThunk(
+    "quiz/getExamsByUser",
+    async (_, thunkAPI) => {
+        try {
+            return await quizService.getExamsByUser()
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+//Delete My Exam
+export const deleteMyExam = createAsyncThunk(
+    "quiz/deleteMyExam",
+    async (examId, thunkAPI) => {
+        try {
+            return await quizService.deleteMyExam(examId)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 
 const quizSlice = createSlice({
     name: 'quiz',
@@ -426,9 +458,44 @@ const quizSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.isError = false;
-                toast.success(action.payload)
+                state.myExams.push(action.payload);
+                toast.success("Exam added successfully")
             })
             .addCase(addExamToUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            //Get Exams By User
+            .addCase(getExamsByUser.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(getExamsByUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                state.myExams = action.payload
+            })
+            .addCase(getExamsByUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            //Delete My Exam
+            .addCase(deleteMyExam.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(deleteMyExam.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                toast.success(action.payload)
+            })
+            .addCase(deleteMyExam.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

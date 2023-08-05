@@ -15,6 +15,10 @@ const PageMenu = () => {
                         <li>My Results</li>
                     </NavLink>
                 }
+
+                <NavLink to={"/myExams"} className="text-[20px]">
+                    <li>My Exams</li>
+                </NavLink>
                 <NavLink to={"/changePassword"} className="text-[20px]">
                     <li>Change Password</li>
                 </NavLink>

@@ -9,7 +9,8 @@ const initialState = {
     isError: false,
     userId: null,
     result: [],
-    resultByExam: []
+    resultByExam: [],
+    review: []
 }
 
 //Add Result
@@ -57,6 +58,20 @@ export const getResultsByUserByExam = createAsyncThunk(
     }
 )
 
+//Review Result
+export const reviewResult = createAsyncThunk(
+    "quiz/reviewResult",
+    async (resultId, thunkAPI) => {
+        try {
+            return await quizService.reviewResult(resultId)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
 
 const resultSlice = createSlice({
     name: 'result',
@@ -122,6 +137,24 @@ const resultSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.resultByExam = null;
+                toast.error(action.payload)
+            })
+
+            //Review Result
+            .addCase(reviewResult.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(reviewResult.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                state.review = action.payload
+            })
+            .addCase(reviewResult.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.review = []
+                state.message = action.payload;
                 toast.error(action.payload)
             })
     }

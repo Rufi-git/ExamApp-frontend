@@ -26,7 +26,6 @@ const ExamInstructions = () => {
     useEffect(() => {
         if (!singleExam) return;
         const deadline = singleExam.dedline;
-        console.log(deadline);
         const getTime = () => {
             const time = Date.parse(deadline) - Date.now();
 
