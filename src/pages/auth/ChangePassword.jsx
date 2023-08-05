@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import changePass from '../../assets/changePass.jpg'
+// import changePass from '../../assets/changePass.jpg'
 import PageMenu from '../../components/PageMenu'
 import { RiLockPasswordFill, RiLockPasswordLine } from 'react-icons/ri'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
@@ -123,7 +123,7 @@ const ChangePassword = () => {
             <PageMenu />
             <div className='flex gap-5'>
                 <div className='w-[800px]'>
-                    <img src={changePass} alt="" className='w-full' />
+                    {/* <img src={changePass} alt="" className='w-full' /> */}
                 </div>
                 <form action="" onSubmit={updatePassword} className='w-full'>
                     <div className='flex flex-col mt-2'>
