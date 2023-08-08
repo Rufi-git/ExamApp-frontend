@@ -434,6 +434,11 @@ video {
   display: none;
 }
 
+* {
+  scrollbar-color: initial;
+  scrollbar-width: initial;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -668,6 +673,10 @@ video {
   margin-left: -60px;
 }
 
+.ml-\[100px\] {
+  margin-left: 100px;
+}
+
 .ml-auto {
   margin-left: auto;
 }
@@ -744,8 +753,16 @@ video {
   margin-top: 55px;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .block {
   display: block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -778,6 +795,10 @@ video {
 
 .h-5 {
   height: 1.25rem;
+}
+
+.h-6 {
+  height: 1.5rem;
 }
 
 .h-\[130px\] {
@@ -824,6 +845,10 @@ video {
   width: 1.25rem;
 }
 
+.w-6 {
+  width: 1.5rem;
+}
+
 .w-\[100\%\] {
   width: 100%;
 }
@@ -866,10 +891,6 @@ video {
 
 .w-\[50px\] {
   width: 50px;
-}
-
-.w-\[700px\] {
-  width: 700px;
 }
 
 .w-\[70px\] {
@@ -1041,8 +1062,8 @@ video {
   border-color: rgb(229 231 235 / var(--tw-divide-opacity));
 }
 
-.overflow-hidden {
-  overflow: hidden;
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 
 .whitespace-normal {
@@ -1252,6 +1273,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[1084da\] {
+  background-color: 1084da;
+}
+
 .bg-gradient-to-t {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
@@ -1292,6 +1317,10 @@ video {
 
 .bg-cover {
   background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
 }
 
 .p-1 {
@@ -1429,16 +1458,6 @@ video {
 .py-\[70px\] {
   padding-top: 70px;
   padding-bottom: 70px;
-}
-
-.px-\[0px\] {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.px-\[50px\] {
-  padding-left: 50px;
-  padding-right: 50px;
 }
 
 .pb-1 {
@@ -1784,6 +1803,86 @@ video {
   transition-duration: 300ms;
 }
 
+.scrollbar-thin {
+  scrollbar-color: var(--scrollbar-thumb, initial) var(--scrollbar-track, initial);
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track);
+  border-radius: var(--scrollbar-track-radius);
+}
+
+.scrollbar-thin::-webkit-scrollbar-track:hover {
+  background-color: var(--scrollbar-track-hover, var(--scrollbar-track));
+}
+
+.scrollbar-thin::-webkit-scrollbar-track:active {
+  background-color: var(--scrollbar-track-active, var(--scrollbar-track-hover, var(--scrollbar-track)));
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--scrollbar-thumb-radius);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover, var(--scrollbar-thumb));
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-active, var(--scrollbar-thumb-hover, var(--scrollbar-thumb)));
+}
+
+.scrollbar-thin::-webkit-scrollbar-corner {
+  background-color: var(--scrollbar-corner);
+  border-radius: var(--scrollbar-corner-radius);
+}
+
+.scrollbar-thin::-webkit-scrollbar-corner:hover {
+  background-color: var(--scrollbar-corner-hover, var(--scrollbar-corner));
+}
+
+.scrollbar-thin::-webkit-scrollbar-corner:active {
+  background-color: var(--scrollbar-corner-active, var(--scrollbar-corner-hover, var(--scrollbar-corner)));
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-thumb-\[\#888888\] {
+  --scrollbar-thumb: #888888 !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .hover\:bg-\[\#1084da\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(16 132 218 / var(--tw-bg-opacity));
@@ -1802,6 +1901,32 @@ video {
 .hover\:bg-red-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\]:hover {
+  background-color: ;
+}
+
+.hover\:bg-\[108da\]:hover {
+  background-color: 108da;
+}
+
+.hover\:bg-\[108\]:hover {
+  background-color: 108;
+}
+
+.hover\:bg-\[1084da\]:hover {
+  background-color: 1084da;
+}
+
+.hover\:bg-\[\#b0d7f5\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(176 215 245 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#a2d0f3\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(162 208 243 / var(--tw-bg-opacity));
 }
 
 .focus\:border-b-2:focus {
@@ -1909,6 +2034,11 @@ video {
 
   .sm\:text-\[18px\] {
     font-size: 18px;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .sm\:shadow-md {
@@ -2048,3 +2178,4 @@ video {
     font-size: 55px;
   }
 }
+

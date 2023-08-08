@@ -121,7 +121,7 @@ const Profile = () => {
             <div className='flex items-center gap-5'>
               <div className='w-[130px]'>
                 <label htmlFor="image" className='cursor-pointer'>
-                  <img src={imagePreview === null ? user.photo : imagePreview} alt="" className='w-full h-[130px] bg-cover rounded-full shadow-2xl' />
+                  <img src={imagePreview === null ? user.photo : imagePreview} alt="" className='w-full h-[130px] bg-cover rounded-full shadow-2xl bg-center' />
                 </label>
                 <input type="file" className='mt-3 hidden' accept='image/*' id='image' name='image' onChange={handleImageChange} />
               </div>

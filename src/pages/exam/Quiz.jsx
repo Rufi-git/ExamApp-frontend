@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
-import Questions from "../../components/Questions"
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import Loader from '../../components/Loader';
+import Questions from '../../components/Questions';
 import { RESET_QUIZ, getExam, moveNextQuestion, movePrevQuestion } from '../../../redux/features/quiz/quizSlice';
 import { RESET_RESULT, addResult, pushResultAction } from '../../../redux/features/quiz/resultSlice';
 import { attempts_Number, earnPoints_Number, flagResult } from '../../helper/helper';
+import Loader from '../../components/Loader';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa';
+
 
 const Quiz = () => {
     const { queue, trace, singleExam } = useSelector((state) => state.quiz);
@@ -95,11 +96,10 @@ const Quiz = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-
-            <div className=" shadow-lg rounded-lg p-6 px-6 py-8 w-[700px]">
-                <div className='flex justify-between'>
-                    <h1 className="text-3xl mb-8">{trace + 1}/{queue.length}</h1>
-                    <h1 className="text-3xl font-bold mb-8">Timer</h1>
+            <div className="shadow-lg rounded-lg p-6 px-6 py-8 w-full max-w-2xl mx-auto">
+                <div className='flex justify-between mb-8'>
+                    <h1 className="text-3xl font-semibold">{trace + 1}/{queue.length}</h1>
+                    <h1 className="text-3xl font-bold">Timer</h1>
                 </div>
                 <div className="w-full">
                     <Questions onChecked={onChecked} />
@@ -110,29 +110,23 @@ const Quiz = () => {
                             onClick={movePrev}
                             className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
                         >
-                            Prev
+                            <FaChevronLeft className="w-6 h-6 mr-2 inline" /> Prev
                         </button> :
                         <div></div>}
-
                     {!isLastQuestion ?
                         <button
                             onClick={moveNext}
                             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
                         >
-                            Next
+                            Next <FaChevronRight className="w-6 h-6 ml-2 inline" />
                         </button>
                         :
                         <button
                             onClick={finishExam}
                             className="bg-orange-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
                         >
-                            Finish</button>
+                            Finish <FaCheckCircle className="w-6 h-6 ml-2 inline" /></button>
                     }
-                    {/* <button
-                        className="bg-orange-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-                    >
-                        Finish
-                    </button> */}
                 </div>
             </div>
         </div>

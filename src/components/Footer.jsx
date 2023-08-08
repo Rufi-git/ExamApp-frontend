@@ -39,12 +39,12 @@ const Footer = () => {
                 </div>
             </div>
             <div className='text-white mt-10'>
-                <div className='flex justify-around py-5 bg-[#1e1e1e]'>
+                <div className='flex justify-around py-5 bg-[#1e1e1e] px-3 gap-3'>
                     <div className='flex items-center'>
                         <div className='lg:text-[55px] text-[35px] text-[#28e688]'><PiPhoneCallDuotone /></div>
                         <div className='ml-4'>
                             <h1 className='font-bold lg:text-[20px] text-sm'>Əlaqə Nömrəmiz</h1>
-                            <p className='text-[#6a7695]'>+994 77 399 99 66</p>
+                            <p className='text-[#6a7695] text-sm sm:text-base'>+994 77 399 99 66</p>
                         </div>
                     </div>
                     <div className='flex items-center'>

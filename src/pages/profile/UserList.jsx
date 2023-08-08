@@ -115,50 +115,52 @@ const UserList = () => {
                                             </div>
                                         </div>
 
-                                        <div class="mt-6 overflow-hidden rounded-xl bg-white px-6 shadow lg:px-4">
-                                            <table className="min-w-full border-collapse border-spacing-y-2 border-spacing-x-2">
-                                                <thead className="hidden border-b lg:table-header-group">
-                                                    <tr className="">
-                                                        <td className="whitespace-normal py-4 text-sm font-semibold text-gray-800 sm:px-3">
-                                                            s/n
-                                                        </td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Name</td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Email</td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Phone</td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Role</td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Status</td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Change Role</td>
-                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Action</td>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody className="bg-white lg:border-gray-300">
-                                                    {currentItems?.map((user, index) => (
-                                                        <tr className="" key={index}>
-                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
-                                                                {index + 1}
+                                        <div class="mt-6 rounded-xl bg-white px-6 shadow lg:px-4">
+                                            <div className="overflow-x-scroll scrollbar-thumb-[#888888] scrollbar-thin scrollbar-rounded-[20px]">
+                                                <table className="min-w-full border-collapse border-spacing-y-2 border-spacing-x-2">
+                                                    <thead className="hidden border-b lg:table-header-group">
+                                                        <tr className="">
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-semibold text-gray-800 sm:px-3">
+                                                                s/n
                                                             </td>
-
-                                                            <td className={`whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>{shortenText(user.name, 15)}</td>
-
-                                                            <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.email}</td>
-                                                            <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.phone}</td>
-
-                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">{user.role}</td>
-                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
-                                                                {!user.isVerified ? <p className='text-red-500'>Not Verified</p> : <p className='text-green-500'>Verified</p>}
-                                                            </td>
-                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
-                                                                <ChangeRole _id={user._id} email={user.email} />
-                                                            </td>
-                                                            <td className="sm:p-3 text-[25px] gap-8 flex ">
-                                                                <button className='text-[red]' onClick={() => confirmDelete(user._id)}><AiFillDelete /></button>
-                                                            </td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Name</td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Email</td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Phone</td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Role</td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Status</td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Change Role</td>
+                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Action</td>
                                                         </tr>
-                                                    ))}
+                                                    </thead>
 
-                                                </tbody>
-                                            </table>
+                                                    <tbody className="bg-white lg:border-gray-300">
+                                                        {currentItems?.map((user, index) => (
+                                                            <tr className="" key={index}>
+                                                                <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
+                                                                    <b>{index + 1}</b>
+                                                                </td>
+
+                                                                <td className={`px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>{shortenText(user.name, 15)}</td>
+
+                                                                <td className="px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.email}</td>
+                                                                <td className="px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.phone}</td>
+
+                                                                <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">{user.role}</td>
+                                                                <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
+                                                                    {!user.isVerified ? <p className='text-red-500'>Not Verified</p> : <p className='text-green-500'>Verified</p>}
+                                                                </td>
+                                                                <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
+                                                                    <ChangeRole _id={user._id} email={user.email} />
+                                                                </td>
+                                                                <td className="sm:p-3 text-[25px] gap-8 flex ">
+                                                                    <button className='text-[red]' onClick={() => confirmDelete(user._id)}><AiFillDelete /></button>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <>
                                             <ReactPaginate
