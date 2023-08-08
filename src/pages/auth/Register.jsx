@@ -119,8 +119,8 @@ const Register = () => {
     }, [isLoggedIn, isSuccess, dispatch, navigate])
 
     return (
-        <div className="md:bg-[#f8f8f8] h-screen flex items-center justify-center px-5">
-            <div className="flex items-center gap-14 mx-auto px-[100px] py-[70px] md:shadow-md rounded-md max-w-[1240px] bg-white p-5">
+        <div className="md:bg-[#f8f8f8] m-0 h-screen flex items-center justify-center px-5">
+            <div className="flex items-center gap-14 mx-auto px-[20px] py-[70px] md:shadow-md md:rounded-md max-w-[1240px] bg-white p-5">
                 <div>
                     <h1 className="font-bold text-[30px]">Qeydiyyatdan keç</h1>
                     <form className="mt-[55px]" onSubmit={handleRegister}>
