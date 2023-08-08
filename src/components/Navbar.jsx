@@ -56,62 +56,49 @@ const Navbar = () => {
             </Link>
           </ul>
         </div>
-        <div className="gap-3 lg:flex hidden">
+        <div className="flex gap-5">
 
-          <div className="flex items-center gap-5">
-            <ShowOnLogin>
-              <div className="font-semibold">
-                <UserName/>
-              </div>
-            </ShowOnLogin>
-            {/* <button
-              className="rounded-md text-[white] flex items-center text-[18px] px-4 py-2 border-[white] border-2 font-bold whitespace-nowrap"
-            >
-              Çıxış et
-            </button> */}
+          <div className="gap-3 flex">
+            <div className="flex items-center gap-5">
+              <ShowOnLogin>
+                <div className="font-semibold">
+                  <UserName />
+                </div>
+              </ShowOnLogin>
+            </div>
+            <div className="lg:block hidden">
+              <ShowOnLogout>
+                <Link
+                  to="/login"
+                  className="rounded-md text-[#1084da] flex items-center text-[18px] px-4 py-2 border-[#1084da] border-2 font-bold whitespace-nowrap"
+                >
+                  Daxil ol
+                </Link>
+                <Link
+                  to="/register"
+                  className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
+                >
+                  Qeydiyyat
+                </Link>
+              </ShowOnLogout>
+              <ShowOnLogin>
+                <button
+                  onClick={handleLogout}
+                  className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
+                >
+                  Çıxış et
+                </button>
+              </ShowOnLogin>
+            </div>
           </div>
-
-          <>
-            <ShowOnLogout>
-              <Link
-                to="/login"
-                className="rounded-md text-[#1084da] flex items-center text-[18px] px-4 py-2 border-[#1084da] border-2 font-bold whitespace-nowrap"
-              >
-                Daxil ol
-              </Link>
-              <Link
-                to="/register"
-                className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
-              >
-                Qeydiyyat
-              </Link>
-            </ShowOnLogout>
-            <ShowOnLogin>
-              <button
-                onClick={handleLogout}
-                className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
-              >
-                Çıxış et
-              </button>
-            </ShowOnLogin>
-          </>
-          {/* <Triangle
-            height="60"
-            width="60"
-            color="#fff"
-            ariaLabel="triangle-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
-            visible={true}
-          /> */}
-        </div>
-        <div className="lg:hidden flex text-[30px] ">
-          <button
-            onClick={handleClick}
-            className="fa-solid fa-bars"
-          >
-            <RxHamburgerMenu />
-          </button>
+          <div className="lg:hidden flex text-[30px] ">
+            <button
+              onClick={handleClick}
+              className="fa-solid fa-bars"
+            >
+              <RxHamburgerMenu />
+            </button>
+          </div>
         </div>
         <div
           className={`z-[1000] fixed lg:hidden top-0 ${toggleMenu ? "left-0" : "left-[-100%]"
@@ -144,6 +131,33 @@ const Navbar = () => {
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
               <Link to={"/contact"}>Əlaqə</Link>
             </li>
+            <div className="gap-3 flex">
+
+              <>
+                <ShowOnLogout>
+                  <Link
+                    to="/login"
+                    className="rounded-md text-[#1084da] flex items-center text-[18px] px-4 py-2 border-[#1084da] border-2 font-bold whitespace-nowrap"
+                  >
+                    Daxil ol
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
+                  >
+                    Qeydiyyat
+                  </Link>
+                </ShowOnLogout>
+                <ShowOnLogin>
+                  <button
+                    onClick={handleLogout}
+                    className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
+                  >
+                    Çıxış et
+                  </button>
+                </ShowOnLogin>
+              </>
+            </div>
           </ul>
         </div>
       </div>
