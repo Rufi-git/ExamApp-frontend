@@ -79,7 +79,7 @@ const UserList = () => {
             <div class="mx-auto max-w-screen-2xl px-2 py-10">
                 <PageMenu />
                 <div>
-                    <ul className='grid grid-cols-4 gap-4 text-white'>
+                    <ul className='text-center-3 justify-center grid md:grid-cols-4 grid-cols-2 gap-4 text-white'>
                         <InfoBox icon={<HiUsers />} title={"Total Users"} count={users.length} bgColor={"bg-pink-700"} />
                         <InfoBox icon={<BiSolidUserCheck />} title={"Verified Users"} count={verifiedUsers} bgColor={"bg-green-700"} />
                         <InfoBox icon={<BiUserMinus />} title={"Unverified Users"} count={unVerifiedUser} bgColor={"bg-blue-700"} />
@@ -127,16 +127,16 @@ const UserList = () => {
                                                             {index + 1}
                                                         </td>
 
-                                                        <td className={`whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell`}>{shortenText(user.name, 15)}</td>
+                                                        <td className={`whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>{shortenText(user.name, 15)}</td>
 
-                                                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">{user.email}</td>
-                                                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">{user.phone}</td>
+                                                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.email}</td>
+                                                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.phone}</td>
 
-                                                        <td className="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">{user.role}</td>
-                                                        <td className="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
+                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">{user.role}</td>
+                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
                                                             {!user.isVerified ? <p className='text-red-500'>Not Verified</p> : <p className='text-green-500'>Verified</p>}
                                                         </td>
-                                                        <td className="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
+                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
                                                             <ChangeRole _id={user._id} email={user.email} />
                                                         </td>
                                                         <td className="sm:p-3 text-[25px] gap-8 flex ">

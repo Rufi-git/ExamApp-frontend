@@ -121,8 +121,8 @@ const ChangePassword = () => {
     return (
         <section className='px-8 mx-auto max-w-[1440px] my-14'>
             <PageMenu />
-            <div className='flex gap-5'>
-                <div className='w-[800px]'>
+            <div className='flex gap-5 lg:flex-row flex-col'>
+                <div className='max-w-[500px] mx-auto'>
                     <img src={changePass} alt="" className='w-full' />
                 </div>
                 <form action="" onSubmit={updatePassword} className='w-full'>

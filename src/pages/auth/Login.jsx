@@ -73,21 +73,21 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-[#f8f8f8] h-screen flex items-center">
-            <div className="flex items-center gap-10 mx-auto px-[100px] py-[70px] shadow-md rounded-md max-w-[1240px] bg-white p-5">
-                <div>
-                    <img src={loginImg} alt="" />
+        <div className="sm:bg-[#f8f8f8] h-screen flex justify-center items-center px-5">
+            <div className="flex px-5 items-center gap-10 mx-auto py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
+                <div className="hidden sm:block max-w-[500px]">
+                    <img src={loginImg} alt="login image" className="w-full"/>
                 </div>
                 <div>
                     <h1 className="font-bold text-[30px]">Daxil ol</h1>
                     <form className="mt-[55px]" onSubmit={handleLogin}>
                         <div className="pb-1 flex gap-3 items-center border-b border-black">
                             <AiTwotoneMail />
-                            <input value={email} name="email" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type="email" placeholder="Your Email" />
+                            <input value={email} name="email" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type="email" placeholder="Email" />
                         </div>
                         <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black">
                             <MdPassword />
-                            <input value={password} name="password" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type={`${showPassword ? "text" : "password"}`} placeholder="Your Password" />
+                            <input value={password} name="password" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type={`${showPassword ? "text" : "password"}`} placeholder="Şifrə" />
                             <div onClick={togglePassword} className="text-[20px] cursor-pointer">
                                 {!showPassword
                                     ? <BsEye />
@@ -105,7 +105,7 @@ const Login = () => {
                         </div>
 
                         <div className="mt-3">
-                            <Link to="/forgot" className="underline">Forgot Password</Link>
+                            <Link to="/forgot" className="underline">Şifrəni unutmusan?</Link>
                         </div>
                         {
                             isLoading ?
@@ -115,8 +115,8 @@ const Login = () => {
                         }
                     </form>
                     <div className="mt-3">
-                        <span>Don't you have an account?</span>
-                        <Link to="/register" className=" underline ml-2">Sign up</Link>
+                        <span>Hesabın yoxdur?</span>
+                        <Link to="/register" className=" underline ml-2">Qeydiyyatdan keç</Link>
                     </div>
                 </div>
             </div>

@@ -7,8 +7,8 @@ import { BsFacebook, BsInstagram, BsLinkedin, BsYoutube } from "react-icons/bs"
 const Footer = () => {
     return (
         <div className='px-4 max-w-[1440px] mx-auto py-10'>
-            <div className='grid grid-cols-4 text-[#eee] gap-8'>
-                <div className=''>
+            <div className='grid lg:grid-cols-4 grid-cols-2 text-[#eee] gap-8 justify-center'>
+                <div className='col-span-2 lg:col-span-1'>
                     <img src={logo3} alt="math logo" />
                     <p className='leading-[32px] mt-3'>Oxuyan platforması online sınaq imtahanları, yarışlar, müsabiqələr, online test bazası və suallar ilə hər kəs üçün bərabər təhsili hədəfləyir. Təhsil layihəmiz magistr, ibtidai sinif, orta məktəb, abituriyent, müəllim, xaricdə təhsil almaq və bir çox başqa növ sınaq imtahanında iştirak etmək istəyənlər üçündür.</p>
                 </div>
@@ -41,21 +41,21 @@ const Footer = () => {
             <div className='text-white mt-10'>
                 <div className='flex justify-around py-5 bg-[#1e1e1e]'>
                     <div className='flex items-center'>
-                        <div className='text-[55px] text-[#28e688]'><PiPhoneCallDuotone /></div>
+                        <div className='lg:text-[55px] text-[35px] text-[#28e688]'><PiPhoneCallDuotone /></div>
                         <div className='ml-4'>
-                            <h1 className='font-bold text-[20px]'>Əlaqə Nömrəmiz</h1>
+                            <h1 className='font-bold lg:text-[20px] text-sm'>Əlaqə Nömrəmiz</h1>
                             <p className='text-[#6a7695]'>+994 77 399 99 66</p>
                         </div>
                     </div>
                     <div className='flex items-center'>
-                        <div className='text-[55px] text-[#dac900]'><HiOutlineMailOpen /></div>
+                        <div className='lg:text-[55px] text-[35px] text-[#dac900]'><HiOutlineMailOpen /></div>
                         <div className='ml-4'>
-                            <h1 className='font-bold text-[20px]'>ELEKTRON ÜNVAN</h1>
+                            <h1 className='font-bold lg:text-[20px] text-sm'>ELEKTRON ÜNVAN</h1>
                             <p className='text-[#6a7695]'>info@oxuyan.az</p>
                         </div>
                     </div>
                 </div>
-                <div className='mt-5 flex justify-between items-center'>
+                <div className='mt-5 flex md:flex-row flex-col gap-3 justify-between items-center'>
                     <div className='text-[#8d8f94]'>
                         <h1 className='flex gap-2 items-center'>
                             <span className='font-bold'>Oxuyan</span>
@@ -63,10 +63,10 @@ const Footer = () => {
                         </h1>
                     </div>
                     <ul className='flex gap-5 text-[20px]'>
-                        <li>{<BsFacebook/>}</li>
-                        <li>{<BsYoutube/>}</li>
-                        <li>{<BsInstagram/>}</li>
-                        <li>{<BsLinkedin/>}</li>
+                        <li>{<BsFacebook />}</li>
+                        <li>{<BsYoutube />}</li>
+                        <li>{<BsInstagram />}</li>
+                        <li>{<BsLinkedin />}</li>
                     </ul>
                 </div>
             </div>

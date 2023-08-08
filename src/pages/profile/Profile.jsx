@@ -133,22 +133,22 @@ const Profile = () => {
                 <p className='font-semibold'>Role: {profileData?.role}</p>
               </div>
             </div>
-            <form action="" className='grid grid-cols-2 mt-5 gap-4' onSubmit={handleUpdate}>
+            <form action="" className='grid md:grid-cols-2 mt-5 md:gap-10 gap-4' onSubmit={handleUpdate}>
               <div className='flex flex-col'>
                 <label htmlFor="name">Name</label>
-                <input type="text" id='name' value={name} onChange={handleInputChange} name='name' className='border px-3 py-1 outline-none max-w-[400px]' />
+                <input type="text" id='name' value={name} onChange={handleInputChange} name='name' className='w-full border px-3 py-1 outline-none' />
               </div>
               <div className='flex flex-col'>
                 <label htmlFor="email">Email</label>
-                <input type="email" id='email' disabled value={email} onChange={handleInputChange} name='email' className='border px-3 py-1 outline-none max-w-[400px]' />
+                <input type="email" id='email' disabled value={email} onChange={handleInputChange} name='email' className='border px-3 py-1 outline-none w-full' />
               </div>
               <div className='flex flex-col'>
                 <label htmlFor="phone">Phone</label>
-                <input type="text" id='phone' value={phone} onChange={handleInputChange} name='phone' className='border px-3 py-1 outline-none max-w-[400px]' />
+                <input type="text" id='phone' value={phone} onChange={handleInputChange} name='phone' className='border px-3 py-1 outline-none w-full' />
               </div>
               <div className='flex flex-col'>
                 <label htmlFor="bio">Bio</label>
-                <textarea id='bio' value={bio} name='bio' onChange={handleInputChange} className='border px-3 py-1 outline-none max-w-[400px]' />
+                <textarea id='bio' value={bio} name='bio' onChange={handleInputChange} className='border px-3 py-1 outline-none w-full' />
               </div>
               <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
             </form>
