@@ -1913,6 +1913,10 @@ video {
     margin-top: 300px;
   }
 
+  .md\:grid {
+    display: grid;
+  }
+
   .md\:w-\[70\%\] {
     width: 70%;
   }

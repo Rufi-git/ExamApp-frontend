@@ -15,6 +15,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { FILTER_USERS, selectUsers } from '../../../redux/features/auth/filterSlice'
 import ReactPaginate from 'react-paginate';
+import { TailSpin } from 'react-loader-spinner'
 
 const UserList = () => {
     useRedirectLoggedOutUser("/login")
@@ -78,97 +79,109 @@ const UserList = () => {
         <div class=" bg-gray-50">
             <div class="mx-auto max-w-screen-2xl px-2 py-10">
                 <PageMenu />
-                <div>
-                    <ul className='text-center-3 justify-center grid md:grid-cols-4 grid-cols-2 gap-4 text-white'>
-                        <InfoBox icon={<HiUsers />} title={"Total Users"} count={users.length} bgColor={"bg-pink-700"} />
-                        <InfoBox icon={<BiSolidUserCheck />} title={"Verified Users"} count={verifiedUsers} bgColor={"bg-green-700"} />
-                        <InfoBox icon={<BiUserMinus />} title={"Unverified Users"} count={unVerifiedUser} bgColor={"bg-blue-700"} />
-                        <InfoBox icon={<BiUserX />} title={"Suspended Users"} count={suspendedUsers} bgColor={"bg-red-700"} />
-                    </ul>
-                </div>
-                {isLoading ? <Loader />
-                    :
-                    <>
-                        {
-                            !isLoading && users.length === 0 ?
-                                (
-                                    <p>No User Found</p>
-                                ) :
+                {isLoading ?
+                    <div className="flex w-full justify-center">
+                        <TailSpin
+                            height="130"
+                            width="130"
+                            color="#1084da"
+                            ariaLabel="triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClassName=""
+                            visible={true}
+                        />
+                    </div> :
+                    <div>
+                        <div>
+                            <ul className='text-center-3 justify-center grid md:grid-cols-4 grid-cols-2 gap-4 text-white'>
+                                <InfoBox icon={<HiUsers />} title={"Total Users"} count={users.length} bgColor={"bg-pink-700"} />
+                                <InfoBox icon={<BiSolidUserCheck />} title={"Verified Users"} count={verifiedUsers} bgColor={"bg-green-700"} />
+                                <InfoBox icon={<BiUserMinus />} title={"Unverified Users"} count={unVerifiedUser} bgColor={"bg-blue-700"} />
+                                <InfoBox icon={<BiUserX />} title={"Suspended Users"} count={suspendedUsers} bgColor={"bg-red-700"} />
+                            </ul>
+                        </div>
+                        <>
+                            {
+                                !isLoading && users.length === 0 ?
+                                    (
+                                        <p>No User Found</p>
+                                    ) :
 
-                                <>
-                                    <div className="mt-4 w-full">
-                                        <div className="flex w-full flex-col items-center justify-between space-y-2 sm:flex-row sm:space-y-0">
-                                            <div></div>
-                                            <SearchUser value={search} onChange={(e) => setSearch(e.target.value)} />
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-6 overflow-hidden rounded-xl bg-white px-6 shadow lg:px-4">
-                                        <table className="min-w-full border-collapse border-spacing-y-2 border-spacing-x-2">
-                                            <thead className="hidden border-b lg:table-header-group">
-                                                <tr className="">
-                                                    <td className="whitespace-normal py-4 text-sm font-semibold text-gray-800 sm:px-3">
-                                                        s/n
-                                                    </td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Name</td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Email</td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Phone</td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Role</td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Status</td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Change Role</td>
-                                                    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Action</td>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody className="bg-white lg:border-gray-300">
-                                                {currentItems?.map((user, index) => (
-                                                    <tr className="" key={index}>
-                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
-                                                            {index + 1}
-                                                        </td>
-
-                                                        <td className={`whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>{shortenText(user.name, 15)}</td>
-
-                                                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.email}</td>
-                                                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.phone}</td>
-
-                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">{user.role}</td>
-                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
-                                                            {!user.isVerified ? <p className='text-red-500'>Not Verified</p> : <p className='text-green-500'>Verified</p>}
-                                                        </td>
-                                                        <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
-                                                            <ChangeRole _id={user._id} email={user.email} />
-                                                        </td>
-                                                        <td className="sm:p-3 text-[25px] gap-8 flex ">
-                                                            <button className='text-[red]' onClick={() => confirmDelete(user._id)}><AiFillDelete /></button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-
-                                            </tbody>
-                                        </table>
-                                    </div>
                                     <>
-                                        <ReactPaginate
-                                            breakLabel="..."
-                                            nextLabel="Next"
-                                            onPageChange={handlePageClick}
-                                            pageRangeDisplayed={5}
-                                            pageCount={pageCount}
-                                            previousLabel="Prev"
-                                            renderOnZeroPageCount={null}
+                                        <div className="mt-4 w-full">
+                                            <div className="flex w-full flex-col items-center justify-between space-y-2 sm:flex-row sm:space-y-0">
+                                                <div></div>
+                                                <SearchUser value={search} onChange={(e) => setSearch(e.target.value)} />
+                                            </div>
+                                        </div>
 
-                                            activeLinkClassName='text-white bg-blue-500 px-4 py-2 rounded'
-                                            containerClassName='flex justify-center gap-4 mt-7'
-                                            pageLinkClassName='border text-blue-500 px-4 py-2 rounded'
-                                            nextLinkClassName='text-blue-500 px-4 py-2 rounded border'
-                                            previousLinkClassName='text-blue-500 px-4 py-2 rounded border'
-                                            breakClassName='px-4 py-2'
-                                        />
+                                        <div class="mt-6 overflow-hidden rounded-xl bg-white px-6 shadow lg:px-4">
+                                            <table className="min-w-full border-collapse border-spacing-y-2 border-spacing-x-2">
+                                                <thead className="hidden border-b lg:table-header-group">
+                                                    <tr className="">
+                                                        <td className="whitespace-normal py-4 text-sm font-semibold text-gray-800 sm:px-3">
+                                                            s/n
+                                                        </td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Name</td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Email</td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Phone</td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Role</td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Status</td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Change Role</td>
+                                                        <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Action</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody className="bg-white lg:border-gray-300">
+                                                    {currentItems?.map((user, index) => (
+                                                        <tr className="" key={index}>
+                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
+                                                                {index + 1}
+                                                            </td>
+
+                                                            <td className={`whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>{shortenText(user.name, 15)}</td>
+
+                                                            <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.email}</td>
+                                                            <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.phone}</td>
+
+                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">{user.role}</td>
+                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
+                                                                {!user.isVerified ? <p className='text-red-500'>Not Verified</p> : <p className='text-green-500'>Verified</p>}
+                                                            </td>
+                                                            <td className="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
+                                                                <ChangeRole _id={user._id} email={user.email} />
+                                                            </td>
+                                                            <td className="sm:p-3 text-[25px] gap-8 flex ">
+                                                                <button className='text-[red]' onClick={() => confirmDelete(user._id)}><AiFillDelete /></button>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <>
+                                            <ReactPaginate
+                                                breakLabel="..."
+                                                nextLabel="Next"
+                                                onPageChange={handlePageClick}
+                                                pageRangeDisplayed={5}
+                                                pageCount={pageCount}
+                                                previousLabel="Prev"
+                                                renderOnZeroPageCount={null}
+
+                                                activeLinkClassName='text-white bg-blue-500 px-4 py-2 rounded'
+                                                containerClassName='flex justify-center gap-4 mt-7'
+                                                pageLinkClassName='border text-blue-500 px-4 py-2 rounded'
+                                                nextLinkClassName='text-blue-500 px-4 py-2 rounded border'
+                                                previousLinkClassName='text-blue-500 px-4 py-2 rounded border'
+                                                breakClassName='px-4 py-2'
+                                            />
+                                        </>
                                     </>
-                                </>
-                        }
-                    </>
+                            }
+                        </>
+                    </div>
                 }
             </div>
         </div >

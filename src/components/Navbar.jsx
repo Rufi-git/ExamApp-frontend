@@ -4,17 +4,19 @@ import logo from "../assets/mathlogo.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Triangle } from "react-loader-spinner";
+import { TailSpin, Triangle } from "react-loader-spinner";
 import { RxHamburgerMenu } from "react-icons/rx"
 import { GrClose } from "react-icons/gr"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RESET, logout } from "../../redux/features/auth/authSlice";
 import { ShowOnLogin, ShowOnLogout } from "./protect/hiddenLink";
 import { UserName } from "../pages/profile/Profile";
+import Spinner from "./Spinner";
 
 const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { isLoading } = useSelector(state => state.auth);
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -57,40 +59,51 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex gap-5">
+          {isLoading ? <TailSpin
+            height="40"
+            width="40"
+            color="#1084da"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          /> :
+            <div className="gap-3 flex">
+              <div className="flex items-center gap-5">
+                <ShowOnLogin>
+                  <div className="font-semibold">
+                    <UserName />
+                  </div>
+                </ShowOnLogin>
+              </div>
+              <div className="lg:flex gap-3 hidden">
+                <ShowOnLogout>
+                  <Link
+                    to="/login"
+                    className="rounded-md text-[#1084da] flex items-center text-[18px] px-4 py-2 border-[#1084da] border-2 font-bold whitespace-nowrap"
+                  >
+                    Daxil ol
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
+                  >
+                    Qeydiyyat
+                  </Link>
+                </ShowOnLogout>
+                <ShowOnLogin>
+                  <button
+                    onClick={handleLogout}
+                    className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
+                  >
+                    Çıxış et
+                  </button>
+                </ShowOnLogin>
+              </div>
+            </div>
+          }
 
-          <div className="gap-3 flex">
-            <div className="flex items-center gap-5">
-              <ShowOnLogin>
-                <div className="font-semibold">
-                  <UserName />
-                </div>
-              </ShowOnLogin>
-            </div>
-            <div className="lg:block hidden">
-              <ShowOnLogout>
-                <Link
-                  to="/login"
-                  className="rounded-md text-[#1084da] flex items-center text-[18px] px-4 py-2 border-[#1084da] border-2 font-bold whitespace-nowrap"
-                >
-                  Daxil ol
-                </Link>
-                <Link
-                  to="/register"
-                  className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
-                >
-                  Qeydiyyat
-                </Link>
-              </ShowOnLogout>
-              <ShowOnLogin>
-                <button
-                  onClick={handleLogout}
-                  className="rounded-md text-white flex items-center text-[18px] px-4 py-2 bg-[#1084da] font-bold whitespace-nowrap"
-                >
-                  Çıxış et
-                </button>
-              </ShowOnLogin>
-            </div>
-          </div>
           <div className="lg:hidden flex text-[30px] ">
             <button
               onClick={handleClick}

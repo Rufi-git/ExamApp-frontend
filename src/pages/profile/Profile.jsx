@@ -8,6 +8,7 @@ import Loader from '../../components/Loader'
 import { toast } from 'react-toastify'
 import { NavLink } from 'react-router-dom'
 import Notification from '../../components/notification/Notification'
+import { TailSpin } from 'react-loader-spinner'
 
 const cloud_name = import.meta.env.VITE_CLOUD_NAME
 const upload_preset = import.meta.env.VITE_UPLAD_PRESET
@@ -83,7 +84,7 @@ const Profile = () => {
         bio: profileData.bio,
         photo: profileImage ? imageUrl : profileData.photo
       }
-      dispatch(updateUser(userData))
+      await dispatch(updateUser(userData))
     } catch (error) {
       toast.error(error.message)
     }
@@ -109,13 +110,9 @@ const Profile = () => {
     dispatch(getUser())
   }, [dispatch])
 
-  if (isLoading) {
-    return <Loader />
-  }
-
   return (
     <>
-  
+
       {!profileData.isVerified && <Notification />}
       <section className='px-8 mx-auto max-w-[1440px] my-14'>
         <PageMenu />
@@ -150,10 +147,28 @@ const Profile = () => {
                 <label htmlFor="bio">Bio</label>
                 <textarea id='bio' value={bio} name='bio' onChange={handleInputChange} className='border px-3 py-1 outline-none w-full' />
               </div>
-              <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
+              {
+                isLoading ?
+                  <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
+                  :
+                  <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
+              }
             </form>
           </>
         )}
+        {isLoading &&
+          <div className="flex w-full justify-center">
+            <TailSpin
+              height="130"
+              width="130"
+              color="#1084da"
+              ariaLabel="triangle-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          </div>
+        }
 
       </section>
     </>

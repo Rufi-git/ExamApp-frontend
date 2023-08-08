@@ -34,7 +34,7 @@ const ExamList = () => {
         return <Loader />
     }
     return (
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
             {exams && exams.map((exam) => (
                 <div key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
                     <div className="flex justify-between">

@@ -8,6 +8,8 @@ import Loader from "./Loader"
 import { AdminTeacherLink } from "./protect/hiddenLink"
 import { MdOutlineModeEditOutline } from "react-icons/md"
 import { AiFillDelete } from "react-icons/ai"
+import Spinner from "./Spinner"
+import { TailSpin, Triangle } from "react-loader-spinner"
 
 const Categories = () => {
     const dispatch = useDispatch()
@@ -17,7 +19,17 @@ const Categories = () => {
         dispatch(getTags())
     }, [dispatch])
     if (isLoading) {
-        return <Loader />
+        return <div className="flex w-full justify-center">
+            <TailSpin
+                height="130"
+                width="130"
+                color="#1084da"
+                ariaLabel="triangle-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+            />
+        </div>
     }
     const handleDelete = (id) => {
 
