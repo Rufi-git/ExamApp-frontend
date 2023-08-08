@@ -95,8 +95,8 @@ const Quiz = () => {
 
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-            <div className="shadow-lg rounded-lg p-6 px-6 py-8 w-full max-w-2xl mx-auto">
+        <div className="flex flex-col items-center justify-center h-screen md:bg-gray-100">
+            <div className="md:shadow-lg rounded-lg p-6 px-6 py-8 w-full max-w-2xl mx-auto">
                 <div className='flex justify-between mb-8'>
                     <h1 className="text-3xl font-semibold">{trace + 1}/{queue.length}</h1>
                     <h1 className="text-3xl font-bold">Timer</h1>
