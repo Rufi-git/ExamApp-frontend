@@ -40,7 +40,7 @@ const Questions = ({ onChecked }) => {
     const onSelect = (optionIndex) => {
         setCheckedOption(optionIndex);
         onChecked(optionIndex);
-        setChecked(optionIndex);
+        setChecked(Number(optionIndex));
     }
 
     if (isLoading) return <Loader />
@@ -54,9 +54,8 @@ const Questions = ({ onChecked }) => {
                     <label
                         key={i}
                         htmlFor={`q${i}-option`}
-                        className={`border w-full flex mb-4 cursor-pointer  ${
-                            checkedOption === i ? 'bg-[#1084da]' : 'hover:bg-[#a2d0f3]'
-                        }`}
+                        className={`border w-full flex mb-4 cursor-pointer  ${checkedOption === i ? 'bg-[#1084da]' : 'hover:bg-[#a2d0f3]'
+                            }`}
                     >
                         <li className="flex items-center gap-4 py-2">
                             <input
@@ -68,9 +67,8 @@ const Questions = ({ onChecked }) => {
                                 className='hidden'
                             />
                             <span
-                                className={`text-gray-800 cursor-pointer ml-3 ${
-                                    checkedOption === i ? 'text-white' : 'text-gray-800'
-                                }`}
+                                className={`text-gray-800 cursor-pointer ml-3 ${checkedOption === i ? 'text-white' : 'text-gray-800'
+                                    }`}
                             >
                                 {option.text}
                             </span>
