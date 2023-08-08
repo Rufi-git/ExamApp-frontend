@@ -119,8 +119,8 @@ const Register = () => {
     }, [isLoggedIn, isSuccess, dispatch, navigate])
 
     return (
-        <div className="bg-[#f8f8f8] h-screen flex items-center">
-            <div className="flex items-center gap-14 mx-auto px-[100px] py-[70px] shadow-md rounded-md max-w-[1240px] bg-white p-5">
+        <div className="sm:bg-[#f8f8f8] h-screen flex items-center justify-center px-5">
+            <div className="flex items-center gap-14 mx-auto px-[100px] py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
                 <div>
                     <h1 className="font-bold text-[30px]">Qeydiyyatdan keç</h1>
                     <form className="mt-[55px]" onSubmit={handleRegister}>
@@ -189,8 +189,8 @@ const Register = () => {
                         <Link to="/login" className=" underline ml-2">Login</Link>
                     </div>
                 </div>
-                <div>
-                    <img loading="lazy" src={registerImg} alt="" />
+                <div className="hidden sm:block max-w-[500px]">
+                    <img loading="lazy" src={registerImg} alt="" className="w-full"/>
                 </div>
             </div>
         </div>
