@@ -4,12 +4,8 @@ import Questions from '../../components/Questions';
 import { RESET_QUIZ, getExam, moveNextQuestion, movePrevQuestion } from '../../../redux/features/quiz/quizSlice';
 import { RESET_RESULT, addResult, pushResultAction } from '../../../redux/features/quiz/resultSlice';
 import { attempts_Number, earnPoints_Number, flagResult } from '../../helper/helper';
-import Loader from '../../components/Loader';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa';
-import Cookie from 'js-cookie'; // Import the js-cookie library
-import Countdown from 'react-countdown-now';
-import { TailSpin } from 'react-loader-spinner';
 
 const Quiz = () => {
     const { queue, trace, singleExam, isLoading } = useSelector((state) => state.quiz);
