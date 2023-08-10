@@ -16,7 +16,7 @@ const ExamInstructions = () => {
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
-    let interval; 
+    let interval;
     useEffect(() => {
         dispatch(getExam(examId));
         // return () => clearInterval(interval);
@@ -53,24 +53,30 @@ const ExamInstructions = () => {
         navigate(`/exam/${singleExam?._id}/start`);
     };
 
+
     return (
-        <div className='mx-w-[1240px] px-8 mx-auto w-full'>
-            <div className='p-10 w-full flex justify-center flex-col'>
-                {/* <h1 className='text-center text-[20px] font-medium my-5'>Deadline: {days}:{hours}:{minutes}:{seconds}</h1> */}
-                <h1 className='font-bold text-[30px] text-center pb-[20px]'>Instructions for the {singleExam?.name}</h1>
-                <ul className='text-[18px] mx-auto flex flex-col list-disc'>
-                    <li>Exam must be completed in 10 minutes</li>
-                    <li>Total Marks: 3</li>
-                    <li>Passing Marks: 2</li>
-                    <li>Total Questions: 10</li>
-                    <li>Each question carries 3 Marks</li>
-                    <li>You can review your answers before submitting</li>
-                    <li>Once submitted, you cannot review your answers</li>
-                    <li>Once submitted, you cannot retake the exam</li>
-                </ul>
-                <div className='w-full flex justify-center pt-6'>
+        <div className='container mx-auto max-w-[1240px] py-14 px-5'>
+            <div className='bg-white p-10 rounded-lg shadow-md'>
+                <h1 className='text-2xl font-bold text-center mb-6'>
+                    Instructions for the {singleExam?.name}
+                </h1>
+                <div className='flex justify-center'>
+                    <ul className='list-disc pl-6 space-y-2 text-left'>
+                        <li>Exam must be completed in {`${Math.floor(singleExam?.duration / 60)} minutes ${singleExam?.duration % 60} seconds`}</li>
+                        <li>Total Marks: {singleExam?.totalMarks}</li>
+                        <li>Passing Marks: {singleExam?.passingMarks}</li>
+                        <li>Total Questions: {singleExam?.questions.length}</li>
+                        <li>Each question carries {Math.floor(singleExam?.totalMarks / singleExam?.questions.length)} Marks</li>
+                        <li>You can review your answers before submitting</li>
+                        <li>Once submitted, you can review your answers</li>
+                        <li>Once submitted, you can retake the exam</li>
+                    </ul>
+                </div>
+                <div className='flex justify-center mt-6'>
                     <div onClick={startExam}>
-                        <Link className='p-[10px] bg-[#1084da] text-white'>Start Exam</Link>
+                        <Link className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>
+                            Start Exam
+                        </Link>
                     </div>
                 </div>
             </div>
