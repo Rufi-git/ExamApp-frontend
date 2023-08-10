@@ -33,9 +33,9 @@ const Forgot = () => {
     }
 
     return (
-        <div className="bg-[#f8f8f8] h-screen flex items-center">
-            <div className="flex items-center gap-14 mx-auto px-[100px] py-[70px] shadow-md rounded-md max-w-[1240px] bg-white p-5">
-                <div className="w-[350px]">
+        <div className="sm:bg-[#f8f8f8] h-screen flex items-center">
+            <div className="flex md:flex-row flex-col items-center gap-14 mx-auto px-[100px] py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
+                <div className="lg:max-w-[350px] md:max-w-[250px] md:block hidden">
                     <img src={forgot} alt="" className="w-full" />
                 </div>
                 <div>

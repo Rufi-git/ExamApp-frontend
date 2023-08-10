@@ -2007,6 +2007,10 @@ video {
     max-width: 250px;
   }
 
+  .sm\:max-w-\[350px\] {
+    max-width: 350px;
+  }
+
   .sm\:flex-row {
     flex-direction: row;
   }
@@ -2069,6 +2073,18 @@ video {
     width: 70%;
   }
 
+  .md\:max-w-\[350px\] {
+    max-width: 350px;
+  }
+
+  .md\:max-w-\[\] {
+    max-width: ;
+  }
+
+  .md\:max-w-\[250px\] {
+    max-width: 250px;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2083,6 +2099,10 @@ video {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-col {
+    flex-direction: column;
   }
 
   .md\:gap-10 {
