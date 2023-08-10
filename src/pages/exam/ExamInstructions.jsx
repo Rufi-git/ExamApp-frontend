@@ -59,7 +59,7 @@ const ExamInstructions = () => {
             <div className='bg-white p-10 rounded-lg shadow-md'>
                 <h1 className='text-2xl font-bold text-center mb-6'>
                     Instructions for the {singleExam?.name}
-                </h1>
+                </h1> 
                 <div className='flex justify-center'>
                     <ul className='list-disc pl-6 space-y-2 text-left'>
                         <li>Exam must be completed in {`${Math.floor(singleExam?.duration / 60)} minutes ${singleExam?.duration % 60} seconds`}</li>
