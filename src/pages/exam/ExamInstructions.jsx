@@ -58,24 +58,24 @@ const ExamInstructions = () => {
         <div className='container mx-auto max-w-[1240px] py-14 px-5'>
             <div className='bg-white p-10 rounded-lg shadow-md'>
                 <h1 className='text-2xl font-bold text-center mb-6'>
-                    Instructions for the {singleExam?.name}
+                    {singleExam?.name} imtahanı
                 </h1> 
                 <div className='flex justify-center'>
                     <ul className='list-disc pl-6 space-y-2 text-left'>
-                        <li>Exam must be completed in {`${Math.floor(singleExam?.duration / 60)} minutes ${singleExam?.duration % 60} seconds`}</li>
-                        <li>Total Marks: {singleExam?.totalMarks}</li>
-                        <li>Passing Marks: {singleExam?.passingMarks}</li>
-                        <li>Total Questions: {singleExam?.questions.length}</li>
-                        <li>Each question carries {Math.floor(singleExam?.totalMarks / singleExam?.questions.length)} Marks</li>
-                        <li>You can review your answers before submitting</li>
-                        <li>Once submitted, you can review your answers</li>
-                        <li>Once submitted, you can retake the exam</li>
+                        <li>İmtahan {`${Math.floor(singleExam?.duration / 60)} dəqiqə ${singleExam?.duration % 60} saniyə`} ərzində tamamlanmalıdır</li>
+                        <li>Ümumi bal: {singleExam?.totalMarks}</li>
+                        <li>Keçid balı: {singleExam?.passingMarks}</li>
+                        <li>Sual sayı: {singleExam?.questions.length}</li>
+                        <li>Hər bir sual {Math.floor(singleExam?.totalMarks / singleExam?.questions.length)} baldır</li>
+                        <li>Cavablarınızı təqdim etməzdən əvvəl nəzərdən keçirə bilərsiniz</li>
+                        <li>Təqdim edildikdən sonra cavablarınızı nəzərdən keçirə bilərsiniz</li>
+                        <li>Təqdim edildikdən sonra yenidən imtahan verə bilərsiniz</li>
                     </ul>
                 </div>
                 <div className='flex justify-center mt-6'>
                     <div onClick={startExam}>
                         <Link className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>
-                            Start Exam
+                            İmtahanı başlat
                         </Link>
                     </div>
                 </div>
