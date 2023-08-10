@@ -7,10 +7,12 @@ import { attempts_Number, earnPoints_Number, flagResult } from '../../helper/hel
 import Loader from '../../components/Loader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa';
-
+import Cookie from 'js-cookie'; // Import the js-cookie library
+import Countdown from 'react-countdown-now';
+import { TailSpin } from 'react-loader-spinner';
 
 const Quiz = () => {
-    const { queue, trace, singleExam } = useSelector((state) => state.quiz);
+    const { queue, trace, singleExam, isLoading } = useSelector((state) => state.quiz);
     const { result } = useSelector((state) => state.result);
 
     const [checked, setChecked] = useState(-1);
@@ -60,6 +62,7 @@ const Quiz = () => {
             isPassed: flag,
             userAnswers: newResult.map((checkedAnswer, index) => {
                 if (index < queue.length) {
+                    console.log(checkedAnswer)
                     return {
                         questionId: queue[index]._id,
                         selectedOptionIndex: checkedAnswer
@@ -72,7 +75,6 @@ const Quiz = () => {
 
 
     const finishExam = async () => {
-
         if (checked !== -1) {
             await dispatch(pushResultAction(checked));
         }
@@ -93,13 +95,15 @@ const Quiz = () => {
         setChecked(check)
     }
 
-
     return (
         <div className="flex flex-col items-center justify-center h-screen md:bg-gray-100">
             <div className="md:shadow-lg rounded-lg p-6 px-6 py-8 w-full max-w-2xl mx-auto">
                 <div className='flex justify-between mb-8'>
                     <h1 className="text-3xl font-semibold">{trace + 1}/{queue.length}</h1>
-                    <h1 className="text-3xl font-bold">Timer</h1>
+
+                        <h1 className="text-3xl font-semibold">
+                          Timer
+                        </h1>
                 </div>
                 <div className="w-full">
                     <Questions onChecked={onChecked} />

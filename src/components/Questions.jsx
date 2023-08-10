@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getQuestionByExam } from '../../redux/features/quiz/quizSlice';
 import Loader from './Loader';
 import { updateResultAction } from '../../redux/features/quiz/resultSlice';
+import { TailSpin } from 'react-loader-spinner';
 
 const Questions = ({ onChecked }) => {
     const dispatch = useDispatch();
@@ -42,8 +43,6 @@ const Questions = ({ onChecked }) => {
         onChecked(optionIndex);
         setChecked(Number(optionIndex));
     }
-
-    if (isLoading) return <Loader />
 
     return (
         <div className="flex flex-col items-center">

@@ -1,4 +1,4 @@
-const ResultTable = ({results}) => {
+const ResultTable = ({ results }) => {
     return (
         <div className="mx-auto w-full">
             <table className="w-full">
@@ -12,7 +12,7 @@ const ResultTable = ({results}) => {
                 </thead>
                 <tbody>
                     {results && results?.map((result) => (
-                        <tr>
+                        <tr key={result?._id}>
                             <td className="border">{result.userId.name}</td>
                             <td className="border">{result.attempts}</td>
                             <td className="border">{result.earnPoints}</td>
