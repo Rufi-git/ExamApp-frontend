@@ -33,12 +33,12 @@ const Forgot = () => {
     }
 
     return (
-        <div className="sm:bg-[#f8f8f8] h-screen flex items-center">
-            <div className="flex md:flex-row flex-col items-center gap-14 mx-auto px-[100px] py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
+        <div className="sm:bg-[#f8f8f8] flex items-center justify-center min-h-screen overflow-hidden">
+            <div className=" flex md:flex-row flex-col items-center gap-14 mx-auto px-[100px] py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
                 <div className="lg:max-w-[350px] md:max-w-[250px] md:block hidden">
                     <img src={forgot} alt="" className="w-full" />
                 </div>
-                <div>
+                <div className="my-auto">
                     <h1 className="font-bold text-[30px]">Forgot Password</h1>
                     <form className="mt-[45px]" onSubmit={handleForgot}>
                         <div className="pb-1 flex gap-3 items-center border-b border-black">
