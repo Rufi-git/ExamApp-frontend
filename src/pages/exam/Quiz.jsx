@@ -4,12 +4,13 @@ import Questions from '../../components/Questions';
 import { RESET_QUIZ, getExam, moveNextQuestion, movePrevQuestion } from '../../../redux/features/quiz/quizSlice';
 import { RESET_RESULT, addResult, pushResultAction } from '../../../redux/features/quiz/resultSlice';
 import { attempts_Number, earnPoints_Number, flagResult } from '../../helper/helper';
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa';
+import Spinner from '../../components/Spinner';
 
 const Quiz = () => {
-    const { queue, trace, singleExam, isLoading } = useSelector((state) => state.quiz);
-    const { result } = useSelector((state) => state.result);
+    const { queue, trace, singleExam } = useSelector((state) => state.quiz);
+    const { result, isLoading } = useSelector((state) => state.result);
 
     const [checked, setChecked] = useState(-1);
     const { examId } = useParams()
@@ -97,9 +98,9 @@ const Quiz = () => {
                 <div className='flex justify-between mb-8'>
                     <h1 className="text-3xl font-semibold">{trace + 1}/{queue.length}</h1>
 
-                        <h1 className="text-3xl font-semibold">
-                          Timer
-                        </h1>
+                    <h1 className="text-3xl font-semibold">
+                        Timer
+                    </h1>
                 </div>
                 <div className="w-full">
                     <Questions onChecked={onChecked} />
@@ -121,11 +122,18 @@ const Quiz = () => {
                             Next <FaChevronRight className="w-6 h-6 ml-2 inline" />
                         </button>
                         :
-                        <button
-                            onClick={finishExam}
-                            className="bg-orange-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-                        >
-                            Finish <FaCheckCircle className="w-6 h-6 ml-2 inline" /></button>
+
+
+                        isLoading ?
+                            <button className="bg-orange-500 w-[100px] flex justify-center text-white py-2 px-4 rounded-md text-sm" disabled><Spinner /></button>
+                            :
+                            <button
+                                onClick={finishExam}
+                                className="bg-orange-500 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+                            >
+                                Finish <FaCheckCircle className="w-6 h-6 ml-2 inline" /></button>
+
+
                     }
                 </div>
             </div>

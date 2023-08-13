@@ -20,64 +20,69 @@ const Review = () => {
     return <Loader />;
   }
 
+
+
   return (
     <div className='max-w-[1440px] px-4 mx-auto py-10'>
       {review.examId?.questions &&
-        review.examId?.questions.map((question, index) => (
-          <div key={index} className='mb-4'>
-            <p className='font-medium'>Sual {index + 1}:</p>
-            <p className='my-3'>{question.name}</p>
-            <div className='grid grid-cols-2 gap-3'>
-              {question.options.map((option, optionIndex) => (
-                <div
-                  key={optionIndex}
-                  className={`flex items-center ${
-                    option.isCorrect
-                      ? 'border-green-500 border'
-                      : ''
-                  } ${
-                    review.userAnswers &&
-                    review.userAnswers[index]?.selectedOptionIndex ===
-                      optionIndex &&
-                    option.isCorrect
-                      ? 'border-green-500'
-                      : review.userAnswers[index]?.selectedOptionIndex ===
-                        optionIndex
-                      ? 'border-red-500'
-                      : ''
-                  }`}
-                >
-                  <input
-                    type='radio'
-                    name={`question_${index}`}
-                    id={`question_${index}_option${optionIndex}`}
-                    className='hidden'
-                  />
-                  <label
-                    htmlFor={`question_${index}_option${optionIndex}`}
-                    className={`${
-                      option.isCorrect ? 'text-green-500' : 'text-gray-700'
-                    } ${
-                      review.userAnswers &&
-                      review.userAnswers[index]?.selectedOptionIndex ===
-                        optionIndex &&
-                      option.isCorrect
-                        ? 'text-green-500'
-                        : review.userAnswers[index]?.selectedOptionIndex ===
-                          optionIndex
-                        ? 'text-red-500 border-red-500'
+        review.examId?.questions.map((question, index) => {
+          const selectedOptionIndex = review.userAnswers?.[index]?.selectedOptionIndex;
+          const correctOptionIndex = question.options.findIndex(option => option.isCorrect);
+
+          return (
+            <div key={index} className='mb-4'>
+              <p className='font-medium'>Sual {index + 1}:</p>
+              <p className='my-3'>{question.name}</p>
+              <div className='grid grid-cols-2 gap-3'>
+                {question.options.map((option, optionIndex) => (
+                  <div
+                    key={optionIndex}
+                    className={`flex items-center ${option.isCorrect
+                        ? 'border-green-500 border'
                         : ''
-                    } border cursor-pointer bg-gray-50 flex w-full p-2 items-center`}
+                      } ${selectedOptionIndex === optionIndex &&
+                        option.isCorrect
+                        ? 'border-green-500'
+                        : selectedOptionIndex === optionIndex
+                          ? 'border-red-500'
+                          : selectedOptionIndex === undefined &&
+                            correctOptionIndex === optionIndex
+                            ? 'border-orange-500'
+                            : ''
+                      }`}
                   >
-                    {option.text}
-                  </label>
-                </div>
-              ))}
+                    <input
+                      type='radio'
+                      name={`question_${index}`}
+                      id={`question_${index}_option${optionIndex}`}
+                      className='hidden'
+                    />
+                    <label
+                      htmlFor={`question_${index}_option${optionIndex}`}
+                      className={`${option.isCorrect ? 'text-green-500' : 'text-gray-700'
+                        } ${selectedOptionIndex === optionIndex &&
+                          option.isCorrect
+                          ? 'text-green-500'
+                          : selectedOptionIndex === optionIndex
+                            ? 'text-red-500 border-red-500'
+                            : selectedOptionIndex === undefined &&
+                              correctOptionIndex === optionIndex
+                              ? 'text-orange-500'
+                              : ''
+                        } border cursor-pointer bg-gray-50 flex w-full p-2 items-center`}
+                    >
+                      {option.text}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
     </div>
   );
+
+
 };
 
 export default Review;

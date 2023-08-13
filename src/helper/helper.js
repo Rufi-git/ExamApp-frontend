@@ -1,5 +1,5 @@
 export function attempts_Number(result) {
-    return result.filter(r => r !== undefined).length
+    return result.filter(r => r !== -1).length
 }
 
 export function earnPoints_Number(result, point, queue) {

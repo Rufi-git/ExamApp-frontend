@@ -16,6 +16,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { FILTER_USERS, selectUsers } from '../../../redux/features/auth/filterSlice'
 import ReactPaginate from 'react-paginate';
 import { TailSpin } from 'react-loader-spinner'
+import { Link } from 'react-router-dom'
 
 const UserList = () => {
     useRedirectLoggedOutUser("/login")
@@ -140,7 +141,11 @@ const UserList = () => {
                                                                     <b>{index + 1}</b>
                                                                 </td>
 
-                                                                <td className={`px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>{shortenText(user.name, 15)}</td>
+                                                                <td className={`px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell`}>
+                                                                    <Link to={`/user/${user._id}/details`}>
+                                                                        {shortenText(user.name, 15)}
+                                                                    </Link>
+                                                                </td>
 
                                                                 <td className="px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.email}</td>
                                                                 <td className="px-2 whitespace-no-wrap py-4 text-sm font-normal text-gray-600 sm:px-3 table-cell">{user.phone}</td>

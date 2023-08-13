@@ -36,8 +36,8 @@ const Categories = () => {
     }
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {tags.map((tag, index) => (
-                <div className="w-full bg-white border py-2">
+            {tags && tags.map((tag) => (
+                <div key={tag._id} className="w-full bg-white border py-2">
                     <div className="flex px-3">
                         <div className="ml-auto flex gap-4 items-center">
                             <AdminTeacherLink>

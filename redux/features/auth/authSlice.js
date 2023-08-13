@@ -5,6 +5,7 @@ import authService from "./authService";
 const initialState = {
     isLoggedIn: false,
     user: null,
+    userById: null,
     users: [],
     twoFactor: false,
     isError: false,
@@ -270,6 +271,21 @@ export const loginWithGoogle = createAsyncThunk(
     }
 )
 
+// Get User By Id
+export const getUserById = createAsyncThunk(
+    "auth/getUserById",
+    async (id, thunkAPI) => {
+        try {
+            return await authService.getUserById(id)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -397,6 +413,23 @@ const authSlice = createSlice({
                 state.user = action.payload
             })
             .addCase(getUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            // Get User By Id
+            .addCase(getUserById.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(getUserById.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isLoggedIn = true;
+                state.userById = action.payload
+            })
+            .addCase(getUserById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

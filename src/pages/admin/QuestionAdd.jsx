@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import QuestionList from '../../components/QuestionList';
+import Spinner from '../../components/Spinner';
 
 
 const QuestionAdd = () => {
@@ -85,7 +86,7 @@ const QuestionAdd = () => {
             <button onClick={openModal} className='ml-auto flex bg-[#1084da] text-white px-4 py-2 rounded-sm'>Add Question</button>
             <QuestionList />
             <Modal
-                className={"z-[10000] border w-[1200px] mx-auto flex mt-[300px]"}
+                className={"z-[10000] border max-w-[1200px] px-4 mx-auto flex mt-[300px]"}
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
@@ -195,13 +196,18 @@ const QuestionAdd = () => {
                                 </div>
                             </div>
                         </div>
+                        {
+                            isLoading ?
+                                <button className="bg-[#6dabe4] w-[120px] flex justify-center text-white py-2 px-4 rounded-md text-sm" disabled><Spinner /></button>
+                                :
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                >
+                                    Add Question
+                                </button>
+                        }
 
-                        <button
-                            type="submit"
-                            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                        >
-                            Add Question
-                        </button>
                     </form>
                 </div>
             </Modal>

@@ -32,6 +32,8 @@ import Result from "./pages/exam/Result"
 import MyResults from "./pages/exam/MyResults"
 import MyExams from "./pages/exam/MyExams"
 import Review from "./pages/exam/Review"
+import UserDetails from "./pages/admin/UserDetails"
+import OurSuccess from "./pages/OurSuccess"
 axios.defaults.withCredentials = true
 
 
@@ -203,6 +205,18 @@ function App() {
               element={
                 <Layout>
                   <Review />
+                </Layout>
+              } />
+            <Route path="/user/:id/details" exact
+              element={
+                <Layout>
+                  <UserDetails />
+                </Layout>
+              } />
+            <Route path="/ourSuccess" exact
+              element={
+                <Layout>
+                  <OurSuccess />
                 </Layout>
               } />
           </Routes>

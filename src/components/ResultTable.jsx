@@ -1,22 +1,30 @@
 const ResultTable = ({ results }) => {
     return (
-        <div className="mx-auto w-full">
+        <div className="mx-auto w-full text-center">
             <table className="w-full">
                 <thead>
                     <tr>
-                        <td className="border">Name</td>
-                        <td className="border">Attempt</td>
-                        <td className="border">Earn Points</td>
-                        <td className="border">Result</td>
+                        <td className="border px-2">Name</td>
+                        <td className="border px-2">Attempt</td>
+                        <td className="border px-2">Earn Points</td>
+                        <td className="border px-2">Result</td>
                     </tr>
                 </thead>
                 <tbody>
                     {results && results?.map((result) => (
-                        <tr key={result?._id}>
-                            <td className="border">{result.userId.name}</td>
-                            <td className="border">{result.attempts}</td>
-                            <td className="border">{result.earnPoints}</td>
-                            <td className="border">{result.isPassed ? "Passed" : "Failed"}</td>
+                        <tr key={result._id}>
+                            <td className="border px-2">{result.userId.name}</td>
+                            <td className="border px-2">{result.attempts}</td>
+                            <td className="border px-2">{result.earnPoints}</td>
+                            <td className="border px-2">{result?.isPassed ? (
+                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Passed
+                                </span>
+                            ) : (
+                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                    Failed
+                                </span>
+                            )}</td>
                         </tr>
                     ))}
 

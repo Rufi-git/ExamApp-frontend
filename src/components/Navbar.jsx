@@ -44,8 +44,8 @@ const Navbar = () => {
             <Link to="/">
               <li>Haqqımızda</li>
             </Link>
-            <Link to="/">
-              <li>Kurslar</li>
+            <Link to="/ourSuccess">
+              <li>Uğurlarımız</li>
             </Link>
             <Link to="/">
               <li>İmtahanlar</li>

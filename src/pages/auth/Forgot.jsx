@@ -33,15 +33,15 @@ const Forgot = () => {
     }
 
     return (
-        <div className="sm:bg-[#f8f8f8] flex items-center justify-center min-h-screen overflow-hidden">
-            <div className=" flex md:flex-row flex-col items-center gap-14 mx-auto px-[100px] py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
+        <div className="sm:bg-[#f8f8f8] flex items-center justify-center min-h-screen">
+            <div className=" flex md:flex-row flex-col items-center gap-14 mx-auto px-[10px] py-[70px] sm:shadow-md rounded-md max-w-[1240px] bg-white p-5">
                 <div className="lg:max-w-[350px] md:max-w-[250px] md:block hidden">
                     <img src={forgot} alt="" className="w-full" />
                 </div>
                 <div className="my-auto">
                     <h1 className="font-bold text-[30px]">Forgot Password</h1>
                     <form className="mt-[45px]" onSubmit={handleForgot}>
-                        <div className="pb-1 flex gap-3 items-center border-b border-black">
+                        <div className="pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <AiTwotoneMail />
                             <input value={email} name="email" onChange={(e) => setEmail(e.target.value)} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type="email" placeholder="Your Email" />
                         </div>
@@ -50,7 +50,7 @@ const Forgot = () => {
                                 <button className="bg-[#6dabe4] mt-6 w-[120px] flex justify-center text-white py-3 px-9 rounded-md text-sm" disabled><Spinner /></button>
                                 :
                                 <button className="bg-[#6dabe4] mt-6 text-white py-3 px-9 rounded-md text-sm hover:bg-[#1084da]" type="submit">Get Reset Email</button>
-                            }
+                        }
                     </form>
                     <div className="mt-3 flex justify-between">
                         <Link to="/" className=" underline ml-2">Home</Link>

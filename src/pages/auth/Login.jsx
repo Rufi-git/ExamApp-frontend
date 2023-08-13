@@ -79,13 +79,13 @@ const Login = () => {
                     <img src={loginImg} alt="login image" className="w-full"/>
                 </div>
                 <div>
-                    <h1 className="font-bold text-[30px]">Daxil ol</h1>
-                    <form className="mt-[55px]" onSubmit={handleLogin}>
-                        <div className="pb-1 flex gap-3 items-center border-b border-black">
+                    <h1 className="font-bold md:text-[30px] text-[25px] mb-5">Daxil ol</h1>
+                    <form className="mt-[55px" onSubmit={handleLogin}>
+                        <div className="pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <AiTwotoneMail />
                             <input value={email} name="email" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type="email" placeholder="Email" />
                         </div>
-                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black">
+                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <MdPassword />
                             <input value={password} name="password" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type={`${showPassword ? "text" : "password"}`} placeholder="Şifrə" />
                             <div onClick={togglePassword} className="text-[20px] cursor-pointer">

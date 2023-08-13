@@ -29,8 +29,8 @@ const Questions = ({ onChecked }) => {
             onChecked(previousAnswer);
             setChecked(previousAnswer);
         } else {
-            setCheckedOption(undefined);
-            onChecked(undefined);
+            setCheckedOption(-1);
+            onChecked(-1);
         }
     }, [trace, result]);
 

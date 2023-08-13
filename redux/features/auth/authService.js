@@ -105,6 +105,12 @@ const loginWithGoogle = async (userToken) => {
     return response.data
 }
 
+// Get User By Id
+export const getUserById = async (id) => {
+    const response = await axios.get(API_URL + "getUserById/" + id)
+    console.log(response.data)
+    return response.data
+};
 // Validate email
 export const validateEmail = (email) => {
     return email.match(
@@ -119,6 +125,7 @@ export const validatePassword = (password) => {
     }
     return true;
 };
+
 
 const authService = {
     register,
@@ -137,7 +144,8 @@ const authService = {
     upgradeUser,
     sendLoginCode,
     loginWithCode,
-    loginWithGoogle
+    loginWithGoogle,
+    getUserById
 }
 
 export default authService

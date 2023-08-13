@@ -18,8 +18,8 @@ const Verify = () => {
             <div className='w-full flex justify-center px-8'>
                 <div className="bg-white max-w-[760px] mt-[-220px] px-8 py-8 rounded-md shadow-md">
                     <h1 className="text-center tracking-[10px] text-[40px]">Welcome!</h1>
-                    <div className="flex items-center gap-8">
-                        <img src={verify} loading="lazy" alt="Cofirm image" className="max-w-[300px] mx-auto" />
+                    <div className="flex md:flex-row flex-col items-center gap-8">
+                        <img src={verify} loading="lazy" alt="Cofirm image" className="md:max-w-[300px] max-w-[220px] sm:block hidden mx-auto" />
                         <div className="flex flex-col gap-4">
                             <p>We're excited to have you get started. First, you need to verify your account. Just press the button below.</p>
                             <button className="bg-[#1084da] text-white px-7 py-3" onClick={verifyAccount}>Verify Account</button>

@@ -124,15 +124,15 @@ const Register = () => {
                 <div>
                     <h1 className="font-bold text-[30px]">Qeydiyyatdan keç</h1>
                     <form className="mt-[55px]" onSubmit={handleRegister}>
-                        <div className="pb-1 flex gap-3 items-center border-b border-black">
+                        <div className="pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <FaUserAlt />
                             <input name="name" value={name} onChange={handleInputChange} required className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type="text" placeholder="Your name" />
                         </div>
-                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black">
+                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <AiTwotoneMail />
                             <input name="email" value={email} onChange={handleInputChange} required className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type="email" placeholder="Your Email" />
                         </div>
-                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black">
+                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <RiLockPasswordFill />
                             <input value={password} name="password"
                                 onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type={`${showPassword ? "text" : "password"}`} placeholder="Your Password" />
@@ -143,7 +143,7 @@ const Register = () => {
                                 }
                             </div>
                         </div>
-                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black">
+                        <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black max-w-[300px] sm:max-w-[400px]">
                             <RiLockPasswordLine />
                             <input value={password2} name="password2"
                                 onPaste={(e) => {

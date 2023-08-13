@@ -16,8 +16,8 @@ const QuestionList = () => {
 
     return (
         <div>
-            {queue && queue.map((question, index) => (
-                <div key={index} className="mb-4">
+            {queue && queue.map((question) => (
+                <div key={question._id} className="mb-4">
                     <p className="font-medium">Sual {index + 1}:</p>
                     <p className='my-3'>{question.name}</p>
                     <div className="grid grid-cols-2 gap-3">
