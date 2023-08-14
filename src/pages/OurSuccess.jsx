@@ -15,7 +15,7 @@ const OurSuccess = () => {
   const { achivements } = useSelector(state => state.achivement)
   useEffect(() => {
     dispatch(getAchivements())
-  })
+  }, [dispatch])
 
   return (
     <div className='max-w-[1640px] px-4 mx-auto py-6'>
@@ -41,7 +41,7 @@ const OurSuccess = () => {
                 <div className="flex gap-5">
                   <div className="col-md-7">
                     <div className="modal_image" >
-                      <img src={project1} alt="" className='max-w-[300px]'/>
+                      <img src={project1} alt="" className='max-w-[300px]' />
                     </div>
                   </div>
                   <div className="col-md-5">
