@@ -24,7 +24,20 @@ export const getAchivements = createAsyncThunk(
         }
     }
 )
+// Add Achivement
+export const addAchivement = createAsyncThunk(
+    "achivement/addAchivement",
+    async (achivementData, thunkAPI) => {
+        try {
+            return await achivementService.addAchivement(achivementData)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
 
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
 const authSlice = createSlice({
     name: 'achivement',
     initialState,
@@ -50,6 +63,23 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = false;
                 state.achivements = null;
+                toast.error(action.payload)
+            })
+
+             // Add Achivement
+             .addCase(addAchivement.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(addAchivement.fulfilled, (state, action) => {
+                state.isError = false;
+                state.isLoading = false;
+                state.isSuccess = true;
+                toast.success(action.payload)
+            })
+            .addCase(addAchivement.rejected, (state, action) => {
+                state.isError = true;
+                state.isLoading = false;
+                state.isSuccess = false;
                 toast.error(action.payload)
             })
     }

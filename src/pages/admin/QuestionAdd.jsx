@@ -29,7 +29,6 @@ const QuestionAdd = () => {
         setIsOpen(false);
     }
 
-    const navigate = useNavigate()
     const { examId } = useParams()
     const initialState = {
         name: "",

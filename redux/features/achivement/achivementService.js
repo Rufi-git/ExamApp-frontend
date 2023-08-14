@@ -9,8 +9,15 @@ export const getAchivements = async () => {
     return response.data
 };
 
+// Add Achivements
+export const addAchivement = async (achivementData) => {
+    const response = await axios.post(API_URL + "addAchivement", achivementData)
+    return response.data.message
+};
+
 const authService = {
-    getAchivements
+    getAchivements,
+    addAchivement
 }
 
 export default authService
