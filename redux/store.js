@@ -4,6 +4,7 @@ import emailReducer from "../redux/features/mail/emailSlice"
 import filterReducer from "../redux/features/auth/filterSlice"
 import quizReducer from "../redux/features/quiz/quizSlice"
 import resultReducer from "./features/quiz/resultSlice";
+import achivementReducer from "./features/achivement/achivementSlice";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         email: emailReducer,
         filter: filterReducer,
         quiz: quizReducer,
-        result: resultReducer
+        result: resultReducer,
+        achivement: achivementReducer
     }
 })

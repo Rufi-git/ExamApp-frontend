@@ -4,6 +4,7 @@ import authService from "./authService";
 
 const initialState = {
     isLoggedIn: false,
+    achivements: null,
     user: null,
     userById: null,
     users: [],
@@ -277,6 +278,21 @@ export const getUserById = createAsyncThunk(
     async (id, thunkAPI) => {
         try {
             return await authService.getUserById(id)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+// Get Achivements
+export const getAchivements = createAsyncThunk(
+    "auth/getAchivements",
+    async (_, thunkAPI) => {
+        try {
+            return await authService.getAchivements()
         } catch (error) {
             const message = (error.response && error.response.data && error.response.data.message)
                 || error.message || error.toString()
@@ -659,6 +675,24 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = false;
                 state.user = null;
+                toast.error(action.payload)
+            })
+
+            // Login With Google
+            .addCase(getAchivements.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(getAchivements.fulfilled, (state, action) => {
+                state.isError = false;
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.achivements = action.payload;
+            })
+            .addCase(getAchivements.rejected, (state, action) => {
+                state.isError = true;
+                state.isLoading = false;
+                state.isSuccess = false;
+                state.achivements = null;
                 toast.error(action.payload)
             })
     }
