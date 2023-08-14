@@ -76,29 +76,34 @@ const OurSuccess = () => {
                   <h1 className='text-white'>{achivement.title}</h1>
                 </div>
               </div>
-              <Modal open={open === index} onClose={onCloseModal} center>
-                <div>
-                  <div>
-                    <h1>{achivement.title}</h1>
-                    <button type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div className="flex gap-5">
-                    <div className="col-md-7">
-                      <div className="modal_image" >
-                        <img src={achivement.photo} alt="" className='max-w-[300px]' />
-                      </div>
+              <div className='w-[200px]'>
+                <Modal open={open === index} onClose={onCloseModal} center>
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h1>{achivement.title}</h1>
+                      <button type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div className="col-md-5">
-                      <div className="">
-                        <div>
-                          <h4 className='font-bold text-[20px]'>Project Info:</h4>
-                          <p>{achivement.about}</p>
+                    <div className="modal-body">
+                      <div className="flex flex-col gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                          <div className="col-span-1">
+                            <div className="modal_image">
+                              <img src={achivement.photo} alt="" className='max-w-[300px]' />
+                            </div>
+                          </div>
+                          <div className="col-span-1">
+                            <div className="max-w-[300px]">
+                              <h4 className='font-bold text-[20px]'>Project Info:</h4>
+                              <p className=" break-words">{achivement.about}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Modal>
+                </Modal>
+
+              </div>
             </div>
           ))}
         </Masonry>
