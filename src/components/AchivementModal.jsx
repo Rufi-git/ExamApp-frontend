@@ -76,16 +76,16 @@ const AchivementModal = ({ modalIsOpen, closeModal }) => {
 
     return (
         <Modal
-            className={"z-[10000] max-w-[1200px] px-4 mx-auto flex mt-[130px] max-h-[800px] overflow-auto"}
+            className={"z-[10000] max-w-[1200px] px-6 mx-auto flex mt-[130px] max-h-[800px] overflow-auto"}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             contentLabel="Example Modal"
         >
             <div className="w-full max-w-[1240px] bg-white p-8 shadow-md h-full">
                 <form onSubmit={addAchivementForm}>
-                    <div className='w-full max-h-[400px] overflow-auto '>
+                    <div className='w-full max-h-[400px] overflow-auto pb-3'>
                         <label htmlFor="image" className='cursor-pointer'>
-                            <div className="border border-gray-300 p-2 rounded shadow-md">
+                            <div className="border border-gray-300 p-2 rounded shadow-md min-h-[200px]">
                                 <img src={imagePreview === null ? photo : imagePreview} alt="" className='w-full  object-cover shadow-2xl bg-center' />
                             </div>
                         </label>

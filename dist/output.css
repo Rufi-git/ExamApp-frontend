@@ -929,6 +929,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-\[200px\] {
+  min-height: 200px;
+}
+
 .w-32 {
   width: 8rem;
 }
@@ -1650,6 +1654,10 @@ video {
 
 .pt-\[60px\] {
   padding-top: 60px;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .text-left {

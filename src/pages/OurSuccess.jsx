@@ -39,7 +39,7 @@ const OurSuccess = () => {
     setIsOpen(false);
   }
   if (isLoading) {
-    return <div className="flex w-full justify-center">
+    return <div className="flex w-full justify-center py-10">
       <TailSpin
         height="130"
         width="130"
