@@ -133,7 +133,7 @@ const Navbar = () => {
               <Link to={"/"}>Haqqımızda</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link to={"/about"}>Kurslar</Link>
+              <Link to={"/ourSuccess"}>Uğurlarımız</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
               <Link to={"/services"}>İmtahanlar</Link>
