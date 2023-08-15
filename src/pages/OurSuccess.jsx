@@ -103,7 +103,7 @@ const OurSuccess = () => {
                 </div>
                 <div className='w-[200px]'>
                   <Modal open={open === index} onClose={onCloseModal} center>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center ">
                       <div className="gap-10">
                         <h1 className='font-bold text-[20px] break-words max-w-[610px] pb-2'>{achivement.title}</h1>
 
