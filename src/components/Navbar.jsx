@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logo2 from "../assets/mathlogo2.png";
-import logo from "../assets/mathlogo.png";
+import logo from "../assets/logomath.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -34,9 +34,9 @@ const Navbar = () => {
   return (
     <nav className="px-4 max-w-[1440px] mx-auto sticky top-0">
       <div className="flex items-center justify-between">
-        <div className="w-[140px]">
+        <div className="w-[60px]">
           <Link to="/" className="">
-            <img src={logo} alt="" className="filter w-full" />
+            <img src={logo} alt="" className="filter w-full"/>
           </Link>
         </div>
         <div className="lg:flex hidden">

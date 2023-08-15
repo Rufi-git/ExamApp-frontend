@@ -23,15 +23,12 @@ const Questions = ({ onChecked }) => {
     }, [checked])
 
     useEffect(() => {
-        const previousAnswer = result[trace];
-        if (previousAnswer !== undefined) {
-            setCheckedOption(previousAnswer);
-            onChecked(previousAnswer);
-            setChecked(previousAnswer);
-        } else {
-            setCheckedOption(-1);
-            onChecked(-1);
-        }
+        // Convert previousAnswer to a number
+        const previousAnswer = result[trace] !== undefined ? Number(result[trace]) : -1;
+
+        setCheckedOption(previousAnswer);
+        onChecked(previousAnswer);
+        setChecked(previousAnswer);
     }, [trace, result]);
 
     const question = useSelector(

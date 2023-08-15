@@ -12,36 +12,10 @@ const ExamInstructions = () => {
     const navigate = useNavigate()
     const { examId } = useParams()
 
-    const [days, setDays] = useState(0);
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-    let interval;
     useEffect(() => {
         dispatch(getExam(examId));
-        // return () => clearInterval(interval);
-
     }, [dispatch, examId]);
 
-    useEffect(() => {
-        if (!singleExam) return;
-        const deadline = singleExam.dedline;
-        const getTime = () => {
-            const time = Date.parse(deadline) - Date.now();
-
-            setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-            setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-            setMinutes(Math.floor((time / 1000 / 60) % 60));
-            setSeconds(Math.floor((time / 1000) % 60));
-        };
-
-        getTime(); // Update the time immediately when the component is mounted
-
-        interval = setInterval(() => getTime(), 1000);
-
-        // Clear the interval when the component is unmounted
-        return () => clearInterval(interval);
-    }, [singleExam]);
     if (isLoading) {
         return <Loader />;
     }
@@ -49,6 +23,9 @@ const ExamInstructions = () => {
     const startExam = () => {
         if (!user.isVerified) {
             return toast.error("You are not verified please Verify your Email");
+        }
+        if (localStorage.getItem("quizCountdown") != null) {
+            localStorage.removeItem('quizCountdown');
         }
         navigate(`/exam/${singleExam?._id}/start`);
     };
@@ -59,7 +36,7 @@ const ExamInstructions = () => {
             <div className='bg-white p-10 rounded-lg shadow-md'>
                 <h1 className='text-2xl font-bold text-center mb-6'>
                     {singleExam?.name} imtahanı
-                </h1> 
+                </h1>
                 <div className='flex justify-center'>
                     <ul className='list-disc pl-6 space-y-2 text-left'>
                         <li>İmtahan {`${Math.floor(singleExam?.duration / 60)} dəqiqə ${singleExam?.duration % 60} saniyə`} ərzində tamamlanmalıdır</li>

@@ -11,6 +11,7 @@ import Spinner from '../../components/Spinner';
 const Quiz = () => {
     const { queue, trace, singleExam } = useSelector((state) => state.quiz);
     const { result, isLoading } = useSelector((state) => state.result);
+    const [counter, setCounter] = useState(localStorage.getItem('quizCountdown') || singleExam.duration);
 
     const [checked, setChecked] = useState(-1);
     const { examId } = useParams()
@@ -59,14 +60,13 @@ const Quiz = () => {
             isPassed: flag,
             userAnswers: newResult.map((checkedAnswer, index) => {
                 if (index < queue.length) {
-                    console.log(checkedAnswer)
                     return {
                         questionId: queue[index]._id,
-                        selectedOptionIndex: checkedAnswer
+                        selectedOptionIndex: Number(checkedAnswer),
                     };
                 }
                 return null;
-            }).filter(answer => answer !== null)
+            }).filter(answer => answer !== null),
         };
     };
 
@@ -81,6 +81,8 @@ const Quiz = () => {
         const resultData = calculateResultData(newResult)
 
         await dispatch(addResult({ examId, resultData }));
+        
+        localStorage.removeItem('quizCountdown');
 
         dispatch(RESET_QUIZ())
         dispatch(RESET_RESULT())
@@ -92,14 +94,32 @@ const Quiz = () => {
         setChecked(check)
     }
 
+    const calculateRemainingTime = () => {
+        const minutes = Math.floor(counter / 60);
+        const seconds = counter % 60;
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
+
+    useEffect(() => {
+        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+        if (counter == 0) {
+            finishExam()
+        }
+    }, [counter]);
+    
+    useEffect(() => {
+        localStorage.setItem('quizCountdown', counter);
+    }, [counter]);
     return (
+        singleExam &&
+
         <div className="flex flex-col items-center justify-center h-screen md:bg-gray-100">
             <div className="md:shadow-lg rounded-lg p-6 px-6 py-8 w-full max-w-2xl mx-auto">
                 <div className='flex justify-between mb-8'>
                     <h1 className="text-3xl font-semibold">{trace + 1}/{queue.length}</h1>
 
                     <h1 className="text-3xl font-semibold">
-                        Timer
+                        {calculateRemainingTime()}
                     </h1>
                 </div>
                 <div className="w-full">
