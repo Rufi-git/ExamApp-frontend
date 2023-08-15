@@ -957,6 +957,14 @@ video {
   width: 200px;
 }
 
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-\[290px\] {
+  width: 290px;
+}
+
 .w-\[300px\] {
   width: 300px;
 }
@@ -967,6 +975,10 @@ video {
 
 .w-\[50px\] {
   width: 50px;
+}
+
+.w-\[60px\] {
+  width: 60px;
 }
 
 .w-\[70px\] {
@@ -981,24 +993,16 @@ video {
   width: 100%;
 }
 
-.w-\[60px\] {
-  width: 60px;
+.w-\[600px\] {
+  width: 600px;
 }
 
-.w-\[\] {
-  width: ;
+.w-\[800px\] {
+  width: 800px;
 }
 
-.w-\[250px\] {
-  width: 250px;
-}
-
-.w-\[270px\] {
-  width: 270px;
-}
-
-.w-\[290px\] {
-  width: 290px;
+.w-\[700px\] {
+  width: 700px;
 }
 
 .min-w-full {
@@ -1057,8 +1061,24 @@ video {
   max-width: 1536px;
 }
 
-.max-w-\[350px\] {
-  max-width: 350px;
+.max-w-\[700px\] {
+  max-width: 700px;
+}
+
+.max-w-\[650px\] {
+  max-width: 650px;
+}
+
+.max-w-\[600px\] {
+  max-width: 600px;
+}
+
+.max-w-\[620px\] {
+  max-width: 620px;
+}
+
+.max-w-\[610px\] {
+  max-width: 610px;
 }
 
 .border-collapse {
@@ -1109,10 +1129,6 @@ video {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.flex-row {
-  flex-direction: row;
 }
 
 .flex-col {
@@ -1628,11 +1644,6 @@ video {
   padding-bottom: 70px;
 }
 
-.px-\[50px\] {
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -1663,6 +1674,10 @@ video {
 
 .pt-\[60px\] {
   padding-top: 60px;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .text-left {
@@ -1917,10 +1932,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-\[\] {
-  color: ;
 }
 
 .underline {
@@ -2178,16 +2189,12 @@ video {
     display: block;
   }
 
-  .sm\:w-\[80\%\] {
-    width: 80%;
-  }
-
   .sm\:w-\[300px\] {
     width: 300px;
   }
 
-  .sm\:w-\[200px\] {
-    width: 200px;
+  .sm\:w-\[80\%\] {
+    width: 80%;
   }
 
   .sm\:max-w-\[400px\] {
@@ -2196,10 +2203,6 @@ video {
 
   .sm\:flex-row {
     flex-direction: row;
-  }
-
-  .sm\:flex-col-reverse {
-    flex-direction: column-reverse;
   }
 
   .sm\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
@@ -2240,13 +2243,13 @@ video {
     font-size: 18px;
   }
 
+  .sm\:text-\[30px\] {
+    font-size: 30px;
+  }
+
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-  .sm\:text-\[30px\] {
-    font-size: 30px;
   }
 
   .sm\:shadow-md {
@@ -2265,16 +2268,12 @@ video {
     display: block;
   }
 
-  .md\:w-\[70\%\] {
-    width: 70%;
-  }
-
-  .md\:w-\[\] {
-    width: ;
-  }
-
   .md\:w-\[300px\] {
     width: 300px;
+  }
+
+  .md\:w-\[70\%\] {
+    width: 70%;
   }
 
   .md\:max-w-\[250px\] {
@@ -2323,14 +2322,14 @@ video {
     background-color: rgb(243 244 246 / var(--tw-bg-opacity));
   }
 
-  .md\:px-\[150px\] {
-    padding-left: 150px;
-    padding-right: 150px;
-  }
-
   .md\:px-\[100px\] {
     padding-left: 100px;
     padding-right: 100px;
+  }
+
+  .md\:px-\[150px\] {
+    padding-left: 150px;
+    padding-right: 150px;
   }
 
   .md\:text-left {

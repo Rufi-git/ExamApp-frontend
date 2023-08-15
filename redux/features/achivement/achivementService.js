@@ -15,9 +15,16 @@ export const addAchivement = async (achivementData) => {
     return response.data.message
 };
 
+// Delete Achivement
+export const deleteAchivement = async (achivementId) => {
+    const response = await axios.delete(API_URL + "deleteAchivement/" + achivementId)
+    return response.data.message
+};
+
 const authService = {
     getAchivements,
-    addAchivement
+    addAchivement,
+    deleteAchivement
 }
 
 export default authService

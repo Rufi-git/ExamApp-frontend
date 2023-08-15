@@ -12,7 +12,7 @@ const Quiz = () => {
     const { queue, trace, singleExam } = useSelector((state) => state.quiz);
     const { result, isLoading } = useSelector((state) => state.result);
     const [counter, setCounter] = useState(localStorage.getItem('quizCountdown') || singleExam.duration);
-
+    const [aboutToEnd, setAboutToEnd] = useState(false)
     const [checked, setChecked] = useState(-1);
     const { examId } = useParams()
 
@@ -81,7 +81,7 @@ const Quiz = () => {
         const resultData = calculateResultData(newResult)
 
         await dispatch(addResult({ examId, resultData }));
-        
+
         localStorage.removeItem('quizCountdown');
 
         dispatch(RESET_QUIZ())
@@ -105,8 +105,9 @@ const Quiz = () => {
         if (counter == 0) {
             finishExam()
         }
+        if (counter <= 10) setAboutToEnd(true)
     }, [counter]);
-    
+
     useEffect(() => {
         localStorage.setItem('quizCountdown', counter);
     }, [counter]);
@@ -118,7 +119,7 @@ const Quiz = () => {
                 <div className='flex justify-between mb-8'>
                     <h1 className="text-3xl font-semibold">{trace + 1}/{queue.length}</h1>
 
-                    <h1 className="text-3xl font-semibold">
+                    <h1 className={`text-3xl font-semibold ${aboutToEnd && "text-[red]"}`}>
                         {calculateRemainingTime()}
                     </h1>
                 </div>

@@ -85,7 +85,7 @@ const QuestionAdd = () => {
             <button onClick={openModal} className='ml-auto flex bg-[#1084da] text-white px-4 py-2 rounded-sm'>Add Question</button>
             <QuestionList />
             <Modal
-                className={"z-[10000] border max-w-[1200px] px-4 mx-auto flex mt-[300px]"}
+                className={"z-[10000] max-w-[1200px] px-4 mx-auto flex mt-[300px]"}
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"

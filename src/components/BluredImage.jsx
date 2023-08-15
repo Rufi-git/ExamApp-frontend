@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Blurhash } from "react-blurhash";
+import { AiFillDelete } from 'react-icons/ai';
 const BluredImage = ({ src }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
