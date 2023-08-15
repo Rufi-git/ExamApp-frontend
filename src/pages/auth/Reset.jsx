@@ -114,7 +114,6 @@ const Reset = () => {
                 <div className="mx-auto">
                     <h1 className="font-bold sm:text-[30px] text-[25px]">Reset Password</h1>
                     <form className="mt-[45px]" onSubmit={handleReset}>
-
                         <div className="mt-6 pb-1 flex gap-3 items-center border-b border-black sm:w-[300px] w-[290px]">
                             <MdPassword />
                             <input value={password} name="password" onChange={handleInputChange} className="tracking-wide focus:placeholder:text-black w-[300px] outline-none" type={`${showPassword ? "text" : "password"}`} placeholder="New Password" />

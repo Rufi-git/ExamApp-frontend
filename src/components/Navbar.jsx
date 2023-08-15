@@ -130,19 +130,19 @@ const Navbar = () => {
           </div>
           <ul className="flex select-none flex-col gap-4 p-4 mt-6">
             <li className="text-[16px] sm:text-[18px] border-b-2 border-black-500 py-1">
-              <Link to={"/"}>Haqqımızda</Link>
+              <Link onClick={handleClick} to={"/"}>Haqqımızda</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link to={"/ourSuccess"}>Uğurlarımız</Link>
+              <Link onClick={handleClick} to={"/ourSuccess"}>Uğurlarımız</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link to={"/services"}>İmtahanlar</Link>
+              <Link onClick={handleClick} to={"/services"}>İmtahanlar</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link to={"/pricing"}>Kitablar</Link>
+              <Link onClick={handleClick} to={"/pricing"}>Kitablar</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link to={"/contact"}>Əlaqə</Link>
+              <Link onClick={handleClick} to={"/contact"}>Əlaqə</Link>
             </li>
             <div className="gap-3 flex">
 
