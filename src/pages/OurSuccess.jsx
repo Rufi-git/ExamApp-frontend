@@ -9,6 +9,8 @@ import { AdminTeacherLink } from '../components/protect/hiddenLink';
 import AchivementModal from '../components/AchivementModal';
 import { TailSpin } from 'react-loader-spinner';
 
+import BluredImage from '../components/BluredImage';
+
 const OurSuccess = () => {
   const dispatch = useDispatch()
   const { isLoading } = useSelector(state => state.achivement)
@@ -18,6 +20,8 @@ const OurSuccess = () => {
   const onCloseModal = () => setOpen(null);
 
   const { achivements } = useSelector(state => state.achivement)
+
+
   useEffect(() => {
     dispatch(getAchivements())
   }, [dispatch])
@@ -51,6 +55,9 @@ const OurSuccess = () => {
       />
     </div>
   }
+
+
+
   return (
     <div className='max-w-[1640px] px-4 mx-auto py-6'>
       <div className='text-center font-semibold text-[40px] py-5'>
@@ -63,51 +70,51 @@ const OurSuccess = () => {
 
         <AchivementModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       </AdminTeacherLink>
-
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-      >
-        <Masonry gutter="10px">
-          {achivements && achivements.map((achivement, index) => (
-            <div style={{ height: getImageHeight(achivement.size) }} key={index}>
-              <div onClick={() => onOpenModal(index)} className={`cursor-pointer relative group h-full`}>
-                <img src={achivement.photo} alt="" className="w-full rounded-md h-full object-cover" />
-                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 w-full h-full opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300 ease-in-out'>
-                  <h1 className='text-white'>{achivement.title}</h1>
+      {achivements &&
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+        >
+          <Masonry gutter="10px">
+            {achivements.map((achivement, index) => (
+              <div style={{ height: getImageHeight(achivement.size) }} key={index}>
+                <div onClick={() => onOpenModal(index)} className={`cursor-pointer relative group h-full`}>
+                  <BluredImage src={achivement.photo}/>
+                  <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 w-full h-full opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300 ease-in-out'>
+                    <h1 className='text-white'>{achivement.title}</h1>
+                  </div>
                 </div>
-              </div>
-              <div className='w-[200px]'>
-                <Modal open={open === index} onClose={onCloseModal} center>
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h1>{achivement.title}</h1>
-                      <button type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">
-                      <div className="flex flex-col gap-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                          <div className="col-span-1">
-                            <div className="modal_image">
-                              <img src={achivement.photo} alt="" className='max-w-[300px]' />
+                <div className='w-[200px]'>
+                  <Modal open={open === index} onClose={onCloseModal} center>
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h1>{achivement.title}</h1>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                        <div className="flex flex-col gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div className="col-span-1">
+                              <div className="modal_image">
+                                <img src={achivement.photo} alt="" className='max-w-[300px]' />
+                              </div>
                             </div>
-                          </div>
-                          <div className="col-span-1">
-                            <div className="max-w-[300px]">
-                              <h4 className='font-bold text-[20px]'>Project Info:</h4>
-                              <p className=" break-words">{achivement.about}</p>
+                            <div className="col-span-1">
+                              <div className="max-w-[300px]">
+                                <h4 className='font-bold text-[20px]'>Project Info:</h4>
+                                <p className=" break-words">{achivement.about}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Modal>
-
+                  </Modal>
+                </div>
               </div>
-            </div>
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      }
     </div>
   )
 }

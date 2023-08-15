@@ -16,7 +16,7 @@ const Exams = () => {
     const { id } = useParams()
     return (
         <div className="bg-gray-50">
-            <div class="mx-auto max-w-screen-2xl px-2 py-10">
+            <div className="mx-auto max-w-screen-2xl px-2 py-10">
                 <PageMenu />
                 <div className='w-full'>
                     <AdminTeacherLink>
