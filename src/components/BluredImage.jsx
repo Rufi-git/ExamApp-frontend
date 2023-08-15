@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Blurhash } from "react-blurhash";
-import LazyLoad from 'react-lazy-load';
 const BluredImage = ({ src }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
