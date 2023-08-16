@@ -10,7 +10,8 @@ import AchivementModal from '../components/AchivementModal';
 import { TailSpin } from 'react-loader-spinner';
 import { motion } from "framer-motion"
 import BluredImage from '../components/BluredImage';
-import { AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { TbZoomReset } from 'react-icons/tb';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const OurSuccess = () => {
@@ -139,7 +140,7 @@ const OurSuccess = () => {
                     </div>
                   </Modal>
                   <Modal open={openPhoto && selectedPhotoIndex === index} onClose={onClosePhotoModal} center>
-                  <div className="flex justify-center mt-2">
+                    <div className="flex justify-center mt-2">
                       <TransformWrapper>
                         {({ zoomIn, zoomOut, resetTransform }) => (
                           <div>
@@ -150,12 +151,15 @@ const OurSuccess = () => {
                                 alt=""
                               />
                             </TransformComponent>
-                            <div className="flex justify-center mt-2">
-                              <button onClick={zoomIn} className="text-[20px] mr-2">
-                                Zoom In
+                            <div className="flex justify-center mt-2 gap-8">
+                              <button onClick={() => zoomIn(0.2)} className="text-[20px]">
+                                <AiOutlinePlus />
                               </button>
-                              <button onClick={zoomOut} className="text-[20px]">
-                                Zoom Out
+                              <button onClick={() => zoomOut(0.2)} className="text-[20px]">
+                                <AiOutlineMinus />
+                              </button>
+                              <button onClick={() => resetTransform()} className="text-[20px]">
+                                <TbZoomReset />
                               </button>
                             </div>
                           </div>
