@@ -28,7 +28,7 @@ const Review = () => {
         review.examId?.questions.map((question, index) => {
           const selectedOptionIndex = review.userAnswers?.[index]?.selectedOptionIndex;
           const correctOptionIndex = question.options.findIndex(option => option.isCorrect);
-
+          console.log(selectedOptionIndex)
           return (
             <div key={index} className='mb-4'>
               <p className='font-medium'>Sual {index + 1}:</p>
@@ -38,14 +38,14 @@ const Review = () => {
                   <div
                     key={optionIndex}
                     className={`flex items-center ${option.isCorrect
-                        ? 'border-green-500 border'
-                        : ''
+                      ? 'border-green-500 border'
+                      : ''
                       } ${selectedOptionIndex === optionIndex &&
                         option.isCorrect
                         ? 'border-green-500'
                         : selectedOptionIndex === optionIndex
                           ? 'border-red-500'
-                          : selectedOptionIndex === undefined &&
+                          : (selectedOptionIndex === -1 || selectedOptionIndex === null || selectedOptionIndex === undefined) &&
                             correctOptionIndex === optionIndex
                             ? 'border-orange-500'
                             : ''
@@ -65,7 +65,7 @@ const Review = () => {
                           ? 'text-green-500'
                           : selectedOptionIndex === optionIndex
                             ? 'text-red-500 border-red-500'
-                            : selectedOptionIndex === undefined &&
+                            : (selectedOptionIndex === -1 || selectedOptionIndex === null || selectedOptionIndex === undefined) &&
                               correctOptionIndex === optionIndex
                               ? 'text-orange-500'
                               : ''
