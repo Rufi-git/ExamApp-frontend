@@ -12,11 +12,9 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
     isError: false,
-
-
     queue: [],
     answers: [],
-    trace: 0
+    trace: 0,
 }
 
 // Get Tags

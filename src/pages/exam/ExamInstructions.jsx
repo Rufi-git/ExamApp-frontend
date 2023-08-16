@@ -27,9 +27,9 @@ const ExamInstructions = () => {
         if (!user.isVerified) {
             return toast.error("You are not verified please Verify your Email");
         }
-        if (localStorage.getItem("quizCountdown") != null) {
-            localStorage.removeItem('quizCountdown');
-        }
+        // if (localStorage.getItem("quizCountdown") != null) {
+        //     localStorage.removeItem('quizCountdown');
+        // }
         navigate(`/exam/${singleExam?._id}/start`);
     };
 
@@ -49,6 +49,7 @@ const ExamInstructions = () => {
                         <li>Cavablarınızı təqdim etməzdən əvvəl nəzərdən keçirə bilərsiniz</li>
                         <li>Təqdim edildikdən sonra cavablarınızı nəzərdən keçirə bilərsiniz</li>
                         <li>Təqdim edildikdən sonra yenidən imtahan verə bilərsiniz</li>
+                        <li>İmtahan başladıqdan sonra səhifıni yeniləməyin</li>
                     </ul>
                 </div>
                 <div className='flex justify-center mt-6'>

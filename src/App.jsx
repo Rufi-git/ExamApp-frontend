@@ -14,7 +14,7 @@ import Loader from "./components/Loader"
 import axios from "axios"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getLoginStatus, getUser, selectIsLoggedIn, selectUser } from "../redux/features/auth/authSlice"
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -45,6 +45,8 @@ function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const user = useSelector(selectUser)
 
+  const [counter, setCounter] = useState(localStorage.getItem('quizCountdown'));
+
   useEffect(() => {
     dispatch(getLoginStatus())
 
@@ -54,6 +56,8 @@ function App() {
 
   }, [dispatch, isLoggedIn, user])
   Modal.setAppElement('#root');
+  
+
   return (
     <>
       <BrowserRouter>

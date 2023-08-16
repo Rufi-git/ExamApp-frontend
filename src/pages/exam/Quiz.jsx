@@ -7,11 +7,8 @@ import { attempts_Number, earnPoints_Number, flagResult } from '../../helper/hel
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa';
 import Spinner from '../../components/Spinner';
-import useRedirectLoggedOutUser from '../../customHook/useRedirectLoggedOutUser';
 
 const Quiz = () => {
-    useRedirectLoggedOutUser("/login")
-    
     const { queue, trace, singleExam } = useSelector((state) => state.quiz);
     const { result, isLoading } = useSelector((state) => state.result);
     const [counter, setCounter] = useState(localStorage.getItem('quizCountdown') || singleExam.duration);
@@ -105,15 +102,14 @@ const Quiz = () => {
 
     useEffect(() => {
         counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+        localStorage.setItem('quizCountdown', counter);
+
         if (counter == 0) {
             finishExam()
         }
         if (counter <= 10) setAboutToEnd(true)
     }, [counter]);
 
-    useEffect(() => {
-        localStorage.setItem('quizCountdown', counter);
-    }, [counter]);
     return (
         singleExam &&
 

@@ -13,6 +13,6 @@ export const store = configureStore({
         filter: filterReducer,
         quiz: quizReducer,
         result: resultReducer,
-        achivement: achivementReducer
+        achivement: achivementReducer,
     }
 })
