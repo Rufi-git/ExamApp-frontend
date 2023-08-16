@@ -1081,10 +1081,6 @@ video {
   cursor: pointer;
 }
 
-.cursor-zoom-in {
-  cursor: zoom-in;
-}
-
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;

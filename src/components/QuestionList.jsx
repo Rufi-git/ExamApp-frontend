@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getQuestionByExam } from '../../redux/features/quiz/quizSlice';
+import { deleteQuestion, getQuestionByExam } from '../../redux/features/quiz/quizSlice';
 import { useParams } from 'react-router-dom';
+import { AiFillDelete } from 'react-icons/ai';
 
 const QuestionList = () => {
     const dispatch = useDispatch()
@@ -14,11 +15,19 @@ const QuestionList = () => {
         dispatch(getQuestionByExam(examId))
     }, [dispatch])
 
+    const questionDelete = async (id) => {
+        await dispatch(deleteQuestion(id))
+        dispatch(getQuestionByExam(examId))
+    }
+
     return (
         <div>
             {queue && queue.map((question, index) => (
                 <div key={question._id} className="mb-4">
-                    <p className="font-medium">Sual {index + 1}:</p>
+                    <div className='flex gap-2'>
+                        <p className="font-medium">Sual {index + 1}:</p>
+                        <button onClick={() => questionDelete(question._id)} className='text-[red] text-[20px]'><AiFillDelete /></button>
+                    </div>
                     <p className='my-3'>{question.name}</p>
                     <div className="grid grid-cols-2 gap-3">
                         {question.options.map((option, optionIndex) => (

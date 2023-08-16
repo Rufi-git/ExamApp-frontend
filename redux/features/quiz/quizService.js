@@ -110,6 +110,12 @@ const deleteMyExam = async (examId) => {
     return response.data.message
 }
 
+//Delete Question
+const deleteQuestion = async (questionId) => {
+    const response = await axios.delete(API_URL + "deleteQuestion/" + questionId)
+    return response.data.message
+}
+
 
 const quizService = {
     getTags,
@@ -129,7 +135,8 @@ const quizService = {
     addExamToUser,
     getExamsByUser,
     reviewResult,
-    deleteMyExam
+    deleteMyExam,
+    deleteQuestion
 }
 
 export default quizService

@@ -49,7 +49,7 @@ const ExamInstructions = () => {
                         <li>Cavablarınızı təqdim etməzdən əvvəl nəzərdən keçirə bilərsiniz</li>
                         <li>Təqdim edildikdən sonra cavablarınızı nəzərdən keçirə bilərsiniz</li>
                         <li>Təqdim edildikdən sonra yenidən imtahan verə bilərsiniz</li>
-                        <li>İmtahan başladıqdan sonra səhifıni yeniləməyin</li>
+                        <li>İmtahan başladıqdan sonra səhifəni yeniləməyin</li>
                     </ul>
                 </div>
                 <div className='flex justify-center mt-6'>
