@@ -8,8 +8,8 @@ import Loader from "./Loader"
 import { AdminTeacherLink } from "./protect/hiddenLink"
 import { MdOutlineModeEditOutline } from "react-icons/md"
 import { AiFillDelete } from "react-icons/ai"
-import Spinner from "./Spinner"
 import { TailSpin, Triangle } from "react-loader-spinner"
+import { motion } from "framer-motion"
 
 const Categories = () => {
     const dispatch = useDispatch()
@@ -35,9 +35,13 @@ const Categories = () => {
 
     }
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {tags && tags.map((tag) => (
-                <div key={tag._id} className="w-full bg-white border py-2">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
+            {tags && tags.map((tag, index) => (
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    key={tag._id} className="w-full bg-white border py-2">
                     <div className="flex px-3">
                         <div className="ml-auto flex gap-4 items-center">
                             <AdminTeacherLink>
@@ -53,7 +57,7 @@ const Categories = () => {
                         </div>
                         <h1 className="font-extrabold text-[17px] mt-2 text-[#373d46] text-center">{tag.name}</h1>
                     </Link>
-                </div>
+                </motion.div>
             ))}
         </div>
     )

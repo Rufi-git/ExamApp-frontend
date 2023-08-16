@@ -8,6 +8,7 @@ import { MdOutlineModeEditOutline } from "react-icons/md"
 import { AdminTeacherLink } from "./protect/hiddenLink"
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai"
 import Spinner from "./Spinner"
+import { motion } from "framer-motion"
 
 const ExamList = () => {
     const dispatch = useDispatch()
@@ -35,8 +36,12 @@ const ExamList = () => {
     }
     return (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-            {exams && exams.map((exam) => (
-                <div key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
+            {exams && exams.map((exam, index) => (
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
                     <div className="flex justify-between">
                         <h1 className='font-bold'>{exam.name}</h1>
                         <div className="flex gap-4 items-center">
@@ -75,7 +80,7 @@ const ExamList = () => {
                         ) : (
                             <>
                                 {
-                                    myExams.length > 0 && myExams.some(myExam => myExam._id === exam._id ) ? (
+                                    myExams.length > 0 && myExams.some(myExam => myExam._id === exam._id) ? (
                                         <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>Pulsuz - Bax</Link>
                                     ) : (
                                         <button onClick={(e) => addExam(e, exam._id)} className="flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4">Imtahanı əldə et</button>
@@ -84,7 +89,7 @@ const ExamList = () => {
                             </>
                         )
                     }
-                </div>
+                </motion.div>
             ))}
         </div>
     )

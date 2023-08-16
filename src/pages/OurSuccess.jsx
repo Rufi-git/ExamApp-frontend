@@ -8,7 +8,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import { AdminTeacherLink } from '../components/protect/hiddenLink';
 import AchivementModal from '../components/AchivementModal';
 import { TailSpin } from 'react-loader-spinner';
-
+import { motion } from "framer-motion"
 import BluredImage from '../components/BluredImage';
 import { AiFillDelete } from 'react-icons/ai';
 
@@ -94,7 +94,10 @@ const OurSuccess = () => {
         >
           <Masonry gutter="10px">
             {achivements.map((achivement, index) => (
-              <div style={{ height: getImageHeight(achivement.size) }} key={index}>
+              <motion.div initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                style={{ height: getImageHeight(achivement.size) }} key={index}>
                 <div onClick={() => onOpenModal(index)} className={`cursor-pointer relative group h-full`}>
                   <BluredImage src={achivement.photo} />
                   <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 w-full h-full opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300 ease-in-out'>
@@ -134,15 +137,15 @@ const OurSuccess = () => {
                       </div>
                     </div>
                   </Modal>
-                    <Modal open={openPhoto && selectedPhotoIndex === index} onClose={onClosePhotoModal} center>
-                      <img
-                        src={achivement.photo}
-                        className='w-full rounded-md h-full object-cover'
-                        alt=''
-                      />
-                    </Modal>
+                  <Modal open={openPhoto && selectedPhotoIndex === index} onClose={onClosePhotoModal} center>
+                    <img
+                      src={achivement.photo}
+                      className='w-full rounded-md h-full object-cover'
+                      alt=''
+                    />
+                  </Modal>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </Masonry>
         </ResponsiveMasonry>
