@@ -242,6 +242,21 @@ export const deleteQuestion = createAsyncThunk(
     }
 )
 
+//Edit Question
+export const editQuestion = createAsyncThunk(
+    "quiz/editQuestion",
+    async ({ questionId, questionData }, thunkAPI) => {
+        try {
+            return await quizService.editQuestion(questionId, questionData)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 const quizSlice = createSlice({
     name: 'quiz',
     initialState,
@@ -525,6 +540,23 @@ const quizSlice = createSlice({
                 toast.success(action.payload)
             })
             .addCase(deleteQuestion.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            //Edit Question
+            .addCase(editQuestion.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(editQuestion.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                toast.success(action.payload)
+            })
+            .addCase(editQuestion.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

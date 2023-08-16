@@ -116,6 +116,13 @@ const deleteQuestion = async (questionId) => {
     return response.data.message
 }
 
+//Edit Question
+const editQuestion = async (questionId, questionData) => {
+    const response = await axios.patch(API_URL + "editQuestion/" + questionId, questionData)
+    return response.data.message
+}
+
+
 
 const quizService = {
     getTags,
@@ -136,7 +143,8 @@ const quizService = {
     getExamsByUser,
     reviewResult,
     deleteMyExam,
-    deleteQuestion
+    deleteQuestion,
+    editQuestion
 }
 
 export default quizService
