@@ -4,8 +4,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getExam } from '../../../redux/features/quiz/quizSlice'
 import Loader from '../../components/Loader'
 import { toast } from 'react-toastify'
+import useRedirectLoggedOutUser from '../../customHook/useRedirectLoggedOutUser'
 
 const ExamInstructions = () => {
+    useRedirectLoggedOutUser("login")
+
     const { singleExam, isLoading } = useSelector(state => state.quiz)
     const { user } = useSelector(state => state.auth)
     const dispatch = useDispatch()
@@ -29,7 +32,6 @@ const ExamInstructions = () => {
         }
         navigate(`/exam/${singleExam?._id}/start`);
     };
-
 
     return (
         <div className='container mx-auto max-w-[1240px] py-14 px-5'>

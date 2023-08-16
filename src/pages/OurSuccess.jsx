@@ -134,13 +134,13 @@ const OurSuccess = () => {
                       </div>
                     </div>
                   </Modal>
-                  <Modal open={openPhoto && selectedPhotoIndex === index} onClose={onClosePhotoModal} center>
-                    <img
-                      src={achivement.photo}
-                      className='w-full rounded-md h-full object-cover'
-                      alt=''
-                    />
-                  </Modal>
+                    <Modal open={openPhoto && selectedPhotoIndex === index} onClose={onClosePhotoModal} center>
+                      <img
+                        src={achivement.photo}
+                        className='w-full rounded-md h-full object-cover'
+                        alt=''
+                      />
+                    </Modal>
                 </div>
               </div>
             ))}

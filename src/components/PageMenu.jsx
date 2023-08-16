@@ -6,21 +6,18 @@ const PageMenu = () => {
     return (
         <div className="px-4 bg-[#1084da] py-3 mb-10">
             <ul className="text-sm gap-5 text-white flex justify-around flex-wrap">
-                <NavLink to={"/"}  className={({ isActive }) =>
+                <NavLink to={"/"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
                     <li>Home</li>
                 </NavLink>
-                <NavLink to={"/profile"}  className={({ isActive }) =>
+                <NavLink to={"/profile"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
                     <li>Profile</li>
                 </NavLink>
-                {
-                    result && result.length > 0 &&
-                    <NavLink to={"/myResults"}  className={({ isActive }) =>
+                <NavLink to={"/myResults"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                        <li>My Results</li>
-                    </NavLink>
-                }
+                    <li>My Results</li>
+                </NavLink>
                 <NavLink to={"/myExams"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
                     <li>My Exams</li>
@@ -30,13 +27,9 @@ const PageMenu = () => {
                     <li>Change Password</li>
                 </NavLink>
                 <AdminTeacherLink>
-                    <NavLink to={"/users"}  className={({ isActive }) =>
-                    isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
+                    <NavLink to={"/users"} className={({ isActive }) =>
+                        isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
                         <li>Users</li>
-                    </NavLink>
-                    <NavLink to={"/tags"}  className={({ isActive }) =>
-                    isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                        <li>Exams</li>
                     </NavLink>
                 </AdminTeacherLink>
             </ul>

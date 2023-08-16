@@ -34,7 +34,7 @@ import MyExams from "./pages/exam/MyExams"
 import Review from "./pages/exam/Review"
 import UserDetails from "./pages/admin/UserDetails"
 import OurSuccess from "./pages/OurSuccess"
-import Modal from 'react-modal'; 
+import Modal from 'react-modal';
 
 axios.defaults.withCredentials = true
 

@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link to="/ourSuccess">
               <li>Uğurlarımız</li>
             </Link>
-            <Link to="/">
+            <Link to="/tags">
               <li>İmtahanlar</li>
             </Link>
             <Link to="/">
@@ -136,13 +136,13 @@ const Navbar = () => {
               <Link onClick={handleClick} to={"/ourSuccess"}>Uğurlarımız</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link onClick={handleClick} to={"/services"}>İmtahanlar</Link>
+              <Link onClick={handleClick} to={"/tags"}>İmtahanlar</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link onClick={handleClick} to={"/pricing"}>Kitablar</Link>
+              <Link onClick={handleClick} to={"/"}>Kitablar</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
-              <Link onClick={handleClick} to={"/contact"}>Əlaqə</Link>
+              <Link onClick={handleClick} to={"/"}>Əlaqə</Link>
             </li>
             <div className="gap-3 flex">
 
