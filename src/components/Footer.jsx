@@ -11,7 +11,7 @@ const Footer = () => {
             <div className='grid lg:grid-cols-4 grid-cols-2 text-[#eee] gap-8 justify-center'>
                 <div className='col-span-2 lg:col-span-1'>
                     <img src={logo3} alt="math logo" width={"100px"}/>
-                    <p className='leading-[32px] mt-3'>Oxuyan platforması online sınaq imtahanları, yarışlar, müsabiqələr, online test bazası və suallar ilə hər kəs üçün bərabər təhsili hədəfləyir. Təhsil layihəmiz magistr, ibtidai sinif, orta məktəb, abituriyent, müəllim, xaricdə təhsil almaq və bir çox başqa növ sınaq imtahanında iştirak etmək istəyənlər üçündür.</p>
+                    <p className='leading-[32px] mt-3'>İmtahan platforması online sınaq imtahanları, yarışlar, müsabiqələr, online test bazası və suallar ilə hər kəs üçün bərabər təhsili hədəfləyir. Təhsil layihəmiz magistr, ibtidai sinif, orta məktəb, abituriyent, müəllim, xaricdə təhsil almaq və bir çox başqa növ sınaq imtahanında iştirak etmək istəyənlər üçündür.</p>
                 </div>
                 <div>
                     <h1 className='text-[20px] font-bold'>Servislər</h1>
@@ -45,7 +45,7 @@ const Footer = () => {
                         <div className='lg:text-[55px] text-[35px] text-[#28e688]'><PiPhoneCallDuotone /></div>
                         <div className='ml-4'>
                             <h1 className='font-bold lg:text-[20px] text-sm'>Əlaqə Nömrəmiz</h1>
-                            <p className='text-[#6a7695] text-sm sm:text-base'>+994 77 399 99 66</p>
+                            <Link to="tel:+994773999966" className='text-[#6a7695] text-sm sm:text-base'>+994 77 399 99 66</Link>
                         </div>
                     </div>
                     <div className='flex items-center'>

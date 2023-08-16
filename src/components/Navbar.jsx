@@ -42,7 +42,7 @@ const Navbar = () => {
         <div className="lg:flex hidden">
           <ul className="flex gap-6 font-semibold text-lg">
             <Link to="/">
-              <li>Haqqımızda</li>
+              <li>Ana səhifə</li>
             </Link>
             <Link to="/ourSuccess">
               <li>Uğurlarımız</li>
@@ -130,7 +130,7 @@ const Navbar = () => {
           </div>
           <ul className="flex select-none flex-col gap-4 p-4 mt-6">
             <li className="text-[16px] sm:text-[18px] border-b-2 border-black-500 py-1">
-              <Link onClick={handleClick} to={"/"}>Haqqımızda</Link>
+              <Link onClick={handleClick} to={"/"}>Ana səhifə</Link>
             </li>
             <li className="py-1 text-[16px] sm:text-[18px] border-b-2 border-black-500">
               <Link onClick={handleClick} to={"/ourSuccess"}>Uğurlarımız</Link>

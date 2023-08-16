@@ -17,6 +17,7 @@ import { FILTER_USERS, selectUsers } from '../../../redux/features/auth/filterSl
 import ReactPaginate from 'react-paginate';
 import { TailSpin } from 'react-loader-spinner'
 import { Link } from 'react-router-dom'
+import { AdminTeacherLink } from '../../components/protect/hiddenLink'
 
 const UserList = () => {
     useRedirectLoggedOutUser("/login")
@@ -129,14 +130,16 @@ const UserList = () => {
                                                             <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Phone</td>
                                                             <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Role</td>
                                                             <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Status</td>
-                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Change Role</td>
-                                                            <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Action</td>
+                                                            <AdminTeacherLink>
+                                                                <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Change Role</td>
+                                                                <td className="px-2 whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">Action</td>
+                                                            </AdminTeacherLink>
                                                         </tr>
                                                     </thead>
 
                                                     <tbody className="bg-white lg:border-gray-300">
                                                         {currentItems?.map((user, index) => (
-                                                            <tr className="" key={index}>
+                                                            <tr key={index}>
                                                                 <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
                                                                     <b>{index + 1}</b>
                                                                 </td>
@@ -154,12 +157,14 @@ const UserList = () => {
                                                                 <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
                                                                     {!user.isVerified ? <p className='text-red-500'>Not Verified</p> : <p className='text-green-500'>Verified</p>}
                                                                 </td>
-                                                                <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
-                                                                    <ChangeRole _id={user._id} email={user.email} />
-                                                                </td>
-                                                                <td className="sm:p-3 text-[25px] gap-8 flex ">
-                                                                    <button className='text-[red]' onClick={() => confirmDelete(user._id)}><AiFillDelete /></button>
-                                                                </td>
+                                                                <AdminTeacherLink>
+                                                                    <td className="px-2 whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 table-cell lg:text-left">
+                                                                        <ChangeRole _id={user._id} email={user.email} />
+                                                                    </td>
+                                                                    <td className="sm:p-3 text-[25px] gap-8 flex ">
+                                                                        <button className='text-[red]' onClick={() => confirmDelete(user._id)}><AiFillDelete /></button>
+                                                                    </td>
+                                                                </AdminTeacherLink>
                                                             </tr>
                                                         ))}
 
