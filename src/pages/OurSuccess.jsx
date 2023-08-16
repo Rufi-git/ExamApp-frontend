@@ -11,6 +11,7 @@ import { TailSpin } from 'react-loader-spinner';
 import { motion } from "framer-motion"
 import BluredImage from '../components/BluredImage';
 import { AiFillDelete } from 'react-icons/ai';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const OurSuccess = () => {
   const dispatch = useDispatch()
@@ -138,11 +139,29 @@ const OurSuccess = () => {
                     </div>
                   </Modal>
                   <Modal open={openPhoto && selectedPhotoIndex === index} onClose={onClosePhotoModal} center>
-                    <img
-                      src={achivement.photo}
-                      className='w-full rounded-md h-full object-cover'
-                      alt=''
-                    />
+                  <div className="flex justify-center mt-2">
+                      <TransformWrapper>
+                        {({ zoomIn, zoomOut, resetTransform }) => (
+                          <div>
+                            <TransformComponent>
+                              <img
+                                src={achivement.photo}
+                                className="w-full rounded-md h-full object-cover"
+                                alt=""
+                              />
+                            </TransformComponent>
+                            <div className="flex justify-center mt-2">
+                              <button onClick={zoomIn} className="text-[20px] mr-2">
+                                Zoom In
+                              </button>
+                              <button onClick={zoomOut} className="text-[20px]">
+                                Zoom Out
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </TransformWrapper>
+                    </div>
                   </Modal>
                 </div>
               </motion.div>
