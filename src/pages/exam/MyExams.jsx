@@ -14,7 +14,7 @@ const MyExams = () => {
 
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);
-
+        console.log(query)
         if (query.get("success")) {
             toast.success("Order placed! You will receive an email confirmation.");
         }
