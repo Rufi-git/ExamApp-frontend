@@ -14,11 +14,12 @@ const MyExams = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const token = searchParams.get('token');
+    const examId = searchParams.get('examId');
     const success = searchParams.get('success');
 
     useEffect(() => {
         if (token && success) {
-            dispatch(addExamToUser({ examId, token }))
+            dispatch(addExamToUser({examId, token}))
         }
         dispatch(getExamsByUser());
     }, [success, token]);
