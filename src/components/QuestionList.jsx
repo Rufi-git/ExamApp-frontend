@@ -148,10 +148,18 @@ const QuestionList = () => {
             {queue && queue.map((question, index) => (
                 <Modal
                     key={`modal_${question._id}`}
-                    className={"z-[10000] max-w-[1200px] px-4 mx-auto flex mt-[300px]"}
+                    className={"z-[10000] max-w-[1200px] px-4"}
                     isOpen={editQuestionModalIndex === index}
                     onRequestClose={closeModal}
                     contentLabel="Example Modal"
+                    style={{
+                        content: {
+                            position:"relative",
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                        },
+                    }}
                 >
                     <div className="w-full max-w-[1240px] bg-white p-8 rounded-md shadow-md">
                         <form onSubmit={(e) => editExamForm(e, question._id, index)}>

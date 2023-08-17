@@ -93,10 +93,18 @@ const QuestionAdd = () => {
                 <QuestionList />
             </div>
             <Modal
-                className={"z-[10000] max-w-[1200px] px-4 mx-auto flex mt-[300px]"}
+                className={"z-[10000] max-w-[1200px] px-4"}
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
+                style={{
+                    content: {
+                        position:"relative",
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                    },
+                }}
             >
 
                 <div className="w-full max-w-[1240px] bg-white p-8 rounded-md shadow-md">
