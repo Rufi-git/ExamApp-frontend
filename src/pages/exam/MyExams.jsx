@@ -6,12 +6,24 @@ import { AiFillDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import { TailSpin } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 
 const MyExams = () => {
     const dispatch = useDispatch();
     const { myExams, isLoading } = useSelector(state => state.quiz);
 
     useEffect(() => {
+        const query = new URLSearchParams(window.location.search);
+
+        if (query.get("success")) {
+            toast.success("Order placed! You will receive an email confirmation.");
+        }
+
+        if (query.get("canceled")) {
+            toast.error(
+                "Order canceled -- continue to shop around and checkout when you're ready."
+            );
+        }
         dispatch(getExamsByUser());
     }, []);
 

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addExamToUser, deleteExam, getExamsByTag, getExamsByUser } from "../../redux/features/quiz/quizSlice"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import PageMenu from "./PageMenu"
 import Loader from "./Loader"
 import { MdOutlineModeEditOutline } from "react-icons/md"
@@ -9,6 +9,8 @@ import { AdminTeacherLink } from "./protect/hiddenLink"
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai"
 import Spinner from "./Spinner"
 import { motion } from "framer-motion"
+import axios from "axios"
+import { payExam } from "../../redux/features/stripe/stripeSlice"
 
 const ExamList = () => {
     const dispatch = useDispatch()
@@ -25,10 +27,11 @@ const ExamList = () => {
         await dispatch(getExamsByTag(id))
     }
 
-    const addExam = async (e, examId) => {
+    const addExam = async (e, exam) => {
         e.preventDefault()
-        await dispatch(addExamToUser(examId))
-        await dispatch(getExamsByTag(id))
+        await dispatch(payExam({ exam, userId: user._id }))
+        // await dispatch(addExamToUser(exam._id))
+        // await dispatch(getExamsByTag(id))
     }
 
     if (isLoading) {
@@ -83,7 +86,7 @@ const ExamList = () => {
                                     myExams.length > 0 && myExams.some(myExam => myExam._id === exam._id) ? (
                                         <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>Pulsuz - Bax</Link>
                                     ) : (
-                                        <button onClick={(e) => addExam(e, exam._id)} className="flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4">Imtahanı əldə et</button>
+                                        <button onClick={(e) => addExam(e, exam)} className="flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4">Imtahanı əldə et - {exam.price}AZN</button>
                                     )
                                 }
                             </>

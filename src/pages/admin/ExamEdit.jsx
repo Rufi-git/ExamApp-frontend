@@ -22,12 +22,13 @@ const ExamEdit = () => {
         name: "",
         duration: 0,
         dedline: null,
+        price: 0,
         totalMarks: 0,
         passingMarks: 0,
         tag: { id: singleExam?.tags.map((tag) => tag._id) },
     }
     const [examForm, setExamForm] = useState(initialState)
-    const { name, duration, dedline, passingMarks, totalMarks, tag } = examForm
+    const { name, duration, price, dedline, passingMarks, totalMarks, tag } = examForm
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -42,6 +43,7 @@ const ExamEdit = () => {
                 name: singleExam.name || "",
                 duration: singleExam.duration || 0,
                 dedline: singleExam.dedline || null,
+                price: singleExam.price || 0,
                 totalMarks: singleExam.totalMarks || 0,
                 passingMarks: singleExam.passingMarks || 0,
                 tag: singleExam?.tags.map((tag) => tag._id)[0] || null,
@@ -59,6 +61,7 @@ const ExamEdit = () => {
         const examData = {
             name,
             duration,
+            price,
             dedline,
             passingMarks,
             totalMarks,
@@ -67,7 +70,7 @@ const ExamEdit = () => {
             }]
         }
 
-        if (name && duration && passingMarks && totalMarks) {
+        if (name && duration && price && passingMarks && totalMarks) {
             console.log(examData);
             const editExamData = await dispatch(editExam({ examData, examId }))
 
@@ -105,6 +108,19 @@ const ExamEdit = () => {
                             type="number"
                             id="duration"
                             name='duration'
+                            className="mt-1 block w-full border-gray-300 outline-none border px-2 py-1 shadow-sm"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700" htmlFor="price">
+                            Price:
+                        </label>
+                        <input
+                            value={price}
+                            onChange={handleInputChange}
+                            type="number"
+                            id="price"
+                            name='price'
                             className="mt-1 block w-full border-gray-300 outline-none border px-2 py-1 shadow-sm"
                         />
                     </div>

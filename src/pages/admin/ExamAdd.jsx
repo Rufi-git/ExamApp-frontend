@@ -20,13 +20,14 @@ const ExamAdd = () => {
     const initialState = {
         name: "",
         duration: 0,
+        price: 0,
         dedline: null,
         totalMarks: 0,
         passingMarks: 0,
         tag: { id: singleTag?._id },
     }
     const [examForm, setExamForm] = useState(initialState)
-    const { name, duration, dedline, passingMarks, totalMarks, tag } = examForm
+    const { name, duration, dedline, price, passingMarks, totalMarks, tag } = examForm
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -47,6 +48,7 @@ const ExamAdd = () => {
             name,
             duration,
             dedline,
+            price,
             passingMarks,
             totalMarks,
             tags: [{
@@ -90,6 +92,19 @@ const ExamAdd = () => {
                             type="number"
                             id="duration"
                             name='duration'
+                            className="mt-1 block w-full border-gray-300 outline-none border px-2 py-1 shadow-sm"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700" htmlFor="price">
+                            Price:
+                        </label>
+                        <input
+                            value={price}
+                            onChange={handleInputChange}
+                            type="number"
+                            id="price"
+                            name='price'
                             className="mt-1 block w-full border-gray-300 outline-none border px-2 py-1 shadow-sm"
                         />
                     </div>

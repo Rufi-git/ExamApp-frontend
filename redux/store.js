@@ -5,6 +5,7 @@ import filterReducer from "../redux/features/auth/filterSlice"
 import quizReducer from "../redux/features/quiz/quizSlice"
 import resultReducer from "./features/quiz/resultSlice";
 import achivementReducer from "./features/achivement/achivementSlice";
+import stripeReducer from "./features/stripe/stripeSlice";
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         quiz: quizReducer,
         result: resultReducer,
         achivement: achivementReducer,
+        stripe: stripeReducer
     }
 })
