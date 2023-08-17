@@ -3,6 +3,7 @@ import logo3 from "../assets/logomath.png"
 import { PiPhoneCallDuotone } from "react-icons/pi"
 import { HiOutlineMailOpen } from "react-icons/hi"
 import { BsFacebook, BsInstagram, BsLinkedin, BsYoutube } from "react-icons/bs"
+import { FcCustomerSupport } from "react-icons/fc"
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -53,6 +54,15 @@ const Footer = () => {
                         <div className='ml-4'>
                             <h1 className='font-bold lg:text-[20px] text-sm'>ELEKTRON ÜNVAN</h1>
                             <Link to="mailto:nuriyev.eliyar@mail.ru" className='text-[#6a7695]'>nuriyev.eliyar@mail.ru</Link>
+                        </div>
+                    </div>
+
+                    <div className='flex items-center'>
+                        <div className='lg:text-[55px] text-[35px] text-[#dac900]'><FcCustomerSupport /></div>
+                        <div className='ml-4'>
+                            <h1 className='font-bold lg:text-[20px] text-sm'>ADMİN SUPPORT</h1>
+                            <h1 to="mailto:rufi.aliyev.tech@gmail.com" className='text-[white] mt-1'>Rufi Əliyev</h1>
+                            <Link to="mailto:rufi.aliyev.tech@gmail.com" className='text-[#6a7695]'>rufi.aliyev.tech@gmail.com</Link>
                         </div>
                     </div>
                 </div>
