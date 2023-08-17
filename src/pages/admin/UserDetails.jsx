@@ -49,50 +49,48 @@ const UserDetails = () => {
                         <p className="mb-2"><strong>Role:</strong> {userById?.role}</p>
                         <p className="mb-2"><strong>Verified:</strong> {userById?.isVerified ? 'Yes' : 'No'}</p>
 
+                        <div className="mt-6">
+                            <h3 className="text-lg font-semibold mb-2">Exams Bought</h3>
+                            {userById?.exams && userById?.exams.length > 0 ? (
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                                    {userById?.exams && userById?.exams.map(exam => (
+                                        <div key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
+                                            <div className="flex justify-between">
+                                                <h1 className='font-bold'>{exam.name}</h1>
+                                            </div>
+                                            <div className='text-sm font-bold text-[#666] mt-2'>
+                                                <i className="fa-solid fa-hourglass"></i>
+                                                <span className='ml-2'> {`${Math.floor(exam.duration / 60)} minutes ${exam.duration % 60} seconds`}</span>
+                                            </div>
+                                            <p className='font-bold text-sm mt-3'>Ətraflı</p>
 
+                                            <ul className='text-sm list-disc px-6'>
+                                                <li>{exam.questions.length} sual - Dünyanı gəzirəm</li>
+                                            </ul>
+                                            <hr className='mt-3' />
 
+                                            <div className='mt-3'>
+                                                <ul className='flex gap-2 text-sm flex-wrap text-white'>
+                                                    {
+                                                        exam.tags?.map((tag) => {
+                                                            return (
+                                                                <li key={tag._id} className='bg-[#1084da] rounded-full px-2'>{tag.name}</li>
+                                                            )
+                                                        })
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className='text-center font-bold text-[40px] mt-8'>No Exams Have Been Bought Yet!</div>
+                            )}
+                        </div>
 
                         {quiz.isLoading ? <Loader />
                             :
                             <>
-                                <div className="mt-6">
-                                    <h3 className="text-lg font-semibold mb-2">Exams Bought</h3>
-                                    {userById?.exams && userById?.exams.length > 0 ? (
-                                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                                            {userById?.exams && userById?.exams.map(exam => (
-                                                <div key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
-                                                    <div className="flex justify-between">
-                                                        <h1 className='font-bold'>{exam.name}</h1>
-                                                    </div>
-                                                    <div className='text-sm font-bold text-[#666] mt-2'>
-                                                        <i className="fa-solid fa-hourglass"></i>
-                                                        <span className='ml-2'> {`${Math.floor(exam.duration / 60)} minutes ${exam.duration % 60} seconds`}</span>
-                                                    </div>
-                                                    <p className='font-bold text-sm mt-3'>Ətraflı</p>
-
-                                                    <ul className='text-sm list-disc px-6'>
-                                                        <li>{exam.questions.length} sual - Dünyanı gəzirəm</li>
-                                                    </ul>
-                                                    <hr className='mt-3' />
-
-                                                    <div className='mt-3'>
-                                                        <ul className='flex gap-2 text-sm flex-wrap text-white'>
-                                                            {
-                                                                exam.tags?.map((tag) => {
-                                                                    return (
-                                                                        <li key={tag._id} className='bg-[#1084da] rounded-full px-2'>{tag.name}</li>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <div className='text-center font-bold text-[40px] mt-8'>No Exams Have Been Bought Yet!</div>
-                                    )}
-                                </div>
                                 <div className="mt-6">
                                     <h3 className="text-lg font-semibold mb-2">Results</h3>
                                     <div className='overflow-x-scroll scrollbar-thumb-[#888888] scrollbar-thin scrollbar-rounded-[20px]'>
