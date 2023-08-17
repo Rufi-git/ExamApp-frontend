@@ -257,6 +257,36 @@ export const editQuestion = createAsyncThunk(
     }
 )
 
+//Get Exams
+export const getExams = createAsyncThunk(
+    "quiz/getExams",
+    async (_, thunkAPI) => {
+        try {
+            return await quizService.getExams()
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+//Add Exam To User By Id
+export const addExamToUserById = createAsyncThunk(
+    "quiz/addExamToUserById",
+    async ({ userId, examId }, thunkAPI) => {
+        try {
+            return await quizService.addExamToUserById(userId, examId)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+                || error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 const quizSlice = createSlice({
     name: 'quiz',
     initialState,
@@ -557,6 +587,40 @@ const quizSlice = createSlice({
                 toast.success(action.payload)
             })
             .addCase(editQuestion.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            //Get Exams
+            .addCase(getExams.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(getExams.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                state.exams = action.payload
+            })
+            .addCase(getExams.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+                toast.error(action.payload)
+            })
+
+            //Add Exam To User By Id
+            .addCase(addExamToUserById.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(addExamToUserById.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.isError = false;
+                toast.success(action.payload)
+            })
+            .addCase(addExamToUserById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

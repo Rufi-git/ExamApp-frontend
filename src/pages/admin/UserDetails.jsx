@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getUserById } from '../../../redux/features/auth/authSlice';
 import { VscPreview } from 'react-icons/vsc';
+import { getExams } from '../../../redux/features/quiz/quizSlice';
 
 const UserDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
 
     const { isLoading, userById } = useSelector(state => state.auth);
+    const { exams } = useSelector(state => state.quiz);
 
     useEffect(() => {
         dispatch(getUserById(id));
+        dispatch(getExams());
     }, [dispatch]);
 
     return (
@@ -107,6 +110,45 @@ const UserDetails = () => {
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+
+                        <div className="mt-6">
+                            <h3 className="text-lg font-semibold mb-2">All Exams</h3>
+                            {exams && exams.length > 0 ? (
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                                    {exams && exams.map(exam => (
+                                        <div key={exam._id} className='bg-white border px-4 py-5 rounded-lg shadow-lg'>
+                                            <div className="flex justify-between">
+                                                <h1 className='font-bold'>{exam.name}</h1>
+                                            </div>
+                                            <div className='text-sm font-bold text-[#666] mt-2'>
+                                                <i className="fa-solid fa-hourglass"></i>
+                                                <span className='ml-2'> {`${Math.floor(exam.duration / 60)} minutes ${exam.duration % 60} seconds`}</span>
+                                            </div>
+                                            <p className='font-bold text-sm mt-3'>Ətraflı</p>
+
+                                            <ul className='text-sm list-disc px-6'>
+                                                <li>{exam.questions.length} sual - Dünyanı gəzirəm</li>
+                                            </ul>
+                                            <hr className='mt-3' />
+
+                                            <div className='mt-3'>
+                                                <ul className='flex gap-2 text-sm flex-wrap text-white'>
+                                                    {
+                                                        exam.tags?.map((tag) => {
+                                                            return (
+                                                                <li key={tag._id} className='bg-[#1084da] rounded-full px-2'>{tag.name}</li>
+                                                            )
+                                                        })
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className='text-center font-bold text-[40px] mt-8'>No Exams Added Yet!</div>
+                            )}
                         </div>
                     </div>
                 )}
