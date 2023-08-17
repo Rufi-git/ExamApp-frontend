@@ -17,6 +17,12 @@ const MyExams = () => {
         console.log(query)
         if (query.get("success")) {
             toast.success("Order placed! You will receive an email confirmation.");
+            if (query.get("examId")) {
+                const examId = searchParams.get('examId');
+                console.log(examId)
+                // dispatch(addExamToUser(examId))
+            }
+            // await dispatch(getExamsByTag(id))
         }
 
         if (query.get("canceled")) {
