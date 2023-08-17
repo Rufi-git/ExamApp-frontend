@@ -180,7 +180,7 @@ const QuestionList = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="passingMarks">
                                     Seçimlər:
                                 </label>
-                                <div className='grid grid-cols-2 gap-3'>
+                                <div className='grid md:grid-cols-2 gap-3'>
                                     {question.options.map((option, optionIndex) => (
                                         <div key={optionIndex} className={`flex items-center`}>
                                             <input

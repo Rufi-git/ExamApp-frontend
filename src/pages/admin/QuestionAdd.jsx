@@ -126,7 +126,7 @@ const QuestionAdd = () => {
                             <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="passingMarks">
                                 Seçimlər:
                             </label>
-                            <div className='grid grid-cols-2 gap-3'>
+                            <div className='grid md:grid-cols-2 gap-3'>
                                 <div className='flex items-center'>
                                     <input
                                         checked={selectedCorrectOption === 'option1'}
