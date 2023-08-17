@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 import { NavLink } from 'react-router-dom'
 import Notification from '../../components/notification/Notification'
 import { TailSpin } from 'react-loader-spinner'
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 const cloud_name = import.meta.env.VITE_CLOUD_NAME
 const upload_preset = import.meta.env.VITE_UPLAD_PRESET
@@ -178,10 +179,13 @@ const Profile = () => {
 export const UserName = () => {
   const user = useSelector(selectUser)
   const username = user?.name || "..."
-  const activeLink = ({ isActive }) => (isActive) ? "text-[#1084da]" : ""
+  const activeLink = ({ isActive }) => (isActive) ? "text-[#1084da] flex items-center" : "flex items-center"
 
   return <NavLink to={"/profile"} className={activeLink}>
     Hi, {shortenText(username, 15)}
+    <span className="text-[30px]">
+      <RiArrowDropDownLine/>
+    </span>
   </NavLink>
 }
 

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { TailSpin, Triangle } from "react-loader-spinner";
 import { RxHamburgerMenu } from "react-icons/rx"
 import { GrClose } from "react-icons/gr"
+import { RiArrowDropDownLine } from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux";
 import { RESET, logout } from "../../redux/features/auth/authSlice";
 import { ShowOnLogin, ShowOnLogout } from "./protect/hiddenLink";
@@ -36,7 +37,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <div className="w-[60px]">
           <Link to="/" className="">
-            <img src={logo} alt="" className="filter w-full"/>
+            <img src={logo} alt="" className="filter w-full" />
           </Link>
         </div>
         <div className="lg:flex hidden">
