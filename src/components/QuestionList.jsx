@@ -106,7 +106,7 @@ const QuestionList = () => {
                         <button onClick={() => openModal(index)} className='text-[orange] text-[20px]'><MdModeEdit /></button>
                     </div>
                     <p className='my-3'>{question.name}</p>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid md:grid-cols-2 gap-3">
                         {question.options.map((option, optionIndex) => (
                             <div key={optionIndex} className={`flex items-center ${option.isCorrect ? 'border-[#1084da] border' : ''}`}>
                                 <input

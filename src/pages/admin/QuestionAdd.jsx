@@ -81,9 +81,11 @@ const QuestionAdd = () => {
         }
     }
     return (
-        <div className="bg-gray-50 max-w-[1440px] mx-auto p-10 my-5">
-            <button onClick={openModal} className='ml-auto flex bg-[#1084da] text-white px-4 py-2 rounded-sm'>Add Question</button>
-            <QuestionList />
+        <div className="bg-gray-50 max-w-[1440px] mx-auto p-10 my-5 relative">
+            <div className='relative h-screen overflow-y-auto flex justify-between flex-col'>
+                <button onClick={openModal} className='sticky top-0 ml-auto mr-[20px] bg-[#1084da] text-white px-4 py-2 rounded-sm'>Add Question</button>
+                <QuestionList />
+            </div>
             <Modal
                 className={"z-[10000] max-w-[1200px] px-4 mx-auto flex mt-[300px]"}
                 isOpen={modalIsOpen}
