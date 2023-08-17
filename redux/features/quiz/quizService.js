@@ -88,7 +88,6 @@ const getResultsByUserByExam = async (examId) => {
 
 //Add Exam to User
 const addExamToUser = async (examId, token) => {
-    console.log(token)
     const response = await axios.post(API_URL + "addExamToUser/" + examId + "?token=" + token)
     return response.data
 }
