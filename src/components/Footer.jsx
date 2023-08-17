@@ -69,7 +69,7 @@ const Footer = () => {
                 <div className='mt-5 flex md:flex-row flex-col gap-3 justify-between items-center'>
                     <div className='text-[#8d8f94]'>
                         <h1 className='flex gap-2 items-center'>
-                            <span className='font-bold'>Riyaziyyat</span>
+                            <span className='font-bold'>İmtahan</span>
                             <span>© 2023 Bütün hüquqlar qorunur</span>
                         </h1>
                     </div>
