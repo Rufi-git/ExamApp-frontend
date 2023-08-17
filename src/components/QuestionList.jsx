@@ -6,11 +6,13 @@ import { AiFillDelete } from 'react-icons/ai';
 import Modal from 'react-modal';
 import Spinner from './Spinner';
 import { MdModeEdit } from 'react-icons/md';
+import { TailSpin } from 'react-loader-spinner';
 
 const QuestionList = () => {
     const dispatch = useDispatch()
 
     const { queue, isLoading } = useSelector(state => state.quiz)
+    const [deleteIndex, setDeleteIndex] = useState(null);
 
     const { examId } = useParams()
 
@@ -18,9 +20,11 @@ const QuestionList = () => {
         dispatch(getQuestionByExam(examId))
     }, [dispatch])
 
-    const questionDelete = async (id) => {
+    const questionDelete = async (id, index) => {
+        setDeleteIndex(index);
         await dispatch(deleteQuestion(id))
         dispatch(getQuestionByExam(examId))
+        setDeleteIndex(null);
     }
 
     const [editQuestionModalIndex, setEditQuestionModalIndex] = useState(null)
@@ -102,7 +106,21 @@ const QuestionList = () => {
                 <div key={question._id} className="mb-4">
                     <div className='flex gap-2'>
                         <p className="font-medium">Sual {index + 1}:</p>
-                        <button onClick={() => questionDelete(question._id)} className='text-[red] text-[20px]'><AiFillDelete /></button>
+                        {isLoading && index === deleteIndex ? (
+                            <TailSpin
+                                height="20"
+                                width="20"
+                                color="#FF0000"
+                                ariaLabel="tail-spin-loading"
+                                radius="1"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                        ) : (
+                            <button onClick={() => questionDelete(question._id, index)} className='text-[red] text-[20px]'><AiFillDelete /></button>
+                        )}
+
                         <button onClick={() => openModal(index)} className='text-[orange] text-[20px]'><MdModeEdit /></button>
                     </div>
                     <p className='my-3'>{question.name}</p>
