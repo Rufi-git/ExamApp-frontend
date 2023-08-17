@@ -16,10 +16,10 @@ const MyExams = () => {
     const token = searchParams.get('token');
     const examId = searchParams.get('examId');
     const success = searchParams.get('success');
-
     useEffect(() => {
         if (token && success) {
-            dispatch(addExamToUser({examId, token}))
+            console.log(token)
+            dispatch(addExamToUser({ examId, token }))
         }
         dispatch(getExamsByUser());
     }, [success, token]);
