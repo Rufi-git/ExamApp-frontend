@@ -143,6 +143,21 @@ const UserDetails = () => {
                                                     }
                                                 </ul>
                                             </div>
+                                            {
+                                                isLoading ? (
+                                                    <button className="bg-[#6dabe4] w-full mt-6 flex justify-center text-white py-3 px-9 rounded-md text-sm" disabled><Spinner /></button>
+                                                ) : (
+                                                    <>
+                                                        {
+                                                            userById?.exams?.length > 0 && userById?.exams?.some(myExam => myExam._id === exam._id) ? (
+                                                                <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>Pulsuz - Bax</Link>
+                                                            ) : (
+                                                                <button onClick={(e) => addExam(e, exam)} className="flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4">Imtahanı əldə et - {exam.price}AZN</button>
+                                                            )
+                                                        }
+                                                    </>
+                                                )
+                                            }
                                         </div>
                                     ))}
                                 </div>
