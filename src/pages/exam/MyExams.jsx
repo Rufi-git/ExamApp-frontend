@@ -3,7 +3,7 @@ import PageMenu from '../../components/PageMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { addExamToUser, deleteMyExam, getExamsByUser } from '../../../redux/features/quiz/quizSlice';
 import { AiFillDelete } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import { TailSpin } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
@@ -11,24 +11,17 @@ import { toast } from 'react-toastify';
 const MyExams = () => {
     const dispatch = useDispatch();
     const { myExams, isLoading } = useSelector(state => state.quiz);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const token = searchParams.get('token');
+    const success = searchParams.get('success');
 
     useEffect(() => {
-        const query = new URLSearchParams(window.location.search);
-        console.log(query)
-        if (query.get("success")) {
-            if (query.get("examId")) {
-                const examId = query.get('examId');
-                dispatch(addExamToUser(examId))
-            }
-        }
-
-        if (query.get("canceled")) {
-            toast.error(
-                "Order canceled -- continue to shop around and checkout when you're ready."
-            );
+        if (token && success) {
+            dispatch(addExamToUser({ examId, token }))
         }
         dispatch(getExamsByUser());
-    }, []);
+    }, [success, token]);
 
     const deleteExam = async (e, examId) => {
         e.preventDefault()
