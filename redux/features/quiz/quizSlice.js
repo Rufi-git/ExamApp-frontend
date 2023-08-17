@@ -486,7 +486,7 @@ const quizSlice = createSlice({
                 state.isSuccess = true;
                 state.isError = false;
                 state.myExams.push(action.payload);
-                toast.success("Exam added successfully")
+                toast.success("Exam bought successfully")
             })
             .addCase(addExamToUser.rejected, (state, action) => {
                 state.isLoading = false;

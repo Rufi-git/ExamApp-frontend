@@ -16,12 +16,10 @@ const MyExams = () => {
         const query = new URLSearchParams(window.location.search);
         console.log(query)
         if (query.get("success")) {
-            toast.success("Order placed! You will receive an email confirmation.");
             if (query.get("examId")) {
                 const examId = query.get('examId');
                 dispatch(addExamToUser(examId))
             }
-            // await dispatch(getExamsByTag(id))
         }
 
         if (query.get("canceled")) {
