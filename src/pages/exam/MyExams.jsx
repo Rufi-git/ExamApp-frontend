@@ -18,7 +18,7 @@ const MyExams = () => {
         if (query.get("success")) {
             toast.success("Order placed! You will receive an email confirmation.");
             if (query.get("examId")) {
-                const examId = searchParams.get('examId');
+                const examId = query.get('examId');
                 console.log(examId)
                 // dispatch(addExamToUser(examId))
             }
