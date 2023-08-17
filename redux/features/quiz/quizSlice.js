@@ -185,9 +185,9 @@ export const getQuestionByExam = createAsyncThunk(
 //Add Exam To User
 export const addExamToUser = createAsyncThunk(
     "quiz/addExamToUser",
-    async (examId, thunkAPI) => {
+    async ({ examId, token }, thunkAPI) => {
         try {
-            return await quizService.addExamToUser(examId)
+            return await quizService.addExamToUser(examId, token)
         } catch (error) {
             const message = (error.response && error.response.data && error.response.data.message)
                 || error.message || error.toString()
