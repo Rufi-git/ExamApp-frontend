@@ -97,7 +97,7 @@ const QuestionList = () => {
     };
 
     return (
-        <div>
+        <div className='px-[20px]'>
             {queue && queue.map((question, index) => (
                 <div key={question._id} className="mb-4">
                     <div className='flex gap-2'>
