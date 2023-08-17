@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PageMenu from '../../components/PageMenu';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteMyExam, getExamsByUser } from '../../../redux/features/quiz/quizSlice';
+import { addExamToUser, deleteMyExam, getExamsByUser } from '../../../redux/features/quiz/quizSlice';
 import { AiFillDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader';
