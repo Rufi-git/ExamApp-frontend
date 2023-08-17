@@ -19,8 +19,7 @@ const MyExams = () => {
             toast.success("Order placed! You will receive an email confirmation.");
             if (query.get("examId")) {
                 const examId = query.get('examId');
-                console.log(examId)
-                // dispatch(addExamToUser(examId))
+                dispatch(addExamToUser(examId))
             }
             // await dispatch(getExamsByTag(id))
         }
