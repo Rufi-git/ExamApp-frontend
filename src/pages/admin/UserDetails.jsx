@@ -24,6 +24,8 @@ const UserDetails = () => {
             examId: exam._id
         }
         await dispatch(addExamToUserById({ userId: id, examData }))
+        dispatch(getExams());
+        dispatch(getUserById(id));
     }
 
     return (
