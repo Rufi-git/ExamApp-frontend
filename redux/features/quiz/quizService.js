@@ -106,6 +106,7 @@ const getExams = async () => {
 
 //Add Exams To User By Id
 const addExamToUserById = async (userId, examId) => {
+    console.log(examId)
     const response = await axios.post(API_URL + "addExamToUserById/" + userId, examId)
     return response.data.message
 }
