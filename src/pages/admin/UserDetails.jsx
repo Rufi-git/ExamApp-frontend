@@ -20,7 +20,10 @@ const UserDetails = () => {
 
     const addExam = async (e, exam) => {
         e.preventDefault()
-        await dispatch(addExamToUserById({ userId: id, examId: exam._id }))
+        const examData = {
+            examId: exam._id
+        }
+        await dispatch(addExamToUserById({ userId: id, examData }))
     }
 
     return (
