@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getUserById } from '../../../redux/features/auth/authSlice';
 import { VscPreview } from 'react-icons/vsc';
-import { getExams } from '../../../redux/features/quiz/quizSlice';
+import { addExamToUserById, getExams } from '../../../redux/features/quiz/quizSlice';
+import Spinner from '../../components/Spinner';
 
 const UserDetails = () => {
     const { id } = useParams();
@@ -16,6 +17,11 @@ const UserDetails = () => {
         dispatch(getUserById(id));
         dispatch(getExams());
     }, [dispatch]);
+
+    const addExam = async (e, exam) => {
+        e.preventDefault()
+        await dispatch(addExamToUserById({ userId: userById._id, examId: exam._id }))
+    }
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
