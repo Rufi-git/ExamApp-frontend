@@ -52,7 +52,7 @@ const MyExams = () => {
                                     <p className='font-bold text-sm mt-3'>Ətraflı</p>
 
                                     <ul className='text-sm list-disc px-6'>
-                                        <li>{exam.questions.length} sual - Dünyanı gəzirəm</li>
+                                        <li>{exam.questions.length} sual</li>
                                     </ul>
                                     <hr className='mt-3' />
 
@@ -67,7 +67,7 @@ const MyExams = () => {
                                             }
                                         </ul>
                                     </div>
-                                    <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>Pulsuz - Bax</Link>
+                                    <Link to={`/exam/details/${exam._id}`} className='flex text-white w-full justify-center bg-[#1084da] rounded-lg py-2 mt-4'>İmtahana Bax</Link>
                                 </div>
                             ))}
                         </div>
