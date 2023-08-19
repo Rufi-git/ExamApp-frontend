@@ -3,7 +3,7 @@ import { TailSpin } from 'react-loader-spinner'
 
 const Loader = () => {
     return ReactDOM.createPortal(
-        <div className="w-full flex justify-center items-center h-screen fixed top-0 opacity-[.5] bg-[#000000] z-[100]">
+        <div className="w-full flex justify-center items-center h-screen fixed top-0 bg-[white] z-[100]">
             <TailSpin
                 height="130"
                 width="130"
