@@ -93,7 +93,7 @@ const QuestionAdd = () => {
     };
 
     return (
-        <div className="bg-gray-50 max-w-[1440px] mx-auto p-10 my-5 relative">
+        <div className="bg-gray-50 max-w-[1440px] mx-auto py-10 my-5 relative">
             <div className='relative h-[700px] overflow-y-auto flex justify-between flex-col'>
                 <button onClick={openModal} className='sticky top-0 ml-auto mr-[20px] bg-[#1084da] text-white px-4 py-2 rounded-sm'>Add Question</button>
                 <QuestionList />
