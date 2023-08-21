@@ -15,7 +15,8 @@ const QuestionAdd = () => {
     const { examId } = useParams();
     const initialState = {
         name: "",
-        options: [{ text: "", isCorrect: true }],
+        options: [{ text: '', isCorrect: true },
+        { text: '', isCorrect: false }],
     };
     const [questionForm, setQuestionForm] = useState(initialState);
     const [selectedCorrectOption, setSelectedCorrectOption] = useState(0);
@@ -68,6 +69,13 @@ const QuestionAdd = () => {
             }
         } else {
             toast.error("All fields are required");
+        }
+    };
+
+    const deleteOption = (optionIndex) => {
+        if (questionForm.options.length > 2) {
+            const newOptions = questionForm.options.filter((_, index) => index !== optionIndex);
+            setQuestionForm({ ...questionForm, options: newOptions });
         }
     };
 
@@ -141,6 +149,15 @@ const QuestionAdd = () => {
                                                 id={`option-${index}`}
                                                 className={`${selectedCorrectOption === index ? "border-[#1084da] border" : ""} block h-[40px] w-full outline-none border px-2 py-1 shadow-sm`}
                                             />
+                                            {options.length > 2 && (
+                                                <button
+                                                    type='button'
+                                                    onClick={() => deleteOption(index)}
+                                                    className="ml-2 text-red-500"
+                                                >
+                                                    Delete
+                                                </button>
+                                            )}
                                         </label>
                                     </div>
                                 ))}
