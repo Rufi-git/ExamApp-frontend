@@ -15,8 +15,10 @@ const QuestionAdd = () => {
     const { examId } = useParams();
     const initialState = {
         name: "",
-        options: [{ text: '', isCorrect: true },
-        { text: '', isCorrect: false }],
+        options: [
+            { text: '', isCorrect: true },
+            { text: '', isCorrect: false }
+        ],
     };
     const [questionForm, setQuestionForm] = useState(initialState);
     const [selectedCorrectOption, setSelectedCorrectOption] = useState(0);
