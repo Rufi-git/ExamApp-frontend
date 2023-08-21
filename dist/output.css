@@ -933,6 +933,14 @@ video {
   max-height: 50%;
 }
 
+.max-h-\[0\%\] {
+  max-height: 0%;
+}
+
+.max-h-\[60\%\] {
+  max-height: 60%;
+}
+
 .min-h-\[200px\] {
   min-height: 200px;
 }

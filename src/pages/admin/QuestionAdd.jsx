@@ -52,10 +52,13 @@ const QuestionAdd = () => {
 
         const questionData = {
             name,
-            options: questionForm.isVariants ? options.map(option => ({ text: option.text, isCorrect: option.isCorrect })) : [],
+            options: options.map((option, index) => ({
+                text: option.text,
+                isCorrect: index === selectedCorrectOption,
+            })),
         };
 
-        if (name && (questionForm.isVariants || !questionForm.isVariants)) {
+        if (name && options.every(option => option.text !== "")) {
             const addQuestionData = await dispatch(addQuestion({ examId, questionData }));
 
             if (addQuestionData.type !== "quiz/addExam/rejected") {
@@ -64,10 +67,9 @@ const QuestionAdd = () => {
                 resetForm();
             }
         } else {
-            toast.error("Question text is required");
+            toast.error("All fields are required");
         }
     };
-
 
     const { isLoading } = useSelector(state => state.quiz);
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -87,7 +89,7 @@ const QuestionAdd = () => {
                 <QuestionList />
             </div>
             <Modal
-                className={"z-[10000] max-w-[1200px] px-4 overflow-y-auto max-h-[50%]"}
+                className={"z-[10000] max-w-[1200px] px-4 overflow-y-auto max-h-[60%]"}
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
@@ -115,18 +117,6 @@ const QuestionAdd = () => {
                                 className="mt-1 block w-full border-gray-300 outline-none border px-2 py-1 shadow-sm"
                             />
                         </div>
-                        <label htmlFor="isVariants" className="block text-sm font-medium text-gray-700 mb-2">
-                            Question Type:
-                        </label>
-                        <input
-                            type="checkbox"
-                            id="isVariants"
-                            name="isVariants"
-                            checked={questionForm.isVariants}
-                            onChange={() => setQuestionForm({ ...questionForm, isVariants: !questionForm.isVariants })}
-                        />
-                        <label htmlFor="isVariants">Variants</label>
-
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="passingMarks">
                                 Seçimlər:
