@@ -145,7 +145,9 @@ const QuestionAdd = () => {
                                     </div>
                                 ))}
                             </div>
-                            <button type='button' onClick={addNewOption} className='bg-[#47b7d3] my-3 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50'>Add Option</button>
+                            <button onClick={addNewOption} type='button' className="mt-2 bg-gray-200 px-2 py-1 rounded-md text-sm">
+                                Add Option
+                            </button>
                         </div>
                         {isLoading ? (
                             <button className="bg-[#6dabe4] w-[120px] flex justify-center text-white py-2 px-4 rounded-md text-sm" disabled>

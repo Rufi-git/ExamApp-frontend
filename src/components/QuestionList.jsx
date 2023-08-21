@@ -9,94 +9,92 @@ import { MdModeEdit } from 'react-icons/md';
 import { TailSpin } from 'react-loader-spinner';
 
 const QuestionList = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const { queue, isLoading } = useSelector(state => state.quiz)
+    const { queue, isLoading } = useSelector(state => state.quiz);
     const [deleteIndex, setDeleteIndex] = useState(null);
 
-    const { examId } = useParams()
+    const { examId } = useParams();
 
     useEffect(() => {
-        dispatch(getQuestionByExam(examId))
-    }, [dispatch])
+        dispatch(getQuestionByExam(examId));
+    }, [dispatch]);
 
     const questionDelete = async (id, index) => {
         setDeleteIndex(index);
-        await dispatch(deleteQuestion(id))
-        dispatch(getQuestionByExam(examId))
+        await dispatch(deleteQuestion(id));
+        dispatch(getQuestionByExam(examId));
         setDeleteIndex(null);
-    }
+    };
 
-    const [editQuestionModalIndex, setEditQuestionModalIndex] = useState(null)
+    const [editQuestionModalIndex, setEditQuestionModalIndex] = useState(null);
 
     const initialState = {
         name: "",
-        option1: "",
-        option2: "",
-        option3: "",
-        option4: "",
-    }
-    const [questionForm, setQuestionForm] = useState(initialState)
-    const { name } = questionForm
-    const [selectedCorrectOption, setSelectedCorrectOption] = useState('option1');
-    const [optionTextInputs, setOptionTextInputs] = useState([...initialState.option1, ...initialState.option2, ...initialState.option3, ...initialState.option4]);
-
-    const handleOptionChange = (id) => {
-        setSelectedCorrectOption(id);
+        options: [{ text: "", isCorrect: false }],
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setQuestionForm({ ...questionForm, [name]: value })
-    }
-
-    const handleOptionTextChange = (e, optionIndex) => {
-        const newOptionTextInputs = [...optionTextInputs];
-        newOptionTextInputs[optionIndex] = e.target.value;
-        setOptionTextInputs(newOptionTextInputs);
-    };
+    const [questionForm, setQuestionForm] = useState(initialState);
+    const [selectedCorrectOption, setSelectedCorrectOption] = useState(0);
 
     const openModal = (index) => {
         const questionData = queue[index];
-        const correctOption = questionData.options.find(option => option.isCorrect);
-
         setQuestionForm({
             name: questionData.name,
+            options: [...questionData.options],
         });
-        setSelectedCorrectOption(correctOption ? correctOption._id : 'option1');
-
-        const optionTexts = questionData.options.map(option => option.text);
-        setOptionTextInputs(optionTexts);
-
+        setSelectedCorrectOption(questionData.options.findIndex(option => option.isCorrect));
         setEditQuestionModalIndex(index);
-    }
+    };
 
-    function closeModal() {
+    const closeModal = () => {
         setEditQuestionModalIndex(null);
-    }
+    };
+
+    const handleOptionTextChange = (e, optionIndex) => {
+        const newOptions = [...questionForm.options];
+        newOptions[optionIndex].text = e.target.value;
+        setQuestionForm({ ...questionForm, options: newOptions });
+    };
+
+    const handleCorrectOptionChange = (optionIndex) => {
+        setSelectedCorrectOption(optionIndex);
+    };
+
+    const addOption = () => {
+        setQuestionForm({
+            ...questionForm,
+            options: [...questionForm.options, { text: "", isCorrect: false }],
+        });
+    };
+
+    const deleteOption = (optionIndex) => {
+        if (questionForm.options.length > 2) {
+            const newOptions = questionForm.options.filter((_, index) => index !== optionIndex);
+            setQuestionForm({ ...questionForm, options: newOptions });
+        }
+    };
 
     const editExamForm = async (e, questionId, index) => {
         e.preventDefault();
 
         const questionData = {
-            name,
-            options: [
-                { text: optionTextInputs[0], isCorrect: selectedCorrectOption === queue[index].options[0]._id },
-                { text: optionTextInputs[1], isCorrect: selectedCorrectOption === queue[index].options[1]._id },
-                { text: optionTextInputs[2], isCorrect: selectedCorrectOption === queue[index].options[2]._id },
-                { text: optionTextInputs[3], isCorrect: selectedCorrectOption === queue[index].options[3]._id },
-            ],
+            name: questionForm.name,
+            options: questionForm.options.map((option, index) => ({
+                text: option.text,
+                isCorrect: index === selectedCorrectOption,
+            })),
         };
 
-        if (name && optionTextInputs.every(text => text !== '')) {
-            const addQuestionData = await dispatch(editQuestion({ questionId, questionData }));
+        if (questionForm.name && questionForm.options.every(option => option.text !== '')) {
+            const editQuestionData = await dispatch(editQuestion({ questionId, questionData }));
 
-            if (addQuestionData.type !== "quiz/addExam/rejected") {
+            if (editQuestionData.type !== "quiz/editQuestion/rejected") {
                 closeModal();
                 dispatch(getQuestionByExam(examId));
             }
         } else {
-            // Add your error handling here
+            // Handle error case
         }
     };
 
@@ -135,8 +133,7 @@ const QuestionList = () => {
                                 />
                                 <label
                                     htmlFor={`question_${index}_option${optionIndex}`}
-                                    className={`${option.isCorrect ? 'text-[#1084da]' : 'text-gray-700'
-                                        } border cursor-pointer bg-gray-50 flex w-full p-2 items-center`}
+                                    className={`${option.isCorrect ? 'text-[#1084da]' : 'text-gray-700'} border cursor-pointer bg-gray-50 flex w-full p-2 items-center`}
                                 >
                                     {option.text}
                                 </label>
@@ -154,7 +151,7 @@ const QuestionList = () => {
                     contentLabel="Example Modal"
                     style={{
                         content: {
-                            position:"relative",
+                            position: "relative",
                             top: '50%',
                             left: '50%',
                             transform: 'translate(-50%, -50%)',
@@ -168,8 +165,8 @@ const QuestionList = () => {
                                     Sual:
                                 </label>
                                 <textarea
-                                    value={name}
-                                    onChange={handleInputChange}
+                                    value={questionForm.name}
+                                    onChange={(e) => setQuestionForm({ ...questionForm, name: e.target.value })}
                                     type="text"
                                     name='name'
                                     id="name"
@@ -181,29 +178,40 @@ const QuestionList = () => {
                                     Seçimlər:
                                 </label>
                                 <div className='grid md:grid-cols-2 gap-3'>
-                                    {question.options.map((option, optionIndex) => (
+                                    {questionForm.options.map((option, optionIndex) => (
                                         <div key={optionIndex} className={`flex items-center`}>
                                             <input
-                                                checked={selectedCorrectOption === option._id}
-                                                onChange={() => handleOptionChange(option._id)}
+                                                checked={selectedCorrectOption === optionIndex}
+                                                onChange={() => handleCorrectOptionChange(optionIndex)}
                                                 type="radio"
                                                 name={`option_${optionIndex}`}
                                                 id={`option_${optionIndex}`}
                                                 className="hidden mr-2 text-[40px]"
                                             />
-                                            <label htmlFor={`option_${optionIndex}`} className={`${selectedCorrectOption === option._id ? "text-blue-500" : "text-gray-700"} border cursor-pointer bg-gray-50 flex w-full p-2 items-center`}>
+                                            <label htmlFor={`option_${optionIndex}`} className={`${selectedCorrectOption === optionIndex ? "text-blue-500" : "text-gray-700"} border cursor-pointer bg-gray-50 flex w-full p-2 items-center`}>
                                                 <input
-                                                    value={optionTextInputs[optionIndex]}
+                                                    value={option.text}
                                                     onChange={(e) => handleOptionTextChange(e, optionIndex)}
                                                     type="text"
                                                     name={`option${optionIndex}`}
                                                     id={`option${optionIndex}`}
-                                                    className={`${selectedCorrectOption === option._id ? "border-[#1084da] border" : ""} block h-[40px] w-full outline-none border px-2 py-1 shadow-sm`}
+                                                    className={`${selectedCorrectOption === optionIndex ? "border-[#1084da] border" : ""} block h-[40px] w-full outline-none border px-2 py-1 shadow-sm`}
                                                 />
+                                                {questionForm.options.length > 2 && (
+                                                    <button
+                                                        onClick={() => deleteOption(optionIndex)}
+                                                        className="ml-2 text-red-500"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                )}
                                             </label>
                                         </div>
                                     ))}
                                 </div>
+                                <button onClick={addOption} className="mt-2 bg-gray-200 px-2 py-1 rounded-md text-sm">
+                                    Add Option
+                                </button>
                             </div>
                             {isLoading ? (
                                 <button className="bg-[#6dabe4] w-[120px] flex justify-center text-white py-2 px-4 rounded-md text-sm" disabled>
@@ -222,7 +230,7 @@ const QuestionList = () => {
                 </Modal>
             ))}
         </div>
-    )
-}
+    );
+};
 
 export default QuestionList;
