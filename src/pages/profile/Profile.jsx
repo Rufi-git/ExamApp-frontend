@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUser, selectUser, updateUser } from '../../../redux/features/auth/authSlice'
 import Loader from '../../components/Loader'
 import { toast } from 'react-toastify'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Notification from '../../components/notification/Notification'
 import { TailSpin } from 'react-loader-spinner'
 import { RiArrowDropDownLine } from 'react-icons/ri'
+import Spinner from '../../components/Spinner'
 
 const cloud_name = import.meta.env.VITE_CLOUD_NAME
 const upload_preset = import.meta.env.VITE_UPLAD_PRESET
@@ -148,12 +149,15 @@ const Profile = () => {
                 <label htmlFor="bio">Bio</label>
                 <textarea id='bio' value={bio} name='bio' onChange={handleInputChange} className='border px-3 py-1 outline-none w-full' />
               </div>
-              {
-                isLoading ?
-                  <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
-                  :
-                  <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
-              }
+              <div className='flex justify-between items-center w-full col-span-2'>
+                {
+                  isLoading ?
+                    <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'><Spinner /></button>
+                    :
+                    <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
+                }
+                <Link to="/tags" className='bg-[#1084da] border-2 font-semibold text-[white] px-4 py-2'>İmtahanlar</Link>
+              </div>
             </form>
           </>
         )}
@@ -184,7 +188,7 @@ export const UserName = () => {
   return <NavLink to={"/profile"} className={activeLink}>
     Hi, {shortenText(username, 15)}
     <span className="text-[30px]">
-      <RiArrowDropDownLine/>
+      <RiArrowDropDownLine />
     </span>
   </NavLink>
 }
