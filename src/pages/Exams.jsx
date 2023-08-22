@@ -8,8 +8,11 @@ import ExamList from "../components/ExamList"
 
 import { Link, useParams } from 'react-router-dom'
 import { AdminTeacherLink } from '../components/protect/hiddenLink'
+import useRedirectLoggedOutUser from '../customHook/useRedirectLoggedOutUser'
 
 const Exams = () => {
+    useRedirectLoggedOutUser("/login")
+
     const { id } = useParams()
     return (
         <div className="bg-gray-50">

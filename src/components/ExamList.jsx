@@ -13,6 +13,7 @@ import axios from "axios"
 import { payExam } from "../../redux/features/stripe/stripeSlice"
 
 const ExamList = () => {
+
     const dispatch = useDispatch()
     const { exams, myExams, isLoading, isSuccess } = useSelector(state => state.quiz)
     const { user } = useSelector(state => state.auth)
@@ -28,6 +29,7 @@ const ExamList = () => {
     }
 
     const addExam = async (e, exam) => {
+        console.log("asd")
         e.preventDefault()
         await dispatch(payExam({ exam, userId: user._id }))
         // await dispatch(addExamToUser(exam._id))
