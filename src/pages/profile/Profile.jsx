@@ -133,19 +133,19 @@ const Profile = () => {
               </div>
             </div>
             <form action="" className='grid md:grid-cols-2 mt-5 md:gap-10 gap-4' onSubmit={handleUpdate}>
-              <div className='flex flex-col'>
+              <div className='flex flex-col col-span-2 md:col-span-1'>
                 <label htmlFor="name">Name</label>
                 <input type="text" id='name' value={name} onChange={handleInputChange} name='name' className='w-full border px-3 py-1 outline-none' />
               </div>
-              <div className='flex flex-col'>
+              <div className='flex flex-col col-span-2 md:col-span-1'>
                 <label htmlFor="email">Email</label>
                 <input type="email" id='email' disabled value={email} onChange={handleInputChange} name='email' className='border px-3 py-1 outline-none w-full' />
               </div>
-              <div className='flex flex-col'>
+              <div className='flex flex-col col-span-2 md:col-span-1'>
                 <label htmlFor="phone">Phone</label>
                 <input type="text" id='phone' value={phone} onChange={handleInputChange} name='phone' className='border px-3 py-1 outline-none w-full' />
               </div>
-              <div className='flex flex-col'>
+              <div className='flex flex-col col-span-2 md:col-span-1'>
                 <label htmlFor="bio">Bio</label>
                 <textarea id='bio' value={bio} name='bio' onChange={handleInputChange} className='border px-3 py-1 outline-none w-full' />
               </div>
