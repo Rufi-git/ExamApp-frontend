@@ -1,4 +1,4 @@
-import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom"
+import { HashRouter, BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
 import Layout from "./components/Layout"
 import Login from "./pages/auth/Login"
@@ -14,7 +14,7 @@ import Loader from "./components/Loader"
 import axios from "axios"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getLoginStatus, getUser, selectIsLoggedIn, selectUser } from "../redux/features/auth/authSlice"
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -38,14 +38,21 @@ import Modal from 'react-modal';
 
 axios.defaults.withCredentials = true
 
+const Wrapper = ({ children }) => {
+  const location = useLocation()
+
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0)
+  }, [location.pathname])
+
+  return children
+}
 
 function App() {
   const dispatch = useDispatch()
 
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const user = useSelector(selectUser)
-
-  const [counter, setCounter] = useState(localStorage.getItem('quizCountdown'));
 
   useEffect(() => {
     dispatch(getLoginStatus())
@@ -56,177 +63,178 @@ function App() {
 
   }, [dispatch, isLoggedIn, user])
   Modal.setAppElement('#root');
-  
+
 
   return (
     <>
       <BrowserRouter>
-        <ToastContainer />
-        {/* <Loader /> */}
-        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-          <Routes>
-            <Route index exact
-              element={
-                <Layout>
-                  <Home />
-                </Layout>
-              } />
+        <Wrapper>
+          <ToastContainer />
+          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+            <Routes>
+              <Route index exact
+                element={
+                  <Layout>
+                    <Home />
+                  </Layout>
+                } />
 
-            <Route path="/login" exact
-              element={
-                <Login />
-              } />
+              <Route path="/login" exact
+                element={
+                  <Login />
+                } />
 
-            <Route path="/register" exact
-              element={
-                <Register />
-              } />
+              <Route path="/register" exact
+                element={
+                  <Register />
+                } />
 
-            <Route path="/forgot" exact
-              element={
-                <Forgot />
-              } />
+              <Route path="/forgot" exact
+                element={
+                  <Forgot />
+                } />
 
-            <Route path="/resetPassword/:resetToken" exact
-              element={
-                <Reset />
-              } />
+              <Route path="/resetPassword/:resetToken" exact
+                element={
+                  <Reset />
+                } />
 
-            <Route path="/loginWithCode/:email" exact
-              element={
-                <LoginWithCode />
-              } />
+              <Route path="/loginWithCode/:email" exact
+                element={
+                  <LoginWithCode />
+                } />
 
-            <Route path="/verify/:verificationToken" exact
-              element={
-                <Verify />
-              } />
+              <Route path="/verify/:verificationToken" exact
+                element={
+                  <Verify />
+                } />
 
-            <Route path="/profile" exact
-              element={
-                <Layout>
-                  <Profile />
-                </Layout>
-              } />
+              <Route path="/profile" exact
+                element={
+                  <Layout>
+                    <Profile />
+                  </Layout>
+                } />
 
-            <Route path="/changePassword" exact
-              element={
-                <Layout>
-                  <ChangePassword />
-                </Layout>
-              } />
+              <Route path="/changePassword" exact
+                element={
+                  <Layout>
+                    <ChangePassword />
+                  </Layout>
+                } />
 
-            <Route path="/users" exact
-              element={
-                <Layout>
-                  < UserList />
-                </Layout>
-              } />
+              <Route path="/users" exact
+                element={
+                  <Layout>
+                    < UserList />
+                  </Layout>
+                } />
 
-            <Route path="/tags" exact
-              element={
-                <Layout>
-                  < Tags />
-                </Layout>
-              } />
+              <Route path="/tags" exact
+                element={
+                  <Layout>
+                    < Tags />
+                  </Layout>
+                } />
 
-            <Route path="/exams/:id" exact
-              element={
-                <Layout>
-                  <Exams />
-                </Layout>
-              } />
+              <Route path="/exams/:id" exact
+                element={
+                  <Layout>
+                    <Exams />
+                  </Layout>
+                } />
 
-            <Route path="/exam/:id" exact
-              element={
-                <Layout>
-                  <Exams />
-                </Layout>
-              } />
+              <Route path="/exam/:id" exact
+                element={
+                  <Layout>
+                    <Exams />
+                  </Layout>
+                } />
 
-            <Route path="/examAdd/:id" exact
-              element={
-                <Layout>
-                  <ExamAdd />
-                </Layout>
-              } />
+              <Route path="/examAdd/:id" exact
+                element={
+                  <Layout>
+                    <ExamAdd />
+                  </Layout>
+                } />
 
-            <Route path="/tagAdd" exact
-              element={
-                <Layout>
-                  <TagAdd />
-                </Layout>
-              } />
+              <Route path="/tagAdd" exact
+                element={
+                  <Layout>
+                    <TagAdd />
+                  </Layout>
+                } />
 
-            <Route path="/exam/edit/:examId" exact
-              element={
-                <Layout>
-                  <ExamEdit />
-                </Layout>
-              } />
+              <Route path="/exam/edit/:examId" exact
+                element={
+                  <Layout>
+                    <ExamEdit />
+                  </Layout>
+                } />
 
-            <Route path="/exam/:examId/addQuestion" exact
-              element={
-                <Layout>
-                  <QuestionAdd />
-                </Layout>
-              } />
+              <Route path="/exam/:examId/addQuestion" exact
+                element={
+                  <Layout>
+                    <QuestionAdd />
+                  </Layout>
+                } />
 
-            <Route path="/exam/details/:examId" exact
-              element={
-                <Layout>
-                  <ExamInstructions />
-                </Layout>
-              } />
+              <Route path="/exam/details/:examId" exact
+                element={
+                  <Layout>
+                    <ExamInstructions />
+                  </Layout>
+                } />
 
-            <Route path="/exam/:examId/start" exact
-              element={
-                <Quiz />
-              } />
-            <Route path="/exam/:examId/result" exact
-              element={
-                <Result />
-              } />
+              <Route path="/exam/:examId/start" exact
+                element={
+                  <Quiz />
+                } />
+              <Route path="/exam/:examId/result" exact
+                element={
+                  <Result />
+                } />
 
-            <Route path="/tag/edit/:tagId" exact
-              element={
-                <Layout>
-                  <TagEdit />
-                </Layout>
-              } />
+              <Route path="/tag/edit/:tagId" exact
+                element={
+                  <Layout>
+                    <TagEdit />
+                  </Layout>
+                } />
 
-            <Route path="/myResults" exact
-              element={
-                <Layout>
-                  <MyResults />
-                </Layout>
-              } />
-            <Route path="/myExams" exact
-              element={
-                <Layout>
-                  <MyExams />
-                </Layout>
-              } />
-            <Route path="/result/:resultId/review" exact
-              element={
-                <Layout>
-                  <Review />
-                </Layout>
-              } />
-            <Route path="/user/:id/details" exact
-              element={
-                <Layout>
-                  <UserDetails />
-                </Layout>
-              } />
-            <Route path="/ourSuccess" exact
-              element={
-                <Layout>
-                  <OurSuccess />
-                </Layout>
-              } />
-          </Routes>
-        </GoogleOAuthProvider>
+              <Route path="/myResults" exact
+                element={
+                  <Layout>
+                    <MyResults />
+                  </Layout>
+                } />
+              <Route path="/myExams" exact
+                element={
+                  <Layout>
+                    <MyExams />
+                  </Layout>
+                } />
+              <Route path="/result/:resultId/review" exact
+                element={
+                  <Layout>
+                    <Review />
+                  </Layout>
+                } />
+              <Route path="/user/:id/details" exact
+                element={
+                  <Layout>
+                    <UserDetails />
+                  </Layout>
+                } />
+              <Route path="/ourSuccess" exact
+                element={
+                  <Layout>
+                    <OurSuccess />
+                  </Layout>
+                } />
+            </Routes>
+          </GoogleOAuthProvider>
+        </Wrapper>
       </BrowserRouter>
 
     </>
