@@ -5,6 +5,8 @@ import Spinner from './Spinner';
 import { addAchivement, getAchivements } from '../../redux/features/achivement/achivementSlice';
 import { toast } from 'react-toastify';
 
+import { HiOutlinePhotograph } from "react-icons/hi"
+
 const cloud_name = import.meta.env.VITE_CLOUD_NAME
 const upload_preset = import.meta.env.VITE_UPLAD_PRESET
 
@@ -74,22 +76,71 @@ const AchivementModal = ({ modalIsOpen, closeModal }) => {
         setAchivementForm({ ...achivementForm, [name]: value })
     }
 
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const imageFile = e.dataTransfer.files[0];
+        if (
+            imageFile &&
+            (imageFile.type === 'image/jpeg' || imageFile.type === 'image/jpg' || imageFile.type === 'image/png')
+        ) {
+            setAchivementImage(imageFile);
+            setImagePreview(URL.createObjectURL(imageFile));
+        }
+    };
+
     return (
         <Modal
-            className={"z-[10000] max-w-[1200px] px-6 mx-auto flex mt-[130px] max-h-[800px] overflow-auto"}
+            className={"z-[10000] max-w-[1200px] px-6 py-6 overflow-y-auto max-h-[80%]"}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             contentLabel="Example Modal"
+            style={{
+                content: {
+                    position: "relative",
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                },
+            }}
         >
             <div className="w-full max-w-[1240px] bg-white p-8 shadow-md h-full">
                 <form onSubmit={addAchivementForm}>
-                    <div className='w-full max-h-[400px] overflow-auto pb-3'>
-                        <label htmlFor="image" className='cursor-pointer'>
-                            <div className="border border-gray-300 p-2 rounded shadow-md min-h-[200px]">
-                                <img src={imagePreview === null ? photo : imagePreview} alt="" className='w-full  object-cover shadow-2xl bg-center' />
-                            </div>
+                    <div
+                        className="rounded-lg max-h-[600px] cursor-pointer relative overflow-y-auto"
+                        onDrop={handleDrop}
+                        onDragOver={(e) => e.preventDefault()}
+                    >
+                        <label
+                            htmlFor="imageInput"
+                            className="my-8 p-6   w-full h-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-400 hover:border-blue-500 cursor-pointer"
+                        >
+                            {imagePreview ? (
+                                <img
+                                    src={imagePreview}
+                                    alt=""
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="flex items-center justify-center h-full flex-col">
+                                    <div className="text-[40px] flex items-center justify-center text-gray-400">
+                                        <HiOutlinePhotograph />
+                                    </div>
+                                    <p className="flex items-center justify-center text-gray-400 font-semibold">
+                                        Click or drag and drop an image here
+                                    </p>
+                                </div>
+                            )}
                         </label>
-                        <input type="file" className='mt-3 hidden' accept='image/*' id='image' name='image' onChange={handleImageChange} />
+                        <input
+                            type="file"
+                            className="hidden"
+                            accept="image/*"
+                            id="imageInput"
+                            name="image"
+                            onChange={handleImageChange}
+                        />
                     </div>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="title">
