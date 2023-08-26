@@ -46,14 +46,14 @@ const Footer = () => {
                         <div className='lg:text-[55px] text-[35px] text-[#28e688]'><PiPhoneCallDuotone /></div>
                         <div className='ml-4'>
                             <h1 className='font-bold lg:text-[20px] text-sm'>Əlaqə Nömrəmiz</h1>
-                            <Link to="tel:+994773999966" className='text-[#6a7695] text-sm sm:text-base'>+994 77 399 99 66</Link>
+                            <Link to="tel:+994702174631" className='text-[#6a7695] text-sm sm:text-base'>+994 70 217 46 31</Link>
                         </div>
                     </div>
                     <div className='flex items-center'>
                         <div className='lg:text-[55px] text-[35px] text-[#dac900]'><HiOutlineMailOpen /></div>
                         <div className='ml-4'>
                             <h1 className='font-bold lg:text-[20px] text-sm'>ELEKTRON ÜNVAN</h1>
-                            <Link to="mailto:nuriyev.eliyar@mail.ru" className='text-[#6a7695]'>nuriyev.eliyar@mail.ru</Link>
+                            <Link to="mailto:sabinaaliyeva051@gmail.com" className='text-[#6a7695]'>sabinaaliyeva051@gmail.com</Link>
                         </div>
                     </div>
 
