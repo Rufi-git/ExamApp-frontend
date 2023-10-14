@@ -9,7 +9,7 @@ const HeroVideo = () => {
     };
 
     return (
-        <div className='w-full flex mt-[-120px] sm:mt-[-170px] justify-center'>
+        <div className='flex justify-center'>
             <div className='pl-[20px] z-40 '>
                 <div className='hidden sm:block bg-gradient-to-tr from-[#2084da] to-[#44d8b1] w-[70px] rounded-full mr-[-60px] mt-[220px] md:mt-[300px] h-[70px]'></div>
             </div>
