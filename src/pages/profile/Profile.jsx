@@ -154,7 +154,7 @@ const Profile = () => {
                   isLoading ?
                     <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'><Spinner /></button>
                     :
-                    <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Save Changes</button>
+                    <button type='submit' className='border-[#1084da] border-2 font-semibold text-[#1084da] w-[150px] h-[40px]'>Yadda Saxla</button>
                 }
                 <Link to="/tags" className='bg-[#1084da] border-2 font-semibold text-[white] px-4 py-2'>İmtahanlar</Link>
               </div>

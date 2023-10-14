@@ -131,7 +131,7 @@ const Quiz = () => {
                             onClick={movePrev}
                             className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
                         >
-                            <FaChevronLeft className="w-6 h-6 mr-2 inline" /> Prev
+                            <FaChevronLeft className="w-6 h-6 mr-2 inline" /> Geri
                         </button> :
                         <div></div>}
                     {!isLastQuestion ?
@@ -139,7 +139,7 @@ const Quiz = () => {
                             onClick={moveNext}
                             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
                         >
-                            Next <FaChevronRight className="w-6 h-6 ml-2 inline" />
+                            İrəli <FaChevronRight className="w-6 h-6 ml-2 inline" />
                         </button>
                         :
 

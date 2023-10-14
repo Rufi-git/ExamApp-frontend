@@ -9,7 +9,6 @@ import { AdminTeacherLink } from "./protect/hiddenLink"
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai"
 import Spinner from "./Spinner"
 import { motion } from "framer-motion"
-import axios from "axios"
 import { payExam } from "../../redux/features/stripe/stripeSlice"
 
 const ExamList = () => {
@@ -59,7 +58,7 @@ const ExamList = () => {
                     </div>
                     <div className='text-sm font-bold text-[#666] mt-2'>
                         <i className="fa-solid fa-hourglass"></i>
-                        <span className='ml-2'> {`${Math.floor(exam.duration / 60)} minutes ${exam.duration % 60} seconds`}</span>
+                        <span className='ml-2'> {`${Math.floor(exam.duration / 60)} dəqiqə ${exam.duration % 60} saniyə`}</span>
                     </div>
                     <p className='font-bold text-sm mt-3'>Ətraflı</p>
 

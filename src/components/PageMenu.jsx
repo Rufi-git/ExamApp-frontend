@@ -8,28 +8,28 @@ const PageMenu = () => {
             <ul className="text-sm gap-5 text-white flex justify-around flex-wrap">
                 <NavLink to={"/"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                    <li>Home</li>
+                    <li>Ana Səhifə</li>
                 </NavLink>
                 <NavLink to={"/profile"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                    <li>Profile</li>
+                    <li>Haqqımda</li>
                 </NavLink>
                 <NavLink to={"/myResults"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                    <li>My Results</li>
+                    <li>Nəticələrim</li>
                 </NavLink>
                 <NavLink to={"/myExams"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                    <li>My Exams</li>
+                    <li>İmtahanlarım</li>
                 </NavLink>
                 <NavLink to={"/changePassword"} className={({ isActive }) =>
                     isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                    <li>Change Password</li>
+                    <li>Şifrəni dəyiş</li>
                 </NavLink>
                 <AdminTeacherLink>
                     <NavLink to={"/users"} className={({ isActive }) =>
                         isActive ? "border-b-2 pb-1 border-white text-[20px] whitespace-nowrap" : "text-[20px] whitespace-nowrap"}>
-                        <li>Users</li>
+                        <li>İstifadəçilər</li>
                     </NavLink>
                 </AdminTeacherLink>
             </ul>
