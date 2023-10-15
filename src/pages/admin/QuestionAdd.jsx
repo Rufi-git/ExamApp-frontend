@@ -95,7 +95,7 @@ const QuestionAdd = () => {
     return (
         <div className="bg-gray-50 max-w-[1440px] mx-auto py-10 my-5 relative">
             <div className='relative h-[700px] overflow-y-auto flex justify-between flex-col'>
-                <button onClick={openModal} className='sticky top-0 ml-auto mr-[20px] bg-[#1084da] text-white px-4 py-2 rounded-sm'>Add Question</button>
+                <button onClick={openModal} className='sticky top-0 ml-auto mr-[20px] bg-[#1084da] text-white px-4 py-2 rounded-sm'>Sual Əlavə Et</button>
                 <QuestionList />
             </div>
             <Modal
@@ -157,7 +157,7 @@ const QuestionAdd = () => {
                                                     onClick={() => deleteOption(index)}
                                                     className="ml-2 text-red-500"
                                                 >
-                                                    Delete
+                                                    Sil
                                                 </button>
                                             )}
                                         </label>
@@ -165,7 +165,7 @@ const QuestionAdd = () => {
                                 ))}
                             </div>
                             <button onClick={addNewOption} type='button' className="mt-2 bg-gray-200 px-2 py-1 rounded-md text-sm">
-                                Add Option
+                                Seçimi artır
                             </button>
                         </div>
                         {isLoading ? (
@@ -177,7 +177,7 @@ const QuestionAdd = () => {
                                 type="submit"
                                 className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                             >
-                                Add Question
+                                Əlavə et
                             </button>
                         )}
                     </form>

@@ -70,7 +70,7 @@ const ExamEdit = () => {
             }]
         }
 
-        if (name && duration && price && passingMarks && totalMarks) {
+        if (name && duration && passingMarks && totalMarks) {
             console.log(examData);
             const editExamData = await dispatch(editExam({ examData, examId }))
 

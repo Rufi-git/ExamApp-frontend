@@ -71,7 +71,7 @@ const ExamAdd = () => {
                 <form onSubmit={addExamForm}>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-                            Name:
+                            İmatahan adı:
                         </label>
                         <input
                             value={name}
@@ -84,7 +84,7 @@ const ExamAdd = () => {
                     </div>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700" htmlFor="duration">
-                            Duration:
+                            Müddət (saniyə):
                         </label>
                         <input
                             value={duration}
@@ -97,7 +97,7 @@ const ExamAdd = () => {
                     </div>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700" htmlFor="price">
-                            Price:
+                            Qiymət:
                         </label>
                         <input
                             value={price}
@@ -124,7 +124,7 @@ const ExamAdd = () => {
                     </div> */}
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700" htmlFor="totalMarks">
-                            Total Marks:
+                            Ümumi Bal:
                         </label>
                         <input
                             value={totalMarks}
@@ -137,7 +137,7 @@ const ExamAdd = () => {
                     </div>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700" htmlFor="passingMarks">
-                            Passing Marks:
+                            Keçid Balı:
                         </label>
                         <input
                             value={passingMarks}
@@ -167,7 +167,7 @@ const ExamAdd = () => {
                         type="submit"
                         className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     >
-                        Add Exam
+                        İmtahanı Əlavə et
                     </button>
                 </form>
             </div>

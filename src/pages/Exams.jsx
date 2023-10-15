@@ -19,7 +19,7 @@ const Exams = () => {
             <div className="mx-auto max-w-screen-2xl px-2 py-10">
                 <div className='w-full'>
                     <AdminTeacherLink>
-                        <Link to={`/examAdd/${id}`} className='bg-[#1084da] border text-white px-6 py-2 rounded-sm ml-auto flex w-[130px] mb-5'>Add Exam</Link>
+                        <Link to={`/examAdd/${id}`} className='bg-[#1084da] border text-white px-6 py-2 rounded-sm ml-auto flex max-w-[180px] mb-5'>Imtahan Əlavə et</Link>
                     </AdminTeacherLink>
                     <div>
                         <ExamList />

@@ -120,7 +120,7 @@ export const validateEmail = (email) => {
 
 // Validate password
 export const validatePassword = (password) => {
-    if (password.length < 6 || !password.match(/([!,%,&,@,#,$,^,*,?,_,~])/) || !password.match(/([0-9])/) || !password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+    if (!password.match(/([0-9])/)) {
         return false;
     }
     return true;

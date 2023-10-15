@@ -36,10 +36,10 @@ const Register = () => {
         setUserData({ ...userData, [name]: value })
     }
 
-    const [uCase, setUcase] = useState(false)
+    // const [uCase, setUcase] = useState(false)
     const [num, setNum] = useState(false)
-    const [sChar, setSChar] = useState(false)
-    const [passLength, setPassLength] = useState(false)
+    // const [sChar, setSChar] = useState(false)
+    // const [passLength, setPassLength] = useState(false)
 
 
     const wrongIcon = <MdOutlineClose className="text-[red] text-[17px]" />
@@ -59,11 +59,11 @@ const Register = () => {
     }
 
     useEffect(() => {
-        if (password.match(/^(?=.*[a-z])(?=.*[A-Z]).*$/)) {
-            setUcase(true)
-        } else {
-            setUcase(false)
-        }
+        // if (password.match(/^(?=.*[a-z])(?=.*[A-Z]).*$/)) {
+        //     setUcase(true)
+        // } else {
+        //     setUcase(false)
+        // }
 
         if (password.match(/([0-9])/)) {
             setNum(true)
@@ -71,17 +71,17 @@ const Register = () => {
             setNum(false)
         }
 
-        if (password.match(/([!@#$%^&*.?,<>/])/)) {
-            setSChar(true)
-        } else {
-            setSChar(false)
-        }
+        // if (password.match(/([!@#$%^&*.?,<>/])/)) {
+        //     setSChar(true)
+        // } else {
+        //     setSChar(false)
+        // }
 
-        if (password.length > 5) {
-            setPassLength(true)
-        } else {
-            setPassLength(false)
-        }
+        // if (password.length > 5) {
+        //     setPassLength(true)
+        // } else {
+        //     setPassLength(false)
+        // }
     }, [password])
 
     const handleRegister = async (e) => {
@@ -160,22 +160,22 @@ const Register = () => {
                             </div>
                         </div>
                         <ul className="mt-4 border border-[#96c6f3] p-2 rounded-md text-sm">
-                            <li className="flex gap-2 items-center">
+                            {/* <li className="flex gap-2 items-center">
                                 {switchIcon(uCase)}
                                 Lowercase & Uppercase
-                            </li>
+                            </li> */}
                             <li className="flex gap-2 items-center">
                                 {switchIcon(num)}
                                 Number (0-9)
                             </li>
-                            <li className="flex gap-2 items-center">
+                            {/* <li className="flex gap-2 items-center">
                                 {switchIcon(sChar)}
                                 Special Character (!@#$%^&*)
-                            </li>
-                            <li className="flex gap-2 items-center">
+                            </li> */}
+                            {/* <li className="flex gap-2 items-center">
                                 {switchIcon(passLength)}
                                 At least 6 Characters
-                            </li>
+                            </li> */}
                         </ul>
                         {
                             isLoading ?
